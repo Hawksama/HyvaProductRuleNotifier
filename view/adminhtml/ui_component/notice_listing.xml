@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Alexandru-Manuel Carabus All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">notice_listing.notice_listing_data_source</item>
+            <item name="deps" xsi:type="string">notice_listing.notice_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="add">
+                <url path="*/*/new"/>
+                <class>primary</class>
+                <label translate="true">Add New</label>
+            </button>
+        </buttons>
+        <spinner>notice_listing_columns</spinner>
+        <deps>
+            <dep>notice_listing.notice_listing_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="notice_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">notice_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>Hawksama_Notice::management</aclResource>
+        <dataProvider class="Hawksama\Notice\Ui\DataProvider\Grid\DataProvider" name="notice_listing_data_source">
+            <settings>
+                <requestFieldName>notice_id</requestFieldName>
+                <primaryFieldName>notice_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filterSearch name="fulltext"/>
+        <filters name="listing_filters"/>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="notice_listing_columns">
+        <column name="notice_id">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">ID</label>
+                <sorting>desc</sorting>
+            </settings>
+        </column>
+        <column name="rule_name">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Rule Name</label>
+            </settings>
+        </column>
+        <column name="enabled" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <options class="Hawksama\Notice\Model\Source\IsActive"/>
+                <filter>select</filter>
+                <editor>
+                    <editorType>select</editorType>
+                </editor>
+                <dataType>select</dataType>
+                <label translate="true">Status</label>
+            </settings>
+        </column>
+        <column name="store_id" class="Magento\Store\Ui\Component\Listing\Column\Store">
+            <settings>
+                <label translate="true">Store View</label>
+                <bodyTmpl>ui/grid/cells/html</bodyTmpl>
+                <sortable>false</sortable>
+            </settings>
+        </column>
+        <column name="product_attribute">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Product Attribute</label>
+            </settings>
+        </column>
+        <column name="word">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Word</label>
+            </settings>
+        </column>
+        <column name="match_type">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Match Type</label>
+            </settings>
+        </column>
+        <actionsColumn name="actions" class="Hawksama\Notice\Ui\Component\Listing\Column\NoticeBlockActions">
+            <settings>
+                <indexField>notice_id</indexField>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing>

@@ -1,0 +1,36 @@
+{
+    "hawksama_notice": {
+        "column": {
+            "notice_id": true,
+            "rule_name": true,
+            "enabled": true,
+            "product_attribute": true,
+            "word": true,
+            "match_type": true,
+            "description": true,
+            "schedule_enabled": true,
+            "start_date": true,
+            "end_date": true
+        },
+        "index": {
+            "HAWKSAMA_NOTICE_NOTICE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "hawksama_notice_store": {
+        "column": {
+            "notice_id": true,
+            "store_id": true
+        },
+        "index": {
+            "HAWKSAMA_NOTICE_STORE_STORE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "HAWKSAMA_NOTICE_STORE_NOTICE_ID_HAWKSAMA_NOTICE_NOTICE_ID": true,
+            "HAWKSAMA_NOTICE_STORE_STORE_ID_STORE_STORE_ID": true
+        }
+    }
+}

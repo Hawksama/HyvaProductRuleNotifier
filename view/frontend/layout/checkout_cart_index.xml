@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright   Copyright (c) Vendic B.V https://vendic.nl/
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="checkout.cart.form.before">
+<!--            <block class="Magento\Framework\View\Element\Template" name="component-notice-ecc-memory" template="Vendic_Notices::cart/notice-ecc-memory.phtml">-->
+<!--                <arguments>-->
+<!--                    <argument name="view_model" xsi:type="object">Vendic\Notices\ViewModel\NoticeEccMemory</argument>-->
+<!--                </arguments>-->
+<!--            </block>-->
+<!--            <block class="Magento\Framework\View\Element\Template" name="component-notice-harddisk" template="Vendic_Notices::cart/notice-harddisk-interface.phtml">-->
+<!--                <arguments>-->
+<!--                    <argument name="view_model" xsi:type="object">Vendic\Notices\ViewModel\NoticeHarddisk</argument>-->
+<!--                </arguments>-->
+<!--            </block>-->
+            <block class="Magento\Framework\View\Element\Template" name="cart.notices" template="Hawksama_Notice::cart/notice-attribute.phtml">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">Hawksama\Notice\ViewModel\NoticeViewModel</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

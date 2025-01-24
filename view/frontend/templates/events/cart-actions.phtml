@@ -1,0 +1,83 @@
+<?php
+
+/**
+ * Copyright © Alexandru-Manuel Carabus All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+declare(strict_types=1);
+
+// phpcs:disable Generic.Files.LineLength
+?>
+<script>
+    'use strict';
+    (() => {
+        let cartItems = {};
+
+        // Function to update cart items from event data
+        function updateCartItemsFromEvent(cartData) {
+            if (!cartData || !cartData.items.length) return;
+
+            const newCartItems = cartData.items.reduce((acc, item) => {
+                acc[item.product_id] = {
+                    quantity: item.qty,
+                    productDetails: item
+                };
+                return acc;
+            }, {});
+
+            checkCartItemsChanges(newCartItems);
+            cartItems = newCartItems;
+        }
+
+        // Function to check for changes in the cart (added, removed, updated items)
+        function checkCartItemsChanges(newCartItems) {
+            // Check for added or updated items
+            for (const productId in newCartItems) {
+                const oldCartItem = cartItems[productId];
+                const newCartItem = newCartItems[productId];
+                const newQty = newCartItem.quantity;
+
+                if (!oldCartItem) {
+                    // New cart item added
+                    dispatchCartEvent('cart-item-added', newCartItem, newQty);
+                }
+            }
+
+            // Check for removed items
+            for (const productId in cartItems) {
+                if (!newCartItems[productId]) {
+                    dispatchCartEvent('cart-item-removed', cartItems[productId], cartItems[productId].quantity);
+                }
+            }
+        }
+
+        // Function to dispatch custom cart events
+        function dispatchCartEvent(eventName, itemDetails, quantity, action = '') {
+            const price = itemDetails.productDetails.product_price_value?.incl_tax ?? itemDetails.productDetails.product_price_value;
+
+            const eventData = {
+                item_name: itemDetails.productDetails.product_name,
+                item_id: itemDetails.productDetails.product_sku,
+                price: price,
+                item_brand: itemDetails.productDetails.brand ?? '',
+                quantity: quantity,
+                action: action
+            };
+
+            // Dispatch the custom event
+            const event = new CustomEvent(eventName, {
+                detail: {
+                    item: eventData
+                }
+            });
+            window.dispatchEvent(event);
+        }
+
+        // Listen for the private-content-loaded event, which includes updated cart data
+        window.addEventListener('private-content-loaded', (event) => {
+            const cartData = event.detail.data && event.detail.data.cart;
+            updateCartItemsFromEvent(cartData);
+        });
+    })();
+</script>

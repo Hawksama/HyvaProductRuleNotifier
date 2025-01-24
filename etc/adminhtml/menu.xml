@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Alexandru-Manuel Carabus All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Hawksama_Notice::management" sortOrder="100" title="Notice Management" module="Hawksama_Notice"
+             parent="Hawksama_AdminMenu::menu" resource="Hawksama_Notice::management" translate="title"
+             action="hawksama/notice/index"/>
+    </menu>
+</config>

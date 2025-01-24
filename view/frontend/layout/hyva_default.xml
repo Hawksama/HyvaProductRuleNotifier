@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright   Copyright (c) Vendic B.V https://vendic.nl/
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="extra_actions">
+            <block class="Magento\Framework\View\Element\Template" name="notice_attribute" template="Hawksama_Notice::notice-attribute.phtml">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">Hawksama\Notice\ViewModel\NoticeViewModel</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+        <referenceContainer name="before.body.end">
+            <block name="notices.event.cart-actions" template="Hawksama_Notice::events/cart-actions.phtml" />
+        </referenceContainer>
+    </body>
+</page>

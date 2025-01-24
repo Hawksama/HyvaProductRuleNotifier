@@ -1,0 +1,33 @@
+<?php
+
+/**
+ * Copyright © Alexandru-Manuel Carabus All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+declare(strict_types=1);
+
+use Magento\Framework\View\Element\Template;
+use Hyva\Theme\Model\ViewModelRegistry;
+use Hyva\Theme\ViewModel\HeroiconsOutline;
+use Magento\Framework\Escaper;
+use Hawksama\Notice\ViewModel\NoticeViewModel;
+
+/**
+ * @var Template $block
+ * @var ViewModelRegistry $viewModels
+ * @var NoticeViewModel $viewModel
+ * @var HeroiconsOutline $heroicons
+ * @var Escaper $escaper
+ */
+
+$viewModel = $viewModels->require(NoticeViewModel::class);
+$notices = $viewModel->getNotices();
+?>
+<?php if (!empty($notices)): ?>
+    <div class="notices">
+        <?php foreach ($notices as $notice): ?>
+            <div class="notice"><?= $notice ?></div>
+        <?php endforeach; ?>
+    </div>
+<?php endif; ?>
