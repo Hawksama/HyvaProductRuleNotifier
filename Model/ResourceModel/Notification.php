@@ -7,10 +7,10 @@
 
 declare(strict_types=1);
 
-namespace Hawksama\Notice\Model\ResourceModel;
+namespace Hawksama\ProductRuleNotifier\Model\ResourceModel;
 
-use Hawksama\Notice\Api\Data\NoticeInterface;
-use Hawksama\Notice\Model\Notice as Model;
+use Hawksama\ProductRuleNotifier\Api\Data\NoticeInterface;
+use Hawksama\ProductRuleNotifier\Model\Notice as Model;
 use Magento\Framework\DB\Select;
 use Magento\Framework\EntityManager\EntityManager;
 use Magento\Framework\EntityManager\MetadataPool;

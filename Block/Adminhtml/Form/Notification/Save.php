@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace Hawksama\Notice\Block\Adminhtml\Form\Notification;
+namespace Hawksama\ProductRuleNotifier\Block\Adminhtml\Form\Notification;
 
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 

@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace Hawksama\Notice\Observer;
+namespace Hawksama\ProductRuleNotifier\Observer;
 
 use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Catalog\Model\ResourceModel\Product as ProductResource;
@@ -17,7 +17,7 @@ use Magento\Framework\Event\ObserverInterface;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Quote\Model\Quote\Item as QuoteItem;
 use Magento\Catalog\Api\ProductRepositoryInterface;
-use Hawksama\Notice\Query\Notice\GetListQuery;
+use Hawksama\ProductRuleNotifier\Query\Notice\GetListQuery;
 
 class AddAttributesToQuoteItem implements ObserverInterface
 {

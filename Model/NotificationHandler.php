@@ -7,12 +7,12 @@
 
 declare(strict_types=1);
 
-namespace Hawksama\Notice\Model;
+namespace Hawksama\ProductRuleNotifier\Model;
 
-use Hawksama\Notice\Api\Data\NoticeInterface;
-use Hawksama\Notice\Api\NotificationHandlerInterface;
-use Hawksama\Notice\Api\NoticeRepositoryInterface;
-use Hawksama\Notice\Query\Notice\GetListQuery;
+use Hawksama\ProductRuleNotifier\Api\Data\NoticeInterface;
+use Hawksama\ProductRuleNotifier\Api\NotificationHandlerInterface;
+use Hawksama\ProductRuleNotifier\Api\NoticeRepositoryInterface;
+use Hawksama\ProductRuleNotifier\Query\Notice\GetListQuery;
 use Magento\Quote\Model\Quote\Item as QuoteItem;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\Exception\LocalizedException;

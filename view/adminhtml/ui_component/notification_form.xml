@@ -21,9 +21,9 @@
             <dep>notification_form.notification_form_data_source</dep>
         </deps>
         <buttons>
-            <button name="save" class="Hawksama\Notice\Block\Adminhtml\Form\Notification\Save"/>
-            <button name="back" class="Hawksama\Notice\Block\Adminhtml\Form\Notification\Back"/>
-            <button name="delete" class="Hawksama\Notice\Block\Adminhtml\Form\Notification\Delete"/>
+            <button name="save" class="Hawksama\ProductRuleNotifier\Block\Adminhtml\Form\Notification\Save"/>
+            <button name="back" class="Hawksama\ProductRuleNotifier\Block\Adminhtml\Form\Notification\Back"/>
+            <button name="delete" class="Hawksama\ProductRuleNotifier\Block\Adminhtml\Form\Notification\Delete"/>
         </buttons>
     </settings>
     <dataSource name="notification_form_data_source" component="Magento_Ui/js/form/provider">
@@ -35,7 +35,7 @@
         <settings>
             <submitUrl path="hawksama/notification/save"/>
         </settings>
-        <dataProvider class="Hawksama\Notice\Ui\DataProvider\Form\DataProvider" name="notification_form_data_source">
+        <dataProvider class="Hawksama\ProductRuleNotifier\Ui\DataProvider\Form\DataProvider" name="notification_form_data_source">
             <settings>
                 <requestFieldName>notice_id</requestFieldName>
                 <primaryFieldName>notice_id</primaryFieldName>
@@ -110,7 +110,7 @@
         </settings>
         <field name="product_attribute">
             <argument name="data" xsi:type="array">
-                <item name="options" xsi:type="object">Hawksama\Notice\Model\Source\ProductAttribute</item>
+                <item name="options" xsi:type="object">Hawksama\ProductRuleNotifier\Model\Source\ProductAttribute</item>
                 <item name="config" xsi:type="array">
                     <item name="dataType" xsi:type="string">text</item>
                     <item name="label" xsi:type="string" translate="true">Product Attribute</item>

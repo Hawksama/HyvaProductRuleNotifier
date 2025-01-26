@@ -7,19 +7,19 @@
 
 declare(strict_types=1);
 
-namespace Hawksama\Notice\Model;
+namespace Hawksama\ProductRuleNotifier\Model;
 
-use Hawksama\Notice\Api\Data\NoticeSearchResultsInterface;
-use Hawksama\Notice\Api\NoticeRepositoryInterface;
-use Hawksama\Notice\Api\Data\NoticeInterface;
-use Hawksama\Notice\Api\Data\NoticeInterfaceFactory;
-use Hawksama\Notice\Api\Data\NoticeSearchResultsInterfaceFactory;
-use Hawksama\Notice\Model\Notice as Model;
-use Hawksama\Notice\Model\NoticeFactory as ModelFactory;
-use Hawksama\Notice\Model\ResourceModel\Notification as Resource;
-use Hawksama\Notice\Model\ResourceModel\Notification\Collection;
-use Hawksama\Notice\Model\ResourceModel\Notification\CollectionFactory;
-use Hawksama\Notice\Mapper\NoticeDataMapper;
+use Hawksama\ProductRuleNotifier\Api\Data\NoticeSearchResultsInterface;
+use Hawksama\ProductRuleNotifier\Api\NoticeRepositoryInterface;
+use Hawksama\ProductRuleNotifier\Api\Data\NoticeInterface;
+use Hawksama\ProductRuleNotifier\Api\Data\NoticeInterfaceFactory;
+use Hawksama\ProductRuleNotifier\Api\Data\NoticeSearchResultsInterfaceFactory;
+use Hawksama\ProductRuleNotifier\Model\Notice as Model;
+use Hawksama\ProductRuleNotifier\Model\NoticeFactory as ModelFactory;
+use Hawksama\ProductRuleNotifier\Model\ResourceModel\Notification as Resource;
+use Hawksama\ProductRuleNotifier\Model\ResourceModel\Notification\Collection;
+use Hawksama\ProductRuleNotifier\Model\ResourceModel\Notification\CollectionFactory;
+use Hawksama\ProductRuleNotifier\Mapper\NoticeDataMapper;
 use Magento\Framework\Api\SearchCriteria\CollectionProcessor;
 use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\App\ObjectManager;

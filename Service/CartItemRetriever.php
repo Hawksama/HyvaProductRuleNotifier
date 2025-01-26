@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace Hawksama\Notice\Service;
+namespace Hawksama\ProductRuleNotifier\Service;
 
 use Magento\Checkout\Model\Session as CheckoutSession;
 use Magento\Framework\Exception\LocalizedException;

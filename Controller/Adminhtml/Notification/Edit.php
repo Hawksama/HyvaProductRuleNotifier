@@ -7,11 +7,11 @@
 
 declare(strict_types=1);
 
-namespace Hawksama\Notice\Controller\Adminhtml\Notification;
+namespace Hawksama\ProductRuleNotifier\Controller\Adminhtml\Notification;
 
-use Hawksama\Notice\Model\NoticeFactory as ModelFactory;
-use Hawksama\Notice\Model\NoticeRepository as ModelRepository;
-use Hawksama\Notice\Api\Data\NoticeInterface;
+use Hawksama\ProductRuleNotifier\Model\NoticeFactory as ModelFactory;
+use Hawksama\ProductRuleNotifier\Model\NoticeRepository as ModelRepository;
+use Hawksama\ProductRuleNotifier\Api\Data\NoticeInterface;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Backend\Model\View\Result\Page;
@@ -25,7 +25,7 @@ use Magento\Framework\View\Result\PageFactory;
 /**
  * Edit Notification entity backend controller.
  */
-class Edit extends \Hawksama\Notice\Controller\Adminhtml\Notice implements HttpGetActionInterface
+class Edit extends \Hawksama\ProductRuleNotifier\Controller\Adminhtml\Notice implements HttpGetActionInterface
 {
     public function __construct(
         Context $context,

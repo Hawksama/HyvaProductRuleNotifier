@@ -7,13 +7,13 @@
 
 declare(strict_types=1);
 
-namespace Hawksama\Notice\Query\Notice;
+namespace Hawksama\ProductRuleNotifier\Query\Notice;
 
-use Hawksama\Notice\Api\Data\NoticeInterface;
-use Hawksama\Notice\Api\Data\NoticeSearchResultsInterface;
-use Hawksama\Notice\Mapper\NoticeDataMapper;
-use Hawksama\Notice\Model\ResourceModel\Notification\Collection;
-use Hawksama\Notice\Model\ResourceModel\Notification\CollectionFactory;
+use Hawksama\ProductRuleNotifier\Api\Data\NoticeInterface;
+use Hawksama\ProductRuleNotifier\Api\Data\NoticeSearchResultsInterface;
+use Hawksama\ProductRuleNotifier\Mapper\NoticeDataMapper;
+use Hawksama\ProductRuleNotifier\Model\ResourceModel\Notification\Collection;
+use Hawksama\ProductRuleNotifier\Model\ResourceModel\Notification\CollectionFactory;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;

@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace Hawksama\Notice\Controller\Adminhtml;
+namespace Hawksama\ProductRuleNotifier\Controller\Adminhtml;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\Model\View\Result\Page;

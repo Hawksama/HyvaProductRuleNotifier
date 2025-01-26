@@ -7,12 +7,12 @@
 
 declare(strict_types=1);
 
-namespace Hawksama\Notice\Model\ResourceModel\Notification;
+namespace Hawksama\ProductRuleNotifier\Model\ResourceModel\Notification;
 
-use Hawksama\Notice\Model\Notice as Model;
-use Hawksama\Notice\Model\ResourceModel\AbstractCollection;
-use Hawksama\Notice\Model\ResourceModel\Notification as Resource;
-use Hawksama\Notice\Api\Data\NoticeInterface;
+use Hawksama\ProductRuleNotifier\Model\Notice as Model;
+use Hawksama\ProductRuleNotifier\Model\ResourceModel\AbstractCollection;
+use Hawksama\ProductRuleNotifier\Model\ResourceModel\Notification as Resource;
+use Hawksama\ProductRuleNotifier\Api\Data\NoticeInterface;
 
 class Collection extends AbstractCollection
 {

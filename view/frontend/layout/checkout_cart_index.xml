@@ -11,7 +11,7 @@
         <referenceContainer name="checkout.cart.form.before">
             <block class="Magento\Framework\View\Element\Template" name="cart.notifications" template="Hawksama_Notice::cart/notification-attribute.phtml">
                 <arguments>
-                    <argument name="view_model" xsi:type="object">Hawksama\Notice\ViewModel\NotificationViewModel</argument>
+                    <argument name="view_model" xsi:type="object">Hawksama\ProductRuleNotifier\ViewModel\NotificationViewModel</argument>
                 </arguments>
             </block>
         </referenceContainer>

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
     <event name="sales_quote_item_set_product">
-        <observer name="hawksama_notices_add_attributes_to_quote_item" instance="Hawksama\Notice\Observer\AddAttributesToQuoteItem" />
+        <observer name="hawksama_notices_add_attributes_to_quote_item" instance="Hawksama\ProductRuleNotifier\Observer\AddAttributesToQuoteItem" />
     </event>
 </config>

@@ -7,11 +7,11 @@
 
 declare(strict_types=1);
 
-namespace Hawksama\Notice\Ui\DataProvider\Form;
+namespace Hawksama\ProductRuleNotifier\Ui\DataProvider\Form;
 
-use Hawksama\Notice\Model\ResourceModel\Notification\Collection;
-use Hawksama\Notice\Model\ResourceModel\Notification\CollectionFactory;
-use Hawksama\Notice\Model\Notice as EntityModel;
+use Hawksama\ProductRuleNotifier\Model\ResourceModel\Notification\Collection;
+use Hawksama\ProductRuleNotifier\Model\ResourceModel\Notification\CollectionFactory;
+use Hawksama\ProductRuleNotifier\Model\Notice as EntityModel;
 use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Ui\DataProvider\Modifier\PoolInterface;
 use Magento\Ui\DataProvider\ModifierPoolDataProvider;

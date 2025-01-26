@@ -7,11 +7,11 @@
 
 declare(strict_types=1);
 
-namespace Hawksama\Notice\Controller\Adminhtml\Notification;
+namespace Hawksama\ProductRuleNotifier\Controller\Adminhtml\Notification;
 
-use Hawksama\Notice\Api\Data\NoticeInterface;
-use Hawksama\Notice\Model\NoticeFactory as ModelFactory;
-use Hawksama\Notice\Model\ResourceModel\Notification as Resource;
+use Hawksama\ProductRuleNotifier\Api\Data\NoticeInterface;
+use Hawksama\ProductRuleNotifier\Model\NoticeFactory as ModelFactory;
+use Hawksama\ProductRuleNotifier\Model\ResourceModel\Notification as Resource;
 use Magento\Backend\App\Action\Context;
 use Magento\Backend\Model\View\Result\Redirect;
 use Magento\Framework\App\Action\HttpGetActionInterface;
@@ -22,7 +22,7 @@ use Magento\Framework\Exception\NoSuchEntityException;
 use Psr\Log\LoggerInterface;
 
 // phpcs:disable Generic.Files.LineLength.TooLong
-class Delete extends \Hawksama\Notice\Controller\Adminhtml\Notice implements HttpPostActionInterface, HttpGetActionInterface
+class Delete extends \Hawksama\ProductRuleNotifier\Controller\Adminhtml\Notice implements HttpPostActionInterface, HttpGetActionInterface
 {
     public function __construct(
         Context $context,

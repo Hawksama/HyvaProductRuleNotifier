@@ -7,13 +7,13 @@
 
 declare(strict_types=1);
 
-namespace Hawksama\Notice\Controller\Check;
+namespace Hawksama\ProductRuleNotifier\Controller\Check;
 
-use Hawksama\Notice\Api\Data\NoticeInterface;
+use Hawksama\ProductRuleNotifier\Api\Data\NoticeInterface;
 use Magento\Framework\Controller\Result\Json;
 use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\Controller\Result\JsonFactory;
-use Hawksama\Notice\ViewModel\NotificationViewModel;
+use Hawksama\ProductRuleNotifier\ViewModel\NotificationViewModel;
 
 class Notifications implements HttpGetActionInterface
 {

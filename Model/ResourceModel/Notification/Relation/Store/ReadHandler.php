@@ -7,10 +7,10 @@
 
 declare(strict_types=1);
 
-namespace Hawksama\Notice\Model\ResourceModel\Notification\Relation\Store;
+namespace Hawksama\ProductRuleNotifier\Model\ResourceModel\Notification\Relation\Store;
 
-use Hawksama\Notice\Model\ResourceModel\Notification as Resource;
-use Hawksama\Notice\Model\Notice as Model;
+use Hawksama\ProductRuleNotifier\Model\ResourceModel\Notification as Resource;
+use Hawksama\ProductRuleNotifier\Model\Notice as Model;
 use Magento\Framework\EntityManager\Operation\ExtensionInterface;
 
 class ReadHandler implements ExtensionInterface

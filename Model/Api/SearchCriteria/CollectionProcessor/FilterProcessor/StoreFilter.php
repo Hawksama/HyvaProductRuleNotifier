@@ -7,9 +7,9 @@
 
 declare(strict_types=1);
 
-namespace Hawksama\Notice\Model\Api\SearchCriteria\CollectionProcessor\FilterProcessor;
+namespace Hawksama\ProductRuleNotifier\Model\Api\SearchCriteria\CollectionProcessor\FilterProcessor;
 
-use Hawksama\Notice\Model\ResourceModel\Notification\Collection;
+use Hawksama\ProductRuleNotifier\Model\ResourceModel\Notification\Collection;
 use Magento\Framework\Api\Filter;
 use Magento\Framework\Api\SearchCriteria\CollectionProcessor\FilterProcessor\CustomFilterInterface;
 use Magento\Framework\Data\Collection\AbstractDb;

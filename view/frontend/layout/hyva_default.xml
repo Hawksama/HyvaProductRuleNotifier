@@ -11,7 +11,7 @@
         <referenceContainer name="extra_actions">
             <block class="Magento\Framework\View\Element\Template" name="notification_attribute" template="Hawksama_Notice::notification-attribute.phtml">
                 <arguments>
-                    <argument name="view_model" xsi:type="object">Hawksama\Notice\ViewModel\NotificationViewModel</argument>
+                    <argument name="view_model" xsi:type="object">Hawksama\ProductRuleNotifier\ViewModel\NotificationViewModel</argument>
                 </arguments>
             </block>
         </referenceContainer>

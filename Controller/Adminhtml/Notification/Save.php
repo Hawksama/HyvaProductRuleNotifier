@@ -7,12 +7,12 @@
 
 declare(strict_types=1);
 
-namespace Hawksama\Notice\Controller\Adminhtml\Notification;
+namespace Hawksama\ProductRuleNotifier\Controller\Adminhtml\Notification;
 
-use Hawksama\Notice\Api\Data\NoticeInterface;
-use Hawksama\Notice\Model\Notice as Model;
-use Hawksama\Notice\Model\NoticeFactory as ModelFactory;
-use Hawksama\Notice\Model\NoticeRepository as ModelRepository;
+use Hawksama\ProductRuleNotifier\Api\Data\NoticeInterface;
+use Hawksama\ProductRuleNotifier\Model\Notice as Model;
+use Hawksama\ProductRuleNotifier\Model\NoticeFactory as ModelFactory;
+use Hawksama\ProductRuleNotifier\Model\NoticeRepository as ModelRepository;
 use Magento\Backend\App\Action\Context;
 use Magento\Backend\Model\View\Result\Redirect;
 use Magento\Framework\App\Action\HttpPostActionInterface;
@@ -25,7 +25,7 @@ use Magento\Framework\Exception\LocalizedException;
 /**
  * Save Notification controller action.
  */
-class Save extends \Hawksama\Notice\Controller\Adminhtml\Notice implements HttpPostActionInterface
+class Save extends \Hawksama\ProductRuleNotifier\Controller\Adminhtml\Notice implements HttpPostActionInterface
 {
     public function __construct(
         Context $context,
