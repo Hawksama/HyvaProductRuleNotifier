@@ -34,9 +34,9 @@ class DataProvider extends \Magento\Framework\View\Element\UiComponent\DataProvi
         FilterBuilder $filterBuilder,
         private readonly GetListQuery $getListQuery,
         private readonly SearchResultFactory $searchResultFactory,
+        protected array $loadedData = [],
         array $meta = [],
-        array $data = [],
-        private array $loadedData = []
+        array $data = []
     ) {
         parent::__construct(
             $name,

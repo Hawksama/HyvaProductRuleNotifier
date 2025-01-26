@@ -7,9 +7,9 @@
 -->
 <schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
-    <table name="hawksama_notice" resource="default" engine="innodb" comment="Notice">
+    <table name="hawksama_notice" resource="default" engine="innodb" comment="Notification">
         <column xsi:type="smallint" name="notice_id" unsigned="true" nullable="false" identity="true"
-                comment="Notice Id Column"/>
+                comment="Notification Id Column"/>
         <column xsi:type="varchar" name="rule_name" nullable="false" length="255" comment="Rule Name Column"/>
         <column xsi:type="boolean" name="enabled" nullable="false" comment="Enabled Column"/>
         <column xsi:type="varchar" name="product_attribute" nullable="false" length="255"

@@ -50,43 +50,53 @@ abstract class AbstractCollection extends \Magento\Framework\Model\ResourceModel
 
     /**
      * Perform operations after collection load
-     *
-     * @param string $tableName
-     * @param string|null $linkField
-     * @return void
      */
-    protected function performAfterLoad($tableName, $linkField)
+    protected function performAfterLoad(string $tableName, string $linkField): void
     {
         $linkedIds = $this->getColumnValues($linkField);
         if (count($linkedIds)) {
             $connection = $this->getConnection();
-            $select = $connection->select()->from(['hawksama_notice_store' => $this->getTable($tableName)])
+            $select = $connection->select()
+                ->from(['hawksama_notice_store' => $this->getTable($tableName)])
                 ->where('hawksama_notice_store.' . $linkField . ' IN (?)', $linkedIds);
+
             $result = $connection->fetchAll($select);
-            if ($result) {
-                $storesData = [];
-                foreach ($result as $storeData) {
-                    $storesData[$storeData[$linkField]][] = $storeData['store_id'];
+            if (!$result) {
+                return;
+            }
+
+            $storesData = [];
+            foreach ($result as $storeData) {
+                $storesData[$storeData[$linkField]][] = $storeData['store_id'];
+            }
+
+            foreach ($this as $item) {
+                $linkedId = $item->getData($linkField);
+                if (!isset($storesData[$linkedId])) {
+                    continue;
                 }
 
-                foreach ($this as $item) {
-                    $linkedId = $item->getData($linkField);
-                    if (!isset($storesData[$linkedId])) {
-                        continue;
-                    }
-                    $storeIdKey = array_search(Store::DEFAULT_STORE_ID, $storesData[$linkedId], true);
-                    if ($storeIdKey !== false) {
-                        $stores = $this->storeManager->getStores(false, true);
-                        $storeId = current($stores)->getId();
+                $storeIdKey = array_search(Store::DEFAULT_STORE_ID, $storesData[$linkedId], true);
+                $storeId = $storeCode = null;
+
+                if ($storeIdKey !== false) {
+                    $stores = $this->storeManager->getStores(false, true);
+                    $currentStore = current($stores);
+
+                    if ($currentStore instanceof \Magento\Store\Api\Data\StoreInterface) {
+                        $storeId = $currentStore->getId();
                         $storeCode = key($stores);
-                    } else {
-                        $storeId = current($storesData[$linkedId]);
-                        $storeCode = $this->storeManager->getStore($storeId)->getCode();
                     }
-                    $item->setData('_first_store_id', $storeId);
-                    $item->setData('store_code', $storeCode);
-                    $item->setData('store_id', $storesData[$linkedId]);
                 }
+
+                if ($storeIdKey === false) {
+                    $storeId = current($storesData[$linkedId]);
+                    $storeCode = $this->storeManager->getStore($storeId)->getCode();
+                }
+
+                $item->setData('_first_store_id', $storeId);
+                $item->setData('store_code', $storeCode);
+                $item->setData('store_id', $storesData[$linkedId]);
             }
         }
     }
@@ -95,12 +105,11 @@ abstract class AbstractCollection extends \Magento\Framework\Model\ResourceModel
      * Add field filter to collection
      *
      * @param array|string $field
-     * @param string|int|array|null $condition
-     * @return $this
+     * @param mixed $condition
      */
-    public function addFieldToFilter($field, $condition = null)
+    public function addFieldToFilter($field, $condition = null): self
     {
-        if ($field === 'store_id') {
+        if ($field === 'store_id' && !empty($condition)) {
             return $this->addStoreFilter($condition, false);
         }
 
@@ -137,7 +146,7 @@ abstract class AbstractCollection extends \Magento\Framework\Model\ResourceModel
             $store[] = Store::DEFAULT_STORE_ID;
         }
 
-        $this->addFilter('store', ['in' => $store], 'public');
+        $this->addFilter('store', (string) json_encode(['in' => $store]), 'public');
     }
 
     /**

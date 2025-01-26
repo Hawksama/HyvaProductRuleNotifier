@@ -1,0 +1,48 @@
+<?php
+
+/**
+ * Copyright © Alexandru-Manuel Carabus All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+declare(strict_types=1);
+
+use Magento\Framework\View\Element\Template;
+use Hyva\Theme\Model\ViewModelRegistry;
+use Hyva\Theme\ViewModel\HeroiconsOutline;
+use Magento\Framework\Escaper;
+use Hawksama\Notice\ViewModel\NotificationViewModel;
+
+/**
+ * @var Template $block
+ * @var ViewModelRegistry $viewModels
+ * @var NotificationViewModel $viewModel
+ * @var HeroiconsOutline $heroicons
+ * @var Escaper $escaper
+ */
+
+$viewModel = $viewModels->require(NotificationViewModel::class);
+$heroicons = $viewModels->require(HeroiconsOutline::class);
+$allowedHtmlTags = ['a','span','b', 'br', 'em', 'i', 'li', 'ol', 'p', 'strong', 'sub', 'sup', 'ul'];
+$notifications = $viewModel->getNotifications();
+
+// phpcs:disable Generic.Files.LineLength
+?>
+<?php if (!empty($notifications)): ?>
+    <div class="notifications mt-8">
+        <?php foreach ($notifications as $notification): ?>
+            <div class="notification">
+                <div id="alert-border-4"
+                     class="flex items-center p-4 mb-4 text-yellow-800 border-t-4 border-yellow-300 bg-yellow-50 dark:text-yellow-300 dark:bg-gray-800 dark:border-yellow-800"
+                     role="alert">
+                    <div>
+                        <?= $heroicons->informationCircleHtml('', 28, 28, ['aria-hidden' => 'true']) ?>
+                    </div>
+                    <div class="ms-3">
+                        <?= $escaper->escapeHtml($notification->getDescription(), $allowedHtmlTags); ?>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+<?php endif; ?>

@@ -10,15 +10,15 @@ declare(strict_types=1);
 namespace Hawksama\Notice\ViewModel;
 
 use Hawksama\Notice\Api\Data\NoticeInterface;
-use Hawksama\Notice\Model\NoticeHandler;
+use Hawksama\Notice\Model\NotificationHandler;
 use Hawksama\Notice\Service\CartItemRetriever;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\View\Element\Block\ArgumentInterface;
 
-class NoticeViewModel implements ArgumentInterface
+class NotificationViewModel implements ArgumentInterface
 {
     public function __construct(
-        private readonly NoticeHandler $noticeHandler,
+        private readonly NotificationHandler $notificationHandler,
         private readonly CartItemRetriever $cartItemRetriever
     ) {
     }
@@ -29,7 +29,7 @@ class NoticeViewModel implements ArgumentInterface
      * @return NoticeInterface[]
      * @throws LocalizedException
      */
-    public function getNotices(): array
+    public function getNotifications(): array
     {
         $quoteItems = $this->cartItemRetriever->getQuoteItems();
 
@@ -37,6 +37,6 @@ class NoticeViewModel implements ArgumentInterface
             return [];
         }
 
-        return $this->noticeHandler->getNoticesForCartItems($quoteItems);
+        return $this->notificationHandler->getNoticesForCartItems($quoteItems);
     }
 }

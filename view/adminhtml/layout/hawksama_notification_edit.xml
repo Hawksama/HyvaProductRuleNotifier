@@ -9,7 +9,7 @@
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="content">
-            <uiComponent name="notice_listing"/>
+            <uiComponent name="notification_form"/>
         </referenceContainer>
     </body>
 </page>

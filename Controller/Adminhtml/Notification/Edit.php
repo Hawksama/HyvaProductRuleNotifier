@@ -7,10 +7,10 @@
 
 declare(strict_types=1);
 
-namespace Hawksama\Notice\Controller\Adminhtml\Notice;
+namespace Hawksama\Notice\Controller\Adminhtml\Notification;
 
-use Hawksama\Notice\Model\NoticeFactory;
-use Hawksama\Notice\Model\NoticeRepository;
+use Hawksama\Notice\Model\NoticeFactory as ModelFactory;
+use Hawksama\Notice\Model\NoticeRepository as ModelRepository;
 use Hawksama\Notice\Api\Data\NoticeInterface;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
@@ -23,15 +23,15 @@ use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\View\Result\PageFactory;
 
 /**
- * Edit Notice entity backend controller.
+ * Edit Notification entity backend controller.
  */
 class Edit extends \Hawksama\Notice\Controller\Adminhtml\Notice implements HttpGetActionInterface
 {
     public function __construct(
         Context $context,
         private readonly PageFactory $resultPageFactory,
-        private readonly NoticeFactory $noticeFactory,
-        private readonly NoticeRepository $repository
+        private readonly ModelFactory $noticeFactory,
+        private readonly ModelRepository $repository
     ) {
         parent::__construct($context);
     }
@@ -48,7 +48,7 @@ class Edit extends \Hawksama\Notice\Controller\Adminhtml\Notice implements HttpG
         if ($id) {
             $model = $this->repository->getById($id);
             if (!$model->getNoticeId()) {
-                $this->messageManager->addErrorMessage(__('This entity no longer exists.'));
+                $this->messageManager->addErrorMessage(__('This entity no longer exists.')->render());
                 /** @var Redirect $resultRedirect */
                 $resultRedirect = $this->resultRedirectFactory->create();
                 return $resultRedirect->setPath('*/*/');
@@ -57,12 +57,13 @@ class Edit extends \Hawksama\Notice\Controller\Adminhtml\Notice implements HttpG
 
         /** @var Page $resultPage */
         $resultPage = $this->resultPageFactory->create();
-        $this->initPage($resultPage)->addBreadcrumb(
-            $id ? __('Edit Notice') : __('New Notice'),
-            $id ? __('Edit Notice') : __('New Notice')
+        $resultPage = $this->initPage($resultPage);
+        $resultPage->getConfig()->getTitle()->prepend(__('Notifications')->getText());
+        $resultPage->getConfig()->getTitle()->prepend(
+            $model->getNoticeId() ?
+                (string) $model->getRuleName() :
+                __('New Product Rule Notification')->render()
         );
-        $resultPage->getConfig()->getTitle()->prepend(__('Blocks'));
-        $resultPage->getConfig()->getTitle()->prepend($model->getNoticeId() ? $model->getRuleName() : __('New Notice'));
         return $resultPage;
     }
 }

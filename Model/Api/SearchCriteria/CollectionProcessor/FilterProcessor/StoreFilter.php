@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace Hawksama\Notice\Model\Api\SearchCriteria\CollectionProcessor\FilterProcessor;
 
-use Hawksama\Notice\Model\ResourceModel\Notice\Collection;
+use Hawksama\Notice\Model\ResourceModel\Notification\Collection;
 use Magento\Framework\Api\Filter;
 use Magento\Framework\Api\SearchCriteria\CollectionProcessor\FilterProcessor\CustomFilterInterface;
 use Magento\Framework\Data\Collection\AbstractDb;
@@ -26,7 +26,10 @@ class StoreFilter implements CustomFilterInterface
     public function apply(Filter $filter, AbstractDb $collection)
     {
         /** @var Collection $collection */
-        $collection->addStoreFilter($filter->getValue(), false);
+        $value = $filter->getValue();
+        $storeIds = array_map('intval', explode(',', (string) $value));
+
+        $collection->addStoreFilter($storeIds, false);
 
         return true;
     }

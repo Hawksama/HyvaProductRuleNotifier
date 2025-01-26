@@ -7,11 +7,11 @@
 
 declare(strict_types=1);
 
-namespace Hawksama\Notice\Model\ResourceModel\Notice;
+namespace Hawksama\Notice\Model\ResourceModel\Notification;
 
-use Hawksama\Notice\Model\Notice;
+use Hawksama\Notice\Model\Notice as Model;
 use Hawksama\Notice\Model\ResourceModel\AbstractCollection;
-use Hawksama\Notice\Model\ResourceModel\Notice as Resource;
+use Hawksama\Notice\Model\ResourceModel\Notification as Resource;
 use Hawksama\Notice\Api\Data\NoticeInterface;
 
 class Collection extends AbstractCollection
@@ -21,10 +21,10 @@ class Collection extends AbstractCollection
      */
     protected $_idFieldName = 'notice_id';
 
-	/**
-	 * @var string
-	 */
-	protected $_eventPrefix = 'hawksama_notice_collection';
+    /**
+     * @var string
+     */
+    protected $_eventPrefix = 'hawksama_notice_collection';
 
     /**
      * @var string
@@ -33,10 +33,8 @@ class Collection extends AbstractCollection
 
     /**
      * Perform operations after collection load
-     *
-     * @return $this
      */
-    protected function _afterLoad()
+    protected function _afterLoad(): self
     {
         $entityMetadata = $this->metadataPool->getMetadata(NoticeInterface::class);
 
@@ -45,24 +43,23 @@ class Collection extends AbstractCollection
         return parent::_afterLoad();
     }
 
-	/**
-	 * Initialize collection model.
-	 */
-	protected function _construct()
-	{
-		$this->_init(Notice::class, Resource::class);
+    /**
+     * Initialize collection model.
+     */
+    protected function _construct()
+    {
+        $this->_init(Model::class, Resource::class);
         $this->_map['fields']['store'] = 'store_table.store_id';
         $this->_map['fields']['notice_id'] = 'main_table.notice_id';
-	}
+    }
 
     /**
      * Add filter by store
      *
      * @param int|array|\Magento\Store\Model\Store $store
      * @param bool $withAdmin
-     * @return $this
      */
-    public function addStoreFilter($store, $withAdmin = true): static
+    public function addStoreFilter($store, $withAdmin = true): self
     {
         $this->performAddStoreFilter($store, $withAdmin);
 
@@ -71,8 +68,6 @@ class Collection extends AbstractCollection
 
     /**
      * Join store relation table if there is store filter
-     *
-     * @return void
      */
     protected function _renderFiltersBefore()
     {

@@ -29,9 +29,7 @@ abstract class Notice extends Action
      */
     protected function initPage($resultPage)
     {
-        $resultPage->setActiveMenu('Hawksama_AdminMenu::menu')
-            ->addBreadcrumb(__('MENU'), __('MENU'))
-            ->addBreadcrumb(__('Attribute Notice Manager'), __('Attribute Notice Manager'));
+        $resultPage->setActiveMenu('Hawksama_AdminMenu::menu');
         return $resultPage;
     }
 }

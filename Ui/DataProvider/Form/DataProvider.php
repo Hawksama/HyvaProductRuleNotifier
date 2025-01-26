@@ -9,8 +9,8 @@ declare(strict_types=1);
 
 namespace Hawksama\Notice\Ui\DataProvider\Form;
 
-use Hawksama\Notice\Model\ResourceModel\Notice\Collection;
-use Hawksama\Notice\Model\ResourceModel\Notice\CollectionFactory;
+use Hawksama\Notice\Model\ResourceModel\Notification\Collection;
+use Hawksama\Notice\Model\ResourceModel\Notification\CollectionFactory;
 use Hawksama\Notice\Model\Notice as EntityModel;
 use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Ui\DataProvider\Modifier\PoolInterface;
@@ -36,10 +36,10 @@ class DataProvider extends ModifierPoolDataProvider
         $requestFieldName,
         CollectionFactory $entityCollectionFactory,
         protected DataPersistorInterface $dataPersistor,
-        PoolInterface $pool = null,
-        protected $loadedData,
+        public array $loadedData = [],
         array $meta = [],
-        array $data = []
+        array $data = [],
+        PoolInterface $pool = null
     ) {
         $this->collection = $entityCollectionFactory->create();
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data, $pool);
@@ -47,7 +47,7 @@ class DataProvider extends ModifierPoolDataProvider
 
     public function getData()
     {
-        if (isset($this->loadedData)) {
+        if ($this->loadedData) {
             return $this->loadedData;
         }
         $items = $this->collection->getItems();
@@ -56,12 +56,12 @@ class DataProvider extends ModifierPoolDataProvider
             $this->loadedData[$entity->getId()] = $entity->getData();
         }
 
-        $data = $this->dataPersistor->get('hawksama_notice_data');
+        $data = $this->dataPersistor->get('hawksama_notification_data');
         if (!empty($data)) {
             $entity = $this->collection->getNewEmptyItem();
             $entity->setData($data);
             $this->loadedData[$entity->getId()] = $entity->getData();
-            $this->dataPersistor->clear('hawksama_notice_data');
+            $this->dataPersistor->clear('hawksama_notification_data');
         }
 
         return $this->loadedData;

@@ -7,11 +7,11 @@
 
 declare(strict_types=1);
 
-namespace Hawksama\Notice\Controller\Adminhtml\Notice;
+namespace Hawksama\Notice\Controller\Adminhtml\Notification;
 
 use Hawksama\Notice\Api\Data\NoticeInterface;
-use Hawksama\Notice\Model\NoticeFactory;
-use Hawksama\Notice\Model\ResourceModel\Notice;
+use Hawksama\Notice\Model\NoticeFactory as ModelFactory;
+use Hawksama\Notice\Model\ResourceModel\Notification as Resource;
 use Magento\Backend\App\Action\Context;
 use Magento\Backend\Model\View\Result\Redirect;
 use Magento\Framework\App\Action\HttpGetActionInterface;
@@ -26,8 +26,8 @@ class Delete extends \Hawksama\Notice\Controller\Adminhtml\Notice implements Htt
 {
     public function __construct(
         Context $context,
-        private readonly NoticeFactory $modelFactory,
-        private readonly Notice $resource,
+        private readonly ModelFactory $modelFactory,
+        private readonly Resource $resource,
         private readonly LoggerInterface $logger
     ) {
         parent::__construct($context);
@@ -38,7 +38,7 @@ class Delete extends \Hawksama\Notice\Controller\Adminhtml\Notice implements Htt
         /** @var Redirect $resultRedirect */
         $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
         $resultRedirect->setPath('*/*/');
-        $entityId = (int)$this->getRequest()->getParam(NoticeInterface::NOTICE_ID);
+        $entityId = $this->getRequest()->getParam(NoticeInterface::NOTICE_ID);
 
         try {
             $model = $this->modelFactory->create();
@@ -46,23 +46,23 @@ class Delete extends \Hawksama\Notice\Controller\Adminhtml\Notice implements Htt
 
             if (!$model->getId()) {
                 throw new NoSuchEntityException(
-                    __('Could not find Notice with id: %1', $entityId)
+                    __('Could not find Notification with id: %1', $entityId)
                 );
             }
 
             $this->resource->delete($model);
             $this->messageManager->addSuccessMessage(
-                (string) __('You have successfully deleted the Notice entity.')
+                (string) __('You have successfully deleted the notification.')
             );
         } catch (NoSuchEntityException $exception) {
             $this->messageManager->addErrorMessage($exception->getMessage());
         } catch (\Exception $exception) {
             $this->logger->error(
-                __('Could not delete Notice. Original message: %1', $exception->getMessage()),
+                __('Could not delete this notification. Original message: %1', $exception->getMessage()),
                 ['exception' => $exception]
             );
             $this->messageManager->addErrorMessage(
-                (string) __('An error occurred while deleting the Notice.')
+                (string) __('An error occurred while deleting the notification.')
             );
         }
 

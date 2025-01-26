@@ -9,33 +9,33 @@
       xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
     <argument name="data" xsi:type="array">
         <item name="js_config" xsi:type="array">
-            <item name="provider" xsi:type="string">notice_form.notice_form_data_source</item>
+            <item name="provider" xsi:type="string">notification_form.notification_form_data_source</item>
         </item>
-        <item name="label" xsi:type="string" translate="true">Notice Form</item>
+        <item name="label" xsi:type="string" translate="true">Notification Form</item>
         <item name="template" xsi:type="string">templates/form/collapsible</item>
     </argument>
     <settings>
-        <namespace>notice_form</namespace>
+        <namespace>notification_form</namespace>
         <dataScope>data</dataScope>
         <deps>
-            <dep>notice_form.notice_form_data_source</dep>
+            <dep>notification_form.notification_form_data_source</dep>
         </deps>
         <buttons>
-            <button name="save" class="Hawksama\Notice\Block\Adminhtml\Form\Notice\Save"/>
-            <button name="back" class="Hawksama\Notice\Block\Adminhtml\Form\Notice\Back"/>
-            <button name="delete" class="Hawksama\Notice\Block\Adminhtml\Form\Notice\Delete"/>
+            <button name="save" class="Hawksama\Notice\Block\Adminhtml\Form\Notification\Save"/>
+            <button name="back" class="Hawksama\Notice\Block\Adminhtml\Form\Notification\Back"/>
+            <button name="delete" class="Hawksama\Notice\Block\Adminhtml\Form\Notification\Delete"/>
         </buttons>
     </settings>
-    <dataSource name="notice_form_data_source" component="Magento_Ui/js/form/provider">
+    <dataSource name="notification_form_data_source" component="Magento_Ui/js/form/provider">
         <argument name="data" xsi:type="array">
             <item name="js_config" xsi:type="array">
                 <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
             </item>
         </argument>
         <settings>
-            <submitUrl path="hawksama/notice/save"/>
+            <submitUrl path="hawksama/notification/save"/>
         </settings>
-        <dataProvider class="Hawksama\Notice\Ui\DataProvider\Form\DataProvider" name="notice_form_data_source">
+        <dataProvider class="Hawksama\Notice\Ui\DataProvider\Form\DataProvider" name="notification_form_data_source">
             <settings>
                 <requestFieldName>notice_id</requestFieldName>
                 <primaryFieldName>notice_id</primaryFieldName>

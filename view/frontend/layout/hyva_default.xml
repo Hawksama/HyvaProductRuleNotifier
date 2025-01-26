@@ -1,16 +1,17 @@
 <?xml version="1.0"?>
 <!--
 /**
- * @copyright   Copyright (c) Vendic B.V https://vendic.nl/
+ * Copyright © Alexandru-Manuel Carabus All rights reserved.
+ * See COPYING.txt for license details.
  */
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="extra_actions">
-            <block class="Magento\Framework\View\Element\Template" name="notice_attribute" template="Hawksama_Notice::notice-attribute.phtml">
+            <block class="Magento\Framework\View\Element\Template" name="notification_attribute" template="Hawksama_Notice::notification-attribute.phtml">
                 <arguments>
-                    <argument name="view_model" xsi:type="object">Hawksama\Notice\ViewModel\NoticeViewModel</argument>
+                    <argument name="view_model" xsi:type="object">Hawksama\Notice\ViewModel\NotificationViewModel</argument>
                 </arguments>
             </block>
         </referenceContainer>

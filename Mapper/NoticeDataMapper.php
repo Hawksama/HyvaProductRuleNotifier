@@ -9,40 +9,33 @@ declare(strict_types=1);
 
 namespace Hawksama\Notice\Mapper;
 
-use Hawksama\Notice\Api\Data\NoticeInterface;
 use Hawksama\Notice\Api\Data\NoticeInterfaceFactory;
-use Hawksama\Notice\Model\Notice;
+use Hawksama\Notice\Model\Notice as Model;
 use Magento\Framework\DataObject;
 use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
 
 /**
- * Converts a collection of Notice entities to an array of data transfer objects.
+ * Converts a collection of Notification entities to an array of data transfer objects.
  */
 class NoticeDataMapper
 {
-	public function __construct(
-		private readonly NoticeInterfaceFactory $entityDtoFactory
-	) {
-	}
+    public function __construct(
+        private readonly NoticeInterfaceFactory $entityDtoFactory
+    ) {
+    }
 
-	/**
-	 * Map magento models to DTO array.
-	 *
-	 * @param AbstractCollection $collection
-	 * @return array|NoticeInterface[]
-	 */
-	public function map(AbstractCollection $collection): array
-	{
-		$results = [];
-		/** @var Notice $item */
-		foreach ($collection->getItems() as $item) {
-			/** @var NoticeInterface|DataObject $entityDto */
-			$entityDto = $this->entityDtoFactory->create();
-			$entityDto->addData($item->getData());
+    public function map(AbstractCollection $collection): array
+    {
+        $results = [];
+        /** @var Model $item */
+        foreach ($collection->getItems() as $item) {
+            /** @var Model $entityDto */
+            $entityDto = $this->entityDtoFactory->create();
+            $entityDto->setData($item->getData());
 
-			$results[] = $entityDto;
-		}
+            $results[] = $entityDto;
+        }
 
-		return $results;
-	}
+        return $results;
+    }
 }

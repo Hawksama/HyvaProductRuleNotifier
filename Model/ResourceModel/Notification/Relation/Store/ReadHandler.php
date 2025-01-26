@@ -7,14 +7,12 @@
 
 declare(strict_types=1);
 
-namespace Hawksama\Notice\Model\ResourceModel\Notice\Relation\Store;
+namespace Hawksama\Notice\Model\ResourceModel\Notification\Relation\Store;
 
-use Hawksama\Notice\Model\ResourceModel\Notice as Resource;
+use Hawksama\Notice\Model\ResourceModel\Notification as Resource;
+use Hawksama\Notice\Model\Notice as Model;
 use Magento\Framework\EntityManager\Operation\ExtensionInterface;
 
-/**
- * Class ReadHandler
- */
 class ReadHandler implements ExtensionInterface
 {
     /**
@@ -26,13 +24,13 @@ class ReadHandler implements ExtensionInterface
     }
 
     /**
-     * @param object $entity
+     * @param Model $entity
      * @param array $arguments
-     * @return object
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function execute($entity, $arguments = [])
+    public function execute($entity, $arguments = []): object
     {
+        /** @var Model $entity */
         if ($entity->getId()) {
             $stores = $this->resourceNotice->lookupStoreIds((int)$entity->getId());
             $entity->setData('store_id', $stores);

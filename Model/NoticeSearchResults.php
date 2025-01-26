@@ -13,7 +13,7 @@ use Hawksama\Notice\Api\Data\NoticeSearchResultsInterface;
 use Magento\Framework\Api\SearchResults;
 
 /**
- * Service Data Object with Notice search results.
+ * Service Data Object with Notification search results.
  */
 class NoticeSearchResults extends SearchResults implements NoticeSearchResultsInterface
 {

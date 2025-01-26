@@ -18,11 +18,11 @@ use Magento\Ui\Component\Listing\Columns\Column;
 /**
  * Class to build edit and delete link for each item.
  */
-class NoticeBlockActions extends Column
+class NotificationBlockActions extends Column
 {
-    private const ENTITY_NAME = 'Notice';
-    private const EDIT_URL_PATH = 'hawksama/notice/edit';
-    private const DELETE_URL_PATH = 'hawksama/notice/delete';
+    private const ENTITY_NAME = 'Notification';
+    private const EDIT_URL_PATH = 'hawksama/notification/edit';
+    private const DELETE_URL_PATH = 'hawksama/notification/delete';
 
     public function __construct(
         ContextInterface   $context,

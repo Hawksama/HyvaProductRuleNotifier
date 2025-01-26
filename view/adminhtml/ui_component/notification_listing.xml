@@ -9,8 +9,8 @@
          xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
     <argument name="data" xsi:type="array">
         <item name="js_config" xsi:type="array">
-            <item name="provider" xsi:type="string">notice_listing.notice_listing_data_source</item>
-            <item name="deps" xsi:type="string">notice_listing.notice_listing_data_source</item>
+            <item name="provider" xsi:type="string">notification_listing.notification_listing_data_source</item>
+            <item name="deps" xsi:type="string">notification_listing.notification_listing_data_source</item>
         </item>
     </argument>
     <settings>
@@ -21,12 +21,12 @@
                 <label translate="true">Add New</label>
             </button>
         </buttons>
-        <spinner>notice_listing_columns</spinner>
+        <spinner>notification_listing_columns</spinner>
         <deps>
-            <dep>notice_listing.notice_listing_data_source</dep>
+            <dep>notification_listing.notification_listing_data_source</dep>
         </deps>
     </settings>
-    <dataSource name="notice_listing_data_source" component="Magento_Ui/js/grid/provider">
+    <dataSource name="notification_listing_data_source" component="Magento_Ui/js/grid/provider">
         <settings>
             <storageConfig>
                 <param name="indexField" xsi:type="string">notice_id</param>
@@ -34,7 +34,7 @@
             <updateUrl path="mui/index/render"/>
         </settings>
         <aclResource>Hawksama_Notice::management</aclResource>
-        <dataProvider class="Hawksama\Notice\Ui\DataProvider\Grid\DataProvider" name="notice_listing_data_source">
+        <dataProvider class="Hawksama\Notice\Ui\DataProvider\Grid\DataProvider" name="notification_listing_data_source">
             <settings>
                 <requestFieldName>notice_id</requestFieldName>
                 <primaryFieldName>notice_id</primaryFieldName>
@@ -48,7 +48,7 @@
         <filters name="listing_filters"/>
         <paging name="listing_paging"/>
     </listingToolbar>
-    <columns name="notice_listing_columns">
+    <columns name="notification_listing_columns">
         <column name="notice_id">
             <settings>
                 <filter>textRange</filter>
@@ -98,7 +98,7 @@
                 <label translate="true">Match Type</label>
             </settings>
         </column>
-        <actionsColumn name="actions" class="Hawksama\Notice\Ui\Component\Listing\Column\NoticeBlockActions">
+        <actionsColumn name="actions" class="Hawksama\Notice\Ui\Component\Listing\Column\NotificationBlockActions">
             <settings>
                 <indexField>notice_id</indexField>
             </settings>

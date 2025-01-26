@@ -26,9 +26,9 @@ $allowedHtmlTags = ['a', 'span', 'b', 'br', 'em', 'i', 'li', 'ol', 'p', 'strong'
 ?>
 
 <div x-data="{
-    notices: [],
-    fetchNotices() {
-        fetch('<?= $escaper->escapeHtml($block->getUrl('hawksama/check/notices')) ?>', {
+    notifications: [],
+    fetchNotifications() {
+        fetch('<?= $escaper->escapeHtml($block->getUrl('hawksama/check/notifications')) ?>', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -36,21 +36,21 @@ $allowedHtmlTags = ['a', 'span', 'b', 'br', 'em', 'i', 'li', 'ol', 'p', 'strong'
         })
         .then(response => response.json())
         .then(data => {
-            this.notices = data.notices || [];
+            this.notifications = data.notifications || [];
         });
     }
 }"
-     x-init="fetchNotices()"
-     @cart-item-removed.window="fetchNotices()"
-     @cart-item-added.window="fetchNotices()">
-    <template x-for="notice in notices" :key="notice">
+     x-init="fetchNotifications()"
+     @cart-item-removed.window="fetchNotifications()"
+     @cart-item-added.window="fetchNotifications()">
+    <template x-for="notification in notifications" :key="notification">
         <div class="alert flex items-center p-4 my-4 text-yellow-800 border-t-4 border-yellow-300 bg-yellow-50 dark:text-yellow-300 dark:bg-gray-800 dark:border-yellow-800"
              role="alert">
             <div>
                 <?= $heroicons->informationCircleHtml('', 28, 28, ['aria-hidden' => 'true']) ?>
             </div>
             <div class="ms-3">
-                <span x-html="notice"></span>
+                <span x-html="notification.message"></span>
             </div>
         </div>
     </template>

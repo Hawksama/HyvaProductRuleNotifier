@@ -7,41 +7,39 @@
 
 declare(strict_types=1);
 
-namespace Hawksama\Notice\Model\ResourceModel\Notice\Relation\Store;
+namespace Hawksama\Notice\Model\ResourceModel\Notification\Relation\Store;
 
 use Hawksama\Notice\Api\Data\NoticeInterface;
-use Hawksama\Notice\Model\ResourceModel\Notice;
+use Hawksama\Notice\Model\Notice as Model;
+use Hawksama\Notice\Model\ResourceModel\Notification as Resource;
 use Magento\Framework\EntityManager\Operation\ExtensionInterface;
 use Magento\Framework\EntityManager\MetadataPool;
 
-/**
- * Class SaveHandler
- */
 class SaveHandler implements ExtensionInterface
 {
     /**
      * @param MetadataPool $metadataPool
-     * @param Notice $resource
+     * @param Resource $resource
      */
     public function __construct(
         private readonly MetadataPool $metadataPool,
-        private readonly Notice $resource
+        private readonly Resource $resource
     ) {
     }
 
     /**
-     * @param object $entity
+     * @param Model $entity
      * @param array $arguments
-     * @return object
      * @throws \Exception
      */
-    public function execute($entity, $arguments = [])
+    public function execute($entity, $arguments = []): object
     {
         $entityMetadata = $this->metadataPool->getMetadata(NoticeInterface::class);
         $linkField = $entityMetadata->getLinkField();
 
         $connection = $entityMetadata->getEntityConnection();
 
+        /** @var Model $entity */
         $oldStores = $this->resource->lookupStoreIds((int)$entity->getId());
         $newStores = (array)$entity->getStores();
 

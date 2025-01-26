@@ -7,14 +7,14 @@
 
 declare(strict_types=1);
 
-namespace Hawksama\Notice\Block\Adminhtml\Form\Notice;
+namespace Hawksama\Notice\Block\Adminhtml\Form\Notification;
 
 use Hawksama\Notice\Api\Data\NoticeInterface;
 use Magento\Backend\Block\Widget\Context;
 use Magento\Framework\UrlInterface;
 
 /**
- * Generic (form) button for Notice entity.
+ * Generic (form) button for Notification entity.
  */
 class GenericButton
 {
@@ -33,7 +33,7 @@ class GenericButton
     }
 
     /**
-     * Get Notice entity id.
+     * Get Notification entity id.
      */
     public function getNoticeId(): int
     {

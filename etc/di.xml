@@ -29,13 +29,13 @@
             <argument name="extensionActions" xsi:type="array">
                 <item name="Hawksama\Notice\Api\Data\NoticeInterface" xsi:type="array">
                     <item name="read" xsi:type="array">
-                        <item name="storeReader" xsi:type="string">Hawksama\Notice\Model\ResourceModel\Notice\Relation\Store\ReadHandler</item>
+                        <item name="storeReader" xsi:type="string">Hawksama\Notice\Model\ResourceModel\Notification\Relation\Store\ReadHandler</item>
                     </item>
                     <item name="create" xsi:type="array">
-                        <item name="storeCreator" xsi:type="string">Hawksama\Notice\Model\ResourceModel\Notice\Relation\Store\SaveHandler</item>
+                        <item name="storeCreator" xsi:type="string">Hawksama\Notice\Model\ResourceModel\Notification\Relation\Store\SaveHandler</item>
                     </item>
                     <item name="update" xsi:type="array">
-                        <item name="storeUpdater" xsi:type="string">Hawksama\Notice\Model\ResourceModel\Notice\Relation\Store\SaveHandler</item>
+                        <item name="storeUpdater" xsi:type="string">Hawksama\Notice\Model\ResourceModel\Notification\Relation\Store\SaveHandler</item>
                     </item>
                 </item>
             </argument>

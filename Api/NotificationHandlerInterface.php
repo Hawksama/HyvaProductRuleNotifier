@@ -12,7 +12,7 @@ namespace Hawksama\Notice\Api;
 use Hawksama\Notice\Api\Data\NoticeInterface;
 use Magento\Quote\Api\Data\CartItemInterface;
 
-interface NoticeHandlerInterface
+interface NotificationHandlerInterface
 {
     public const MATCH_TYPE_EXACT = 'exact';
     public const MATCH_TYPE_LIKE = 'like';
@@ -20,7 +20,6 @@ interface NoticeHandlerInterface
     /**
      * Retrieve notices for the given cart items.
      *
-     * @param CartItemInterface[] $cartItems
      * @return NoticeInterface[]
      */
     public function getNoticesForCartItems(array $cartItems): array;

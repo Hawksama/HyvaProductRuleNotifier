@@ -1,31 +1,31 @@
 <?php
 
 /**
- * @copyright   Copyright (c) Vendic B.V https://vendic.nl/
+ * Copyright © Alexandru-Manuel Carabus All rights reserved.
+ * See COPYING.txt for license details.
  */
 
 declare(strict_types=1);
 
 namespace Hawksama\Notice\Observer;
 
+use Magento\Catalog\Api\Data\ProductInterface;
+use Magento\Catalog\Model\ResourceModel\Product as ProductResource;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
-use Magento\Framework\App\Config\ScopeConfigInterface;
-use Magento\Eav\Model\Config as EavConfig;
+use Magento\Framework\Exception\LocalizedException;
 use Magento\Quote\Model\Quote\Item as QuoteItem;
 use Magento\Catalog\Api\ProductRepositoryInterface;
-use Hawksama\Notice\Api\Data\NoticeInterface;
 use Hawksama\Notice\Query\Notice\GetListQuery;
 
 class AddAttributesToQuoteItem implements ObserverInterface
 {
     public function __construct(
-        private ScopeConfigInterface $scopeConfig,
-        private EavConfig $eavConfig,
         private readonly GetListQuery $getListQuery,
         private readonly SearchCriteriaBuilder $searchCriteriaBuilder,
-        private readonly ProductRepositoryInterface $productRepository
+        private readonly ProductRepositoryInterface $productRepository,
+        private readonly ProductResource $productResource
     ) {
     }
 
@@ -48,7 +48,6 @@ class AddAttributesToQuoteItem implements ObserverInterface
                 $quoteProduct->setData($attributeCode, $attributeValue);
             }
         }
-        $t = 2;
     }
 
     private function getActiveNoticeRules(): array
@@ -59,17 +58,24 @@ class AddAttributesToQuoteItem implements ObserverInterface
         return $searchResults->getItems();
     }
 
-    private function getProductAttributeValue($product, string $attributeCode): ?string
+    /**
+     * @throws LocalizedException
+     */
+    private function getProductAttributeValue(ProductInterface $product, string $attributeCode): null|bool|string
     {
+        /** @var \Magento\Framework\DataObject $product */
         $value = $product->getData($attributeCode);
 
-        if (!empty($value)) {
-            $attribute = $product->getResource()->getAttribute($attributeCode);
-            if ($attribute && ($attribute->getFrontendInput() === 'select' || $attribute->getFrontendInput() === 'multiselect')) {
-                return $attribute->getSource()->getOptionText($value);
-            }
+        if (empty($value)) {
+            return null;
         }
 
-        return $value !== null ? (string)$value : null;
+        $attribute = $this->productResource->getAttribute($attributeCode);
+
+        if ($attribute && $attribute->usesSource()) {
+            return $attribute->getSource()->getOptionText($value);
+        }
+
+        return (string) $value;
     }
 }

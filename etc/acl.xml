@@ -10,7 +10,7 @@
     <acl>
         <resources>
             <resource id="Magento_Backend::admin">
-                <resource id="Hawksama_Notice::management" title="Notice Management"/>
+                <resource id="Hawksama_Notice::management" title="Notification Management"/>
             </resource>
         </resources>
     </acl>

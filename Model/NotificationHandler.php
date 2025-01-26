@@ -10,17 +10,17 @@ declare(strict_types=1);
 namespace Hawksama\Notice\Model;
 
 use Hawksama\Notice\Api\Data\NoticeInterface;
-use Hawksama\Notice\Api\NoticeHandlerInterface;
+use Hawksama\Notice\Api\NotificationHandlerInterface;
 use Hawksama\Notice\Api\NoticeRepositoryInterface;
 use Hawksama\Notice\Query\Notice\GetListQuery;
+use Magento\Quote\Model\Quote\Item as QuoteItem;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Quote\Api\Data\CartItemInterface;
 
-class NoticeHandler implements NoticeHandlerInterface
+class NotificationHandler implements NotificationHandlerInterface
 {
     public function __construct(
-        private readonly GetListQuery $getListQuery,
         private readonly SearchCriteriaBuilder $searchCriteriaBuilder,
         private NoticeRepositoryInterface $noticeRepository,
     ) {
@@ -28,6 +28,7 @@ class NoticeHandler implements NoticeHandlerInterface
 
     /**
      * {@inheritdoc}
+     * @param CartItemInterface[] $cartItems
      * @throws LocalizedException
      */
     public function getNoticesForCartItems(array $cartItems): array
@@ -36,24 +37,27 @@ class NoticeHandler implements NoticeHandlerInterface
         $searchCriteria = $this->searchCriteriaBuilder->create();
         $searchResults = $this->noticeRepository->getList($searchCriteria);
 
+        /** @var NoticeInterface[] $rules */
         $rules = $searchResults->getItems();
 
-        /** @var NoticeInterface $rule */
         foreach ($rules as $rule) {
             $attributeCode = $rule->getProductAttribute();
             $attributeValue = $rule->getWord();
             $matchType = $rule->getMatchType();
 
+            /** @var QuoteItem $item */
             foreach ($cartItems as $item) {
-                $productAttributeValue = $item->getProduct()->getData($attributeCode);
+                if (!empty($attributeCode)) {
+                    $productAttributeValue = $item->getProduct()->getData($attributeCode);
 
-                if ($this->isMatching($productAttributeValue, $attributeValue, $matchType)) {
-                    $notices[] = $rule->getDescription();
+                    if ($this->isMatching($productAttributeValue, $attributeValue, $matchType)) {
+                        $notices[] = $rule;
+                    }
                 }
             }
         }
 
-        return array_filter(array_unique($notices));
+        return array_unique($notices, SORT_REGULAR);
     }
 
     /**
@@ -61,13 +65,13 @@ class NoticeHandler implements NoticeHandlerInterface
      */
     private function isMatching(?string $productAttributeValue, string $ruleValue, string $matchType): bool
     {
-        if ($productAttributeValue === null || $productAttributeValue === '') {
+        if (empty($productAttributeValue)) {
             return false;
         }
 
         return match ($matchType) {
-            NoticeHandlerInterface::MATCH_TYPE_EXACT => $productAttributeValue === $ruleValue,
-            NoticeHandlerInterface::MATCH_TYPE_LIKE => stripos($productAttributeValue, $ruleValue) !== false,
+            self::MATCH_TYPE_EXACT => $productAttributeValue === $ruleValue,
+            self::MATCH_TYPE_LIKE => stripos($productAttributeValue, $ruleValue) !== false,
             default => false,
         };
     }

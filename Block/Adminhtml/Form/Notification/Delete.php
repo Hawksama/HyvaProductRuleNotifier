@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace Hawksama\Notice\Block\Adminhtml\Form\Notice;
+namespace Hawksama\Notice\Block\Adminhtml\Form\Notification;
 
 use Hawksama\Notice\Api\Data\NoticeInterface;
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
@@ -31,7 +31,7 @@ class Delete extends GenericButton implements ButtonProviderInterface
             'delete',
             sprintf(
                 "deleteConfirm('%s', '%s')",
-                __('Are you sure you want to delete this notice?'),
+                __('Are you sure you want to delete this notification?'),
                 $this->getUrl(
                     '*/*/delete',
                     [NoticeInterface::NOTICE_ID => $this->getNoticeId()]

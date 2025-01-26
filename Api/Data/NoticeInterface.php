@@ -74,17 +74,17 @@ interface NoticeInterface
     /**
      * Getter for StoreId.
      *
-     * @return int|null
+     * @return array|int|null
      */
-    public function getStoreId(): ?int;
+    public function getStoreId(): array|int|null;
 
     /**
      * Setter for StoreId.
      *
-     * @param int|null $storeId
+     * @param array|int|null $storeId
      * @return void
      */
-    public function setStoreId(?int $storeId): void;
+    public function setStoreId(array|int|null $storeId = null): void;
 
     /**
      * Getter for ProductAttribute.
@@ -104,32 +104,32 @@ interface NoticeInterface
     /**
      * Getter for Word.
      *
-     * @return string|null
+     * @return string
      */
-    public function getWord(): ?string;
+    public function getWord(): string;
 
     /**
      * Setter for Word.
      *
-     * @param string|null $word
+     * @param string $word
      * @return void
      */
-    public function setWord(?string $word): void;
+    public function setWord(string $word): void;
 
     /**
      * Getter for MatchType.
      *
-     * @return string|null
+     * @return string
      */
-    public function getMatchType(): ?string;
+    public function getMatchType(): string;
 
     /**
      * Setter for MatchType.
      *
-     * @param string|null $matchType
+     * @param string $matchType
      * @return void
      */
-    public function setMatchType(?string $matchType): void;
+    public function setMatchType(string $matchType): void;
 
     /**
      * Getter for Description.

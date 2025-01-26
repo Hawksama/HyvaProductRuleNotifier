@@ -14,78 +14,51 @@ use Hawksama\Notice\Api\NoticeRepositoryInterface;
 use Hawksama\Notice\Api\Data\NoticeInterface;
 use Hawksama\Notice\Api\Data\NoticeInterfaceFactory;
 use Hawksama\Notice\Api\Data\NoticeSearchResultsInterfaceFactory;
-use Hawksama\Notice\Model\Notice;
-use Hawksama\Notice\Model\NoticeFactory;
-use Hawksama\Notice\Model\ResourceModel\Notice as Resource;
-use Hawksama\Notice\Model\ResourceModel\Notice\Collection;
-use Hawksama\Notice\Model\ResourceModel\Notice\CollectionFactory;
+use Hawksama\Notice\Model\Notice as Model;
+use Hawksama\Notice\Model\NoticeFactory as ModelFactory;
+use Hawksama\Notice\Model\ResourceModel\Notification as Resource;
+use Hawksama\Notice\Model\ResourceModel\Notification\Collection;
+use Hawksama\Notice\Model\ResourceModel\Notification\CollectionFactory;
 use Hawksama\Notice\Mapper\NoticeDataMapper;
-use Magento\Framework\Api\DataObjectHelper;
-use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
+use Magento\Framework\Api\SearchCriteria\CollectionProcessor;
 use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\App\ObjectManager;
 use Magento\Framework\Exception\CouldNotDeleteException;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Framework\Model\AbstractModel;
 use Magento\Framework\Reflection\DataObjectProcessor;
 use Magento\Store\Model\StoreManagerInterface;
 use Magento\Framework\EntityManager\HydratorInterface;
 
 /**
- * Default block repo impl.
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class NoticeRepository implements NoticeRepositoryInterface
 {
     /**
-     * @var CollectionProcessorInterface
-     */
-    private CollectionProcessorInterface $collectionProcessor;
-
-    /**
-     * @var HydratorInterface
-     */
-    private mixed $hydrator;
-
-    /**
-     * @param Resource $resource
-     * @param NoticeFactory $noticeFactory
-     * @param NoticeInterfaceFactory $dataNoticeFactory
-     * @param CollectionFactory $collectionFactory
-     * @param NoticeSearchResultsInterfaceFactory $searchResultsFactory
-     * @param DataObjectHelper $dataObjectHelper
-     * @param DataObjectProcessor $dataObjectProcessor
-     * @param StoreManagerInterface $storeManager
-     * @param CollectionProcessorInterface $collectionProcessor
-     * @param HydratorInterface|null $hydrator
-     *
      * @SuppressWarnings(PHPMD.ExcessiveParameterList)
      */
     public function __construct(
         private readonly Resource $resource,
-        private readonly NoticeFactory $noticeFactory,
-        private readonly NoticeInterfaceFactory $dataNoticeFactory,
+        private readonly ModelFactory $noticeFactory,
         private readonly CollectionFactory $collectionFactory,
         private readonly NoticeSearchResultsInterfaceFactory $searchResultsFactory,
-        private readonly DataObjectHelper $dataObjectHelper,
-        private readonly DataObjectProcessor $dataObjectProcessor,
         private readonly StoreManagerInterface $storeManager,
         private readonly NoticeDataMapper $entityDataMapper,
-        CollectionProcessorInterface $collectionProcessor = null,
-        ?HydratorInterface $hydrator = null
+        private readonly CollectionProcessor $collectionProcessor,
+        private readonly HydratorInterface $hydrator
     ) {
-        $this->collectionProcessor = $collectionProcessor ?: $this->getCollectionProcessor();
-        $this->hydrator = $hydrator ?? ObjectManager::getInstance()->get(HydratorInterface::class);
     }
 
     /**
-     * Save Notice data
+     * Save Notification data
      *
      * @param NoticeInterface $notice
-     * @return Notice
+     * @return NoticeInterface
      * @throws CouldNotSaveException
      */
-    public function save(NoticeInterface $notice)
+    public function save(NoticeInterface $notice): NoticeInterface
     {
         if (empty($notice->getStoreId())) {
             $notice->setStoreId((int) $this->storeManager->getStore()->getId());
@@ -93,6 +66,10 @@ class NoticeRepository implements NoticeRepositoryInterface
 
         if ($notice->getNoticeId() && $notice instanceof Notice && !$notice->getOrigData()) {
             $notice = $this->hydrator->hydrate($this->getById($notice->getId()), $this->hydrator->extract($notice));
+        }
+
+        if (!$notice instanceof Model) {
+            throw new CouldNotSaveException(__('Invalid notice instance.'));
         }
 
         try {
@@ -149,11 +126,14 @@ class NoticeRepository implements NoticeRepositoryInterface
      * Delete Block
      *
      * @param NoticeInterface $notice
-     * @return bool
      * @throws CouldNotDeleteException
      */
-    public function delete(NoticeInterface $notice)
+    public function delete(NoticeInterface $notice): bool
     {
+        if (!$notice instanceof Model) {
+            throw new CouldNotDeleteException(__('Invalid notice instance.'));
+        }
+
         try {
             $this->resource->delete($notice);
         } catch (\Exception $exception) {
@@ -165,30 +145,11 @@ class NoticeRepository implements NoticeRepositoryInterface
     /**
      * Delete Block by given Block Identity
      *
-     * @param string $noticeId
-     * @return bool
      * @throws CouldNotDeleteException
      * @throws NoSuchEntityException
      */
     public function deleteById(string $noticeId): bool
     {
         return $this->delete($this->getById($noticeId));
-    }
-
-    /**
-     * Retrieve collection processor
-     *
-     * @deprecated 102.0.0
-     * @return CollectionProcessorInterface
-     */
-    private function getCollectionProcessor(): CollectionProcessorInterface
-    {
-        //phpcs:disable Magento2.PHP.LiteralNamespaces
-        if (!$this->collectionProcessor) {
-            $this->collectionProcessor = \Magento\Framework\App\ObjectManager::getInstance()->get(
-                'Hawksama\Notice\Model\Api\SearchCriteria\NoticeCollectionProcessor'
-            );
-        }
-        return $this->collectionProcessor;
     }
 }

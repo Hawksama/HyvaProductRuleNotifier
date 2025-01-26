@@ -11,32 +11,23 @@ namespace Hawksama\Notice\Model\Source;
 
 use Magento\Eav\Model\ResourceModel\Entity\Attribute\CollectionFactory as AttributeCollectionFactory;
 use Magento\Framework\Data\OptionSourceInterface;
+use Magento\Eav\Model\Entity\Attribute;
+use Magento\Catalog\Setup\CategorySetup;
 
 class ProductAttribute implements OptionSourceInterface
 {
-    /**
-     * Constructor
-     *
-     * @param AttributeCollectionFactory $attributeCollectionFactory
-     */
     public function __construct(
         private readonly AttributeCollectionFactory $attributeCollectionFactory
     ) {
     }
 
-    /**
-     * Retrieve option array for form field
-     *
-     * @return array
-     */
     public function toOptionArray(): array
     {
         $options = [];
 
-        // Load product attributes
         $attributeCollection = $this->attributeCollectionFactory->create()
-            ->addFieldToFilter('entity_type_id', 4) // 4 = Product entity type
-            ->addFieldToFilter('is_user_defined', 1);
+            ->addFieldToFilter('entity_type_id', ['eq' => CategorySetup::CATALOG_PRODUCT_ENTITY_TYPE_ID])
+            ->addFieldToFilter('is_user_defined', ['eq' => 1]);
 
         foreach ($attributeCollection as $attribute) {
             $options[] = [
@@ -52,12 +43,7 @@ class ProductAttribute implements OptionSourceInterface
         return $options;
     }
 
-    /**
-     * @param $attribute
-     *
-     * @return mixed
-     */
-    private function getLabel($attribute)
+    private function getLabel(Attribute $attribute): string
     {
         $attrFrontendLabel = str_replace("'", '', $attribute->getFrontendLabel() ?? '');
         return $attribute->getAttributeCode() . ' - ' . $attrFrontendLabel;

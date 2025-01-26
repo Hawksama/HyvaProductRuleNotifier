@@ -7,12 +7,12 @@
 
 declare(strict_types=1);
 
-namespace Hawksama\Notice\Controller\Adminhtml\Notice;
+namespace Hawksama\Notice\Controller\Adminhtml\Notification;
 
 use Hawksama\Notice\Api\Data\NoticeInterface;
-use Hawksama\Notice\Model\Notice;
-use Hawksama\Notice\Model\NoticeFactory;
-use Hawksama\Notice\Model\NoticeRepository;
+use Hawksama\Notice\Model\Notice as Model;
+use Hawksama\Notice\Model\NoticeFactory as ModelFactory;
+use Hawksama\Notice\Model\NoticeRepository as ModelRepository;
 use Magento\Backend\App\Action\Context;
 use Magento\Backend\Model\View\Result\Redirect;
 use Magento\Framework\App\Action\HttpPostActionInterface;
@@ -23,21 +23,21 @@ use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\LocalizedException;
 
 /**
- * Save Notice controller action.
+ * Save Notification controller action.
  */
 class Save extends \Hawksama\Notice\Controller\Adminhtml\Notice implements HttpPostActionInterface
 {
     public function __construct(
         Context $context,
         private readonly DataPersistorInterface $dataPersistor,
-        private readonly NoticeFactory $noticeFactory,
-        private readonly NoticeRepository $repository
+        private readonly ModelFactory $noticeFactory,
+        private readonly ModelRepository $repository
     ) {
         parent::__construct($context);
     }
 
     /**
-     * Save Notice Action.
+     * Save Notification Action.
      *
      * @return ResponseInterface|ResultInterface
      */
@@ -49,19 +49,20 @@ class Save extends \Hawksama\Notice\Controller\Adminhtml\Notice implements HttpP
         /** @var \Magento\Framework\HTTP\PhpEnvironment\Request $request */
         $request = $this->getRequest();
 
-        /** @var \Magento\Framework\App\RequestInterface $data */
+        /** @var array $data */
         $data = $request->getPostValue();
 
         if ($data) {
-            /** @var Notice $model */
+            /** @var Model $model */
             $model = $this->noticeFactory->create();
 
             $id = $this->getRequest()->getParam('notice_id');
             if ($id) {
                 try {
+                    /** @var Model $model */
                     $model = $this->repository->getById($id);
                 } catch (LocalizedException $e) {
-                    $this->messageManager->addErrorMessage((string) __('This block no longer exists.'));
+                    $this->messageManager->addErrorMessage((string) __('This notification no longer exists.'));
                     return $resultRedirect->setPath('*/*/');
                 }
             }
@@ -71,7 +72,7 @@ class Save extends \Hawksama\Notice\Controller\Adminhtml\Notice implements HttpP
             try {
                 $this->repository->save($model);
                 $this->messageManager->addSuccessMessage(
-                    (string) __('The Notice was saved successfully')
+                    (string) __('The notification was saved successfully')
                 );
                 $this->dataPersistor->clear('hawksama_notice_data');
             } catch (CouldNotSaveException $exception) {

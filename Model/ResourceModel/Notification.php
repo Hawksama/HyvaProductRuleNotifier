@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace Hawksama\Notice\Model\ResourceModel;
 
 use Hawksama\Notice\Api\Data\NoticeInterface;
+use Hawksama\Notice\Model\Notice as Model;
 use Magento\Framework\DB\Select;
 use Magento\Framework\EntityManager\EntityManager;
 use Magento\Framework\EntityManager\MetadataPool;
@@ -18,26 +19,17 @@ use Magento\Framework\Model\AbstractModel;
 use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 use Magento\Framework\Model\ResourceModel\Db\Context;
 use Magento\Store\Model\Store;
-use Magento\Store\Model\StoreManagerInterface;
+use RuntimeException;
 
-class Notice extends AbstractDb
+class Notification extends AbstractDb
 {
-	/**
-	 * @var string
-	 */
-	protected $_eventPrefix = 'hawksama_notice_resource_model';
-
-
     /**
-     * @param Context $context
-     * @param StoreManagerInterface $storeManager
-     * @param EntityManager $entityManager
-     * @param MetadataPool $metadataPool
-     * @param string $connectionName
+     * @var string
      */
+    protected $_eventPrefix = 'hawksama_notice_resource_model';
+
     public function __construct(
-        private readonly Context $context,
-        private readonly StoreManagerInterface $storeManager,
+        Context $context,
         private readonly EntityManager $entityManager,
         readonly MetadataPool $metadataPool,
         $connectionName = null
@@ -45,14 +37,14 @@ class Notice extends AbstractDb
         parent::__construct($context, $connectionName);
     }
 
-	/**
-	 * Initialize resource model.
-	 */
-	protected function _construct()
-	{
-		$this->_init('hawksama_notice', NoticeInterface::NOTICE_ID);
-		$this->_useIsObjectNew = true;
-	}
+    /**
+     * Initialize resource model.
+     */
+    protected function _construct()
+    {
+        $this->_init('hawksama_notice', NoticeInterface::NOTICE_ID);
+        $this->_useIsObjectNew = true;
+    }
 
     /**
      * @inheritDoc
@@ -65,10 +57,11 @@ class Notice extends AbstractDb
     /**
      * Load an object
      *
-     * @param \Hawksama\Notice\Model\Notice|AbstractModel $object
+     * @param AbstractModel $object
      * @param mixed $value
      * @param string $field field to load by (defaults to model id)
      * @return $this
+     * @throws LocalizedException
      */
     public function load(AbstractModel $object, $value, $field = null)
     {
@@ -82,14 +75,10 @@ class Notice extends AbstractDb
     /**
      * Get notice id.
      *
-     * @param AbstractModel $object
-     * @param mixed $value
-     * @param string $field
-     * @return bool|int|string
      * @throws LocalizedException
      * @throws \Exception
      */
-    private function getNoticeId(AbstractModel $object, $value, $field = null)
+    private function getNoticeId(AbstractModel $object, mixed $value, string $field = null): string
     {
         $entityMetadata = $this->metadataPool->getMetadata(NoticeInterface::class);
         if (!is_numeric($value) && $field === null) {
@@ -103,8 +92,11 @@ class Notice extends AbstractDb
             $select->reset(Select::COLUMNS)
                 ->columns($this->getMainTable() . '.' . $entityMetadata->getIdentifierField())
                 ->limit(1);
-            $result = $this->getConnection()->fetchCol($select);
-            $entityId = count($result) ? $result[0] : false;
+            $connection = $this->getConnection();
+            if ($connection) {
+                $result = $connection->fetchCol($select);
+                $entityId = count($result) ? $result[0] : false;
+            }
         }
         return $entityId;
     }
@@ -114,7 +106,7 @@ class Notice extends AbstractDb
      *
      * @param string $field
      * @param mixed $value
-     * @param \Hawksama\Notice\Model\Notice|AbstractModel $object
+     * @param AbstractModel $object
      * @return Select
      */
     protected function _getLoadSelect($field, $value, $object)
@@ -143,13 +135,14 @@ class Notice extends AbstractDb
 
     /**
      * Get store ids to which specified item is assigned
-     *
-     * @param int $id
-     * @return array
      */
-    public function lookupStoreIds($id)
+    public function lookupStoreIds(int $id): array
     {
         $connection = $this->getConnection();
+
+        if (!$connection) {
+            throw new RuntimeException('Database connection is not available.');
+        }
 
         $entityMetadata = $this->metadataPool->getMetadata(NoticeInterface::class);
         $linkField = $entityMetadata->getLinkField();

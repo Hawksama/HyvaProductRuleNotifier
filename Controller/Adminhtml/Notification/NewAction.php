@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace Hawksama\Notice\Controller\Adminhtml\Notice;
+namespace Hawksama\Notice\Controller\Adminhtml\Notification;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\Model\View\Result\Page;
@@ -16,7 +16,7 @@ use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\Controller\ResultInterface;
 
 /**
- * New action Notice controller.
+ * New action Notification controller.
  */
 class NewAction extends \Hawksama\Notice\Controller\Adminhtml\Notice implements HttpGetActionInterface
 {
@@ -24,8 +24,8 @@ class NewAction extends \Hawksama\Notice\Controller\Adminhtml\Notice implements 
     {
         /** @var Page $resultPage */
         $resultPage = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
-        $resultPage->setActiveMenu('Hawksama_Notice::management');
-        $resultPage->getConfig()->getTitle()->prepend(__('New Notice'));
+        $resultPage = $this->initPage($resultPage);
+        $resultPage->getConfig()->getTitle()->prepend(__('New Product Rule Notifier')->render());
 
         return $resultPage;
     }

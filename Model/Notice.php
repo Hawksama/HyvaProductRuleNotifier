@@ -10,26 +10,26 @@ declare(strict_types=1);
 namespace Hawksama\Notice\Model;
 
 use Hawksama\Notice\Api\Data\NoticeInterface;
-use Hawksama\Notice\Model\ResourceModel\Notice as Resource;
+use Hawksama\Notice\Model\ResourceModel\Notification as Resource;
 use Magento\Framework\DataObject\IdentityInterface;
 use Magento\Framework\Model\AbstractModel;
 
 class Notice extends AbstractModel implements NoticeInterface, IdentityInterface
 {
     public const CACHE_TAG = 'hawksama_notice';
-	protected $_eventPrefix = 'hawksama_notice_model';
+    protected $_eventPrefix = 'hawksama_notice_model';
     public const STATUS_ENABLED = 1;
     public const STATUS_DISABLED = 0;
 
-	/**
-	 * Initialize magento model.
-	 *
-	 * @return void
-	 */
-	protected function _construct()
-	{
-		$this->_init(Resource::class);
-	}
+    /**
+     * Initialize magento model.
+     *
+     * @return void
+     */
+    protected function _construct()
+    {
+        $this->_init(Resource::class);
+    }
 
     /**
      * Get identities
@@ -42,9 +42,7 @@ class Notice extends AbstractModel implements NoticeInterface, IdentityInterface
     }
 
     /**
-     * Getter for NoticeId.
-     *
-     * @return int|null
+     * @inheirtdoc
      */
     public function getNoticeId(): ?int
     {
@@ -53,10 +51,7 @@ class Notice extends AbstractModel implements NoticeInterface, IdentityInterface
     }
 
     /**
-     * Setter for NoticeId.
-     *
-     * @param int|null $noticeId
-     * @return void
+     * @inheirtdoc
      */
     public function setNoticeId(?int $noticeId): void
     {
@@ -64,9 +59,7 @@ class Notice extends AbstractModel implements NoticeInterface, IdentityInterface
     }
 
     /**
-     * Getter for Enabled.
-     *
-     * @return bool|null
+     * @inheirtdoc
      */
     public function getEnabled(): ?bool
     {
@@ -75,10 +68,7 @@ class Notice extends AbstractModel implements NoticeInterface, IdentityInterface
     }
 
     /**
-     * Setter for Enabled.
-     *
-     * @param bool|null $enabled
-     * @return void
+     * @inheirtdoc
      */
     public function setEnabled(?bool $enabled): void
     {
@@ -86,9 +76,7 @@ class Notice extends AbstractModel implements NoticeInterface, IdentityInterface
     }
 
     /**
-     * Getter for RuleName.
-     *
-     * @return string|null
+     * @inheirtdoc
      */
     public function getRuleName(): ?string
     {
@@ -96,10 +84,7 @@ class Notice extends AbstractModel implements NoticeInterface, IdentityInterface
     }
 
     /**
-     * Setter for RuleName.
-     *
-     * @param string|null $ruleName
-     * @return void
+     * @inheirtdoc
      */
     public function setRuleName(?string $ruleName): void
     {
@@ -107,31 +92,24 @@ class Notice extends AbstractModel implements NoticeInterface, IdentityInterface
     }
 
     /**
-     * Getter for StoreId.
-     *
-     * @return int|null
+     * @inheirtdoc
      */
-    public function getStoreId(): ?int
+    public function getStoreId(): array|int|null
     {
         return $this->getData(self::STORE_ID) === null ? null
-            : (int)$this->getData(self::STORE_ID);
+            : $this->getData(self::STORE_ID);
     }
 
     /**
-     * Setter for StoreId.
-     *
-     * @param int|null $storeId
-     * @return void
+     * @inheirtdoc
      */
-    public function setStoreId(?int $storeId): void
+    public function setStoreId(array|int|null $storeId = null): void
     {
         $this->setData(self::STORE_ID, $storeId);
     }
 
     /**
-     * Getter for ProductAttribute.
-     *
-     * @return string|null
+     * @inheirtdoc
      */
     public function getProductAttribute(): ?string
     {
@@ -139,10 +117,7 @@ class Notice extends AbstractModel implements NoticeInterface, IdentityInterface
     }
 
     /**
-     * Setter for ProductAttribute.
-     *
-     * @param string|null $productAttribute
-     * @return void
+     * @inheirtdoc
      */
     public function setProductAttribute(?string $productAttribute): void
     {
@@ -150,41 +125,31 @@ class Notice extends AbstractModel implements NoticeInterface, IdentityInterface
     }
 
     /**
-     * Getter for Word.
-     *
-     * @return string|null
+     * @inheirtdoc
      */
-    public function getWord(): ?string
+    public function getWord(): string
     {
         return $this->getData(self::WORD);
     }
 
     /**
-     * Setter for Word.
-     *
-     * @param string|null $word
-     * @return void
+     * @inheirtdoc
      */
-    public function setWord(?string $word): void
+    public function setWord(string $word): void
     {
         $this->setData(self::WORD, $word);
     }
 
     /**
-     * Getter for MatchType.
-     *
-     * @return string|null
+     * @inheirtdoc
      */
-    public function getMatchType(): ?string
+    public function getMatchType(): string
     {
         return $this->getData(self::MATCH_TYPE);
     }
 
     /**
-     * Setter for MatchType.
-     *
-     * @param string|null $matchType
-     * @return void
+     * @inheirtdoc
      */
     public function setMatchType(?string $matchType): void
     {
@@ -192,9 +157,7 @@ class Notice extends AbstractModel implements NoticeInterface, IdentityInterface
     }
 
     /**
-     * Getter for Description.
-     *
-     * @return string|null
+     * @inheirtdoc
      */
     public function getDescription(): ?string
     {
@@ -202,10 +165,7 @@ class Notice extends AbstractModel implements NoticeInterface, IdentityInterface
     }
 
     /**
-     * Setter for Description.
-     *
-     * @param string|null $description
-     * @return void
+     * @inheirtdoc
      */
     public function setDescription(?string $description): void
     {
@@ -213,9 +173,7 @@ class Notice extends AbstractModel implements NoticeInterface, IdentityInterface
     }
 
     /**
-     * Getter for ScheduleEnabled.
-     *
-     * @return bool|null
+     * @inheirtdoc
      */
     public function getScheduleEnabled(): ?bool
     {
@@ -224,10 +182,7 @@ class Notice extends AbstractModel implements NoticeInterface, IdentityInterface
     }
 
     /**
-     * Setter for ScheduleEnabled.
-     *
-     * @param bool|null $enabled
-     * @return void
+     * @inheirtdoc
      */
     public function setScheduleEnabled(?bool $enabled): void
     {
@@ -235,9 +190,7 @@ class Notice extends AbstractModel implements NoticeInterface, IdentityInterface
     }
 
     /**
-     * Getter for StartDate.
-     *
-     * @return int|null
+     * @inheirtdoc
      */
     public function getStartDate(): ?int
     {
@@ -246,10 +199,7 @@ class Notice extends AbstractModel implements NoticeInterface, IdentityInterface
     }
 
     /**
-     * Setter for StartDate.
-     *
-     * @param int|null $startDate
-     * @return void
+     * @inheirtdoc
      */
     public function setStartDate(?int $startDate): void
     {
@@ -257,9 +207,7 @@ class Notice extends AbstractModel implements NoticeInterface, IdentityInterface
     }
 
     /**
-     * Getter for EndDate.
-     *
-     * @return int|null
+     * @inheirtdoc
      */
     public function getEndDate(): ?int
     {
@@ -268,10 +216,7 @@ class Notice extends AbstractModel implements NoticeInterface, IdentityInterface
     }
 
     /**
-     * Setter for EndDate.
-     *
-     * @param int|null $endDate
-     * @return void
+     * @inheirtdoc
      */
     public function setEndDate(?int $endDate): void
     {
@@ -280,20 +225,16 @@ class Notice extends AbstractModel implements NoticeInterface, IdentityInterface
 
     /**
      * Receive page store ids
-     *
-     * @return int[]
      */
-    public function getStores()
+    public function getStores(): array
     {
         return $this->hasData('stores') ? $this->getData('stores') : $this->getData('store_id');
     }
 
     /**
      * Prepare block's statuses.
-     *
-     * @return array
      */
-    public function getAvailableStatuses()
+    public function getAvailableStatuses(): array
     {
         return [self::STATUS_ENABLED => __('Enabled'), self::STATUS_DISABLED => __('Disabled')];
     }

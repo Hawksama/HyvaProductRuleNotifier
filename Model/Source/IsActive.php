@@ -9,13 +9,13 @@ declare(strict_types=1);
 
 namespace Hawksama\Notice\Model\Source;
 
-use Hawksama\Notice\Model\Notice;
+use Hawksama\Notice\Model\Notice as Model;
 use Magento\Framework\Data\OptionSourceInterface;
 
 class IsActive implements OptionSourceInterface
 {
     public function __construct(
-        protected Notice $notice
+        protected Model $notice
     ) {
     }
 
