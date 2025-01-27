@@ -7,8 +7,8 @@
 -->
 <schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
-    <table name="hawksama_notice" resource="default" engine="innodb" comment="Notification">
-        <column xsi:type="smallint" name="notice_id" unsigned="true" nullable="false" identity="true"
+    <table name="hawksama_notification" resource="default" engine="innodb" comment="Notification">
+        <column xsi:type="smallint" name="notification_id" unsigned="true" nullable="false" identity="true"
                 comment="Notification Id Column"/>
         <column xsi:type="varchar" name="rule_name" nullable="false" length="255" comment="Rule Name Column"/>
         <column xsi:type="boolean" name="enabled" nullable="false" comment="Enabled Column"/>
@@ -23,26 +23,26 @@
         <column xsi:type="varchar" name="end_date" nullable="true"
                 comment="End Date Column"/>
         <constraint xsi:type="primary" referenceId="PRIMARY">
-            <column name="notice_id"/>
+            <column name="notification_id"/>
         </constraint>
-        <index referenceId="HAWKSAMA_NOTICE_ID" indexType="btree">
-            <column name="notice_id"/>
+        <index referenceId="HAWKSAMA_NOTIFICATION_ID" indexType="btree">
+            <column name="notification_id"/>
         </index>
     </table>
-    <table name="hawksama_notice_store" resource="default" engine="innodb" comment="Notices To Store Linkage Table">
-        <column xsi:type="smallint" name="notice_id" unsigned="true" nullable="false"/>
+    <table name="hawksama_notification_store" resource="default" engine="innodb" comment="Notifications To Store Linkage Table">
+        <column xsi:type="smallint" name="notification_id" unsigned="true" nullable="false"/>
         <column xsi:type="smallint" name="store_id" unsigned="true" nullable="false" comment="Store ID"/>
         <constraint xsi:type="primary" referenceId="PRIMARY">
-            <column name="notice_id"/>
+            <column name="notification_id"/>
             <column name="store_id"/>
         </constraint>
-        <constraint xsi:type="foreign" referenceId="HAWKSAMA_NOTICE_STORE_NOTICE_ID_HAWKSAMA_NOTICE_NOTICE_ID"
-                    table="hawksama_notice_store" column="notice_id"
-                    referenceTable="hawksama_notice" referenceColumn="notice_id" onDelete="CASCADE"/>
-        <constraint xsi:type="foreign" referenceId="HAWKSAMA_NOTICE_STORE_STORE_ID_STORE_STORE_ID"
-                    table="hawksama_notice_store" column="store_id"
+        <constraint xsi:type="foreign" referenceId="HAWKSAMA_NOTIFICATION_STORE_NOTIFICATION_ID_HAWKSAMA_NOTIFICATION_NOTIFICATION_ID"
+                    table="hawksama_notification_store" column="notification_id"
+                    referenceTable="hawksama_notification" referenceColumn="notification_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="HAWKSAMA_NOTIFICATION_STORE_STORE_ID_STORE_STORE_ID"
+                    table="hawksama_notification_store" column="store_id"
                     referenceTable="store" referenceColumn="store_id" onDelete="CASCADE"/>
-        <index referenceId="HAWKSAMA_NOTICE_STORE_STORE_ID" indexType="btree">
+        <index referenceId="HAWKSAMA_NOTIFICATION_STORE_STORE_ID" indexType="btree">
             <column name="store_id"/>
         </index>
     </table>

@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace Hawksama\ProductRuleNotifier\ViewModel;
 
-use Hawksama\ProductRuleNotifier\Api\Data\NoticeInterface;
+use Hawksama\ProductRuleNotifier\Api\Data\NotificationInterface;
 use Hawksama\ProductRuleNotifier\Model\NotificationHandler;
 use Hawksama\ProductRuleNotifier\Service\CartItemRetriever;
 use Magento\Framework\Exception\LocalizedException;
@@ -24,9 +24,9 @@ class NotificationViewModel implements ArgumentInterface
     }
 
     /**
-     * Retrieve the list of notices.
+     * Retrieve the list of notifications.
      *
-     * @return NoticeInterface[]
+     * @return NotificationInterface[]
      * @throws LocalizedException
      */
     public function getNotifications(): array
@@ -37,6 +37,6 @@ class NotificationViewModel implements ArgumentInterface
             return [];
         }
 
-        return $this->notificationHandler->getNoticesForCartItems($quoteItems);
+        return $this->notificationHandler->getNotificationsForCartItems($quoteItems);
     }
 }

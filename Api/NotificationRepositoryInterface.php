@@ -9,8 +9,8 @@ declare(strict_types=1);
 
 namespace Hawksama\ProductRuleNotifier\Api;
 
-use Hawksama\ProductRuleNotifier\Api\Data\NoticeInterface;
-use Hawksama\ProductRuleNotifier\Api\Data\NoticeSearchResultsInterface;
+use Hawksama\ProductRuleNotifier\Api\Data\NotificationInterface;
+use Hawksama\ProductRuleNotifier\Api\Data\NotificationSearchResultsInterface;
 use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
@@ -21,31 +21,31 @@ use Magento\Framework\Exception\NoSuchEntityException;
  * @api
  * @since 100.0.2
  */
-interface NoticeRepositoryInterface
+interface NotificationRepositoryInterface
 {
     /**
      * Save block.
      *
-     * @param NoticeInterface $notice
-     * @return NoticeInterface
+     * @param NotificationInterface $notification
+     * @return NotificationInterface
      * @throws LocalizedException
      */
-    public function save(Data\NoticeInterface $notice);
+    public function save(Data\NotificationInterface $notification);
 
     /**
      * Retrieve block.
      *
-     * @param string $noticeId
-     * @return NoticeInterface
+     * @param string $notificationId
+     * @return NotificationInterface
      * @throws LocalizedException
      */
-    public function getById($noticeId);
+    public function getById($notificationId);
 
     /**
      * Retrieve blocks matching the specified criteria.
      *
      * @param SearchCriteriaInterface $searchCriteria
-     * @return NoticeSearchResultsInterface
+     * @return NotificationSearchResultsInterface
      * @throws LocalizedException
      */
     public function getList(SearchCriteriaInterface $searchCriteria);
@@ -53,11 +53,11 @@ interface NoticeRepositoryInterface
     /**
      * Delete block.
      *
-     * @param NoticeInterface $notice
+     * @param NotificationInterface $notification
      * @return bool true on success
      * @throws LocalizedException
      */
-    public function delete(Data\NoticeInterface $notice);
+    public function delete(Data\NotificationInterface $notification);
 
     /**
      * Delete block by ID.
@@ -66,5 +66,5 @@ interface NoticeRepositoryInterface
      * @throws NoSuchEntityException
      * @throws LocalizedException
      */
-    public function deleteById(string $noticeId);
+    public function deleteById(string $notificationId);
 }

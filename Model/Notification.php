@@ -9,15 +9,15 @@ declare(strict_types=1);
 
 namespace Hawksama\ProductRuleNotifier\Model;
 
-use Hawksama\ProductRuleNotifier\Api\Data\NoticeInterface;
+use Hawksama\ProductRuleNotifier\Api\Data\NotificationInterface;
 use Hawksama\ProductRuleNotifier\Model\ResourceModel\Notification as Resource;
 use Magento\Framework\DataObject\IdentityInterface;
 use Magento\Framework\Model\AbstractModel;
 
-class Notice extends AbstractModel implements NoticeInterface, IdentityInterface
+class Notification extends AbstractModel implements NotificationInterface, IdentityInterface
 {
-    public const CACHE_TAG = 'hawksama_notice';
-    protected $_eventPrefix = 'hawksama_notice_model';
+    public const CACHE_TAG = 'hawksama_notification';
+    protected $_eventPrefix = 'hawksama_notification_model';
     public const STATUS_ENABLED = 1;
     public const STATUS_DISABLED = 0;
 
@@ -44,18 +44,18 @@ class Notice extends AbstractModel implements NoticeInterface, IdentityInterface
     /**
      * @inheirtdoc
      */
-    public function getNoticeId(): ?int
+    public function getNotificationId(): ?int
     {
-        return $this->getData(self::NOTICE_ID) === null ? null
-            : (int)$this->getData(self::NOTICE_ID);
+        return $this->getData(self::NOTIFICATION_ID) === null ? null
+            : (int)$this->getData(self::NOTIFICATION_ID);
     }
 
     /**
      * @inheirtdoc
      */
-    public function setNoticeId(?int $noticeId): void
+    public function setNotificationId(?int $notificationId): void
     {
-        $this->setData(self::NOTICE_ID, $noticeId);
+        $this->setData(self::NOTIFICATION_ID, $notificationId);
     }
 
     /**
@@ -228,7 +228,7 @@ class Notice extends AbstractModel implements NoticeInterface, IdentityInterface
      */
     public function getStores(): array
     {
-        return $this->hasData('stores') ? $this->getData('stores') : $this->getData('store_id');
+        return $this->getData('store_id');
     }
 
     /**

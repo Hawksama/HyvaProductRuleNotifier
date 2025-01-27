@@ -7,18 +7,18 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <preference for="Hawksama\ProductRuleNotifier\Api\NoticeRepositoryInterface" type="Hawksama\ProductRuleNotifier\Model\NoticeRepository" />
-    <preference for="Hawksama\ProductRuleNotifier\Api\Data\NoticeSearchResultsInterface"
-                type="Hawksama\ProductRuleNotifier\Model\NoticeSearchResults" />
+    <preference for="Hawksama\ProductRuleNotifier\Api\NotificationRepositoryInterface" type="Hawksama\ProductRuleNotifier\Model\NotificationRepository" />
+    <preference for="Hawksama\ProductRuleNotifier\Api\Data\NotificationSearchResultsInterface"
+                type="Hawksama\ProductRuleNotifier\Model\NotificationSearchResults" />
 
-    <preference for="Hawksama\ProductRuleNotifier\Api\Data\NoticeInterface" type="Hawksama\ProductRuleNotifier\Model\Notice"/>
+    <preference for="Hawksama\ProductRuleNotifier\Api\Data\NotificationInterface" type="Hawksama\ProductRuleNotifier\Model\Notification"/>
 
     <type name="Magento\Framework\EntityManager\MetadataPool">
         <arguments>
             <argument name="metadata" xsi:type="array">
-                <item name="Hawksama\ProductRuleNotifier\Api\Data\NoticeInterface" xsi:type="array">
-                    <item name="entityTableName" xsi:type="string">hawksama_notice</item>
-                    <item name="identifierField" xsi:type="string">notice_id</item>
+                <item name="Hawksama\ProductRuleNotifier\Api\Data\NotificationInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="string">hawksama_notification</item>
+                    <item name="identifierField" xsi:type="string">notification_id</item>
                 </item>
             </argument>
         </arguments>
@@ -27,7 +27,7 @@
     <type name="Magento\Framework\EntityManager\Operation\ExtensionPool">
         <arguments>
             <argument name="extensionActions" xsi:type="array">
-                <item name="Hawksama\ProductRuleNotifier\Api\Data\NoticeInterface" xsi:type="array">
+                <item name="Hawksama\ProductRuleNotifier\Api\Data\NotificationInterface" xsi:type="array">
                     <item name="read" xsi:type="array">
                         <item name="storeReader" xsi:type="string">Hawksama\ProductRuleNotifier\Model\ResourceModel\Notification\Relation\Store\ReadHandler</item>
                     </item>
@@ -42,27 +42,25 @@
         </arguments>
     </type>
 
-
     <type name="Magento\Framework\Model\Entity\RepositoryFactory">
         <arguments>
             <argument name="entities" xsi:type="array">
-                <item name="Hawksama\ProductRuleNotifier\Api\Data\NoticeInterface" xsi:type="string">Hawksama\ProductRuleNotifier\Api\NoticeRepositoryInterface</item>
+                <item name="Hawksama\ProductRuleNotifier\Api\Data\NotificationInterface" xsi:type="string">Hawksama\ProductRuleNotifier\Api\NotificationRepositoryInterface</item>
             </argument>
         </arguments>
     </type>
 
-
-    <virtualType name="Hawksama\ProductRuleNotifier\Model\Api\SearchCriteria\CollectionProcessor\NoticeFilterProcessor" type="Magento\Framework\Api\SearchCriteria\CollectionProcessor\FilterProcessor">
+    <virtualType name="Hawksama\ProductRuleNotifier\Model\Api\SearchCriteria\CollectionProcessor\NotificationFilterProcessor" type="Magento\Framework\Api\SearchCriteria\CollectionProcessor\FilterProcessor">
         <arguments>
             <argument name="customFilters" xsi:type="array">
                 <item name="store_id" xsi:type="object">Hawksama\ProductRuleNotifier\Model\Api\SearchCriteria\CollectionProcessor\FilterProcessor\StoreFilter</item>
             </argument>
         </arguments>
     </virtualType>
-    <virtualType name="Hawksama\ProductRuleNotifier\Model\Api\SearchCriteria\NoticeCollectionProcessor" type="Magento\Framework\Api\SearchCriteria\CollectionProcessor">
+    <virtualType name="Hawksama\ProductRuleNotifier\Model\Api\SearchCriteria\NotificationCollectionProcessor" type="Magento\Framework\Api\SearchCriteria\CollectionProcessor">
         <arguments>
             <argument name="processors" xsi:type="array">
-                <item name="filters" xsi:type="object">Hawksama\ProductRuleNotifier\Model\Api\SearchCriteria\CollectionProcessor\NoticeFilterProcessor</item>
+                <item name="filters" xsi:type="object">Hawksama\ProductRuleNotifier\Model\Api\SearchCriteria\CollectionProcessor\NotificationFilterProcessor</item>
                 <item name="sorting" xsi:type="object">Magento\Framework\Api\SearchCriteria\CollectionProcessor\SortingProcessor</item>
                 <item name="pagination" xsi:type="object">Magento\Framework\Api\SearchCriteria\CollectionProcessor\PaginationProcessor</item>
             </argument>
@@ -71,13 +69,13 @@
     <type name="Magento\Framework\EntityManager\HydratorPool">
         <arguments>
             <argument name="hydrators" xsi:type="array">
-                <item name="Hawksama\ProductRuleNotifier\Api\Data\NoticeInterface" xsi:type="string">Magento\Framework\EntityManager\AbstractModelHydrator</item>
+                <item name="Hawksama\ProductRuleNotifier\Api\Data\NotificationInterface" xsi:type="string">Magento\Framework\EntityManager\AbstractModelHydrator</item>
             </argument>
         </arguments>
     </type>
-    <type name="Hawksama\ProductRuleNotifier\Model\NoticeRepository">
+    <type name="Hawksama\ProductRuleNotifier\Model\NotificationRepository">
         <arguments>
-            <argument name="collectionProcessor" xsi:type="object">Hawksama\ProductRuleNotifier\Model\Api\SearchCriteria\NoticeCollectionProcessor</argument>
+            <argument name="collectionProcessor" xsi:type="object">Hawksama\ProductRuleNotifier\Model\Api\SearchCriteria\NotificationCollectionProcessor</argument>
             <argument name="hydrator" xsi:type="object">Magento\Framework\EntityManager\AbstractModelHydrator</argument>
         </arguments>
     </type>

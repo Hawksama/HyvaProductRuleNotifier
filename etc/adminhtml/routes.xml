@@ -9,7 +9,7 @@
         xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
     <router id="admin">
         <route id="hawksama" frontName="hawksama">
-            <module name="Hawksama_Notice"/>
+            <module name="Hawksama_ProductRuleNotifier"/>
         </route>
     </router>
 </config>

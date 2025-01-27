@@ -8,8 +8,8 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
-        <add id="Hawksama_Notice::management" sortOrder="100" title="Product Rule Notifications Management" module="Hawksama_Notice"
-             parent="Hawksama_AdminMenu::menu" resource="Hawksama_Notice::management" translate="title"
+        <add id="Hawksama_ProductRuleNotifier::management" sortOrder="100" title="Product Rule Notifications Management" module="Hawksama_ProductRuleNotifier"
+             parent="Hawksama_AdminMenu::menu" resource="Hawksama_ProductRuleNotifier::management" translate="title"
              action="hawksama/notification/index"/>
     </menu>
 </config>

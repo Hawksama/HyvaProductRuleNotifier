@@ -57,8 +57,8 @@ abstract class AbstractCollection extends \Magento\Framework\Model\ResourceModel
         if (count($linkedIds)) {
             $connection = $this->getConnection();
             $select = $connection->select()
-                ->from(['hawksama_notice_store' => $this->getTable($tableName)])
-                ->where('hawksama_notice_store.' . $linkField . ' IN (?)', $linkedIds);
+                ->from(['hawksama_notification_store' => $this->getTable($tableName)])
+                ->where('hawksama_notification_store.' . $linkField . ' IN (?)', $linkedIds);
 
             $result = $connection->fetchAll($select);
             if (!$result) {

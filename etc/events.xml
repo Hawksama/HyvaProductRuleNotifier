@@ -1,18 +1,18 @@
 <?xml version="1.0"?>
 <!--
 /**
- * Copyright © Magento, Inc. All rights reserved.
+ * Copyright © Alexandru-Manuel Carabus All rights reserved.
  * See COPYING.txt for license details.
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
-    <event name="hawksama_notice_api_data_noticeinterface_save_before">
-        <observer name="hawksama_model_notice_before_save" instance="Magento\Framework\EntityManager\Observer\BeforeEntitySave" />
+    <event name="hawksama_notification_api_data_notificationinterface_save_before">
+        <observer name="hawksama_model_notification_before_save" instance="Magento\Framework\EntityManager\Observer\BeforeEntitySave" />
     </event>
-    <event name="hawksama_notice_api_data_noticeinterface_save_after">
-        <observer name="hawksama_model_notice_after_save" instance="Magento\Framework\EntityManager\Observer\AfterEntitySave" />
+    <event name="hawksama_notification_api_data_notificationinterface_save_after">
+        <observer name="hawksama_model_notification_after_save" instance="Magento\Framework\EntityManager\Observer\AfterEntitySave" />
     </event>
-    <event name="hawksama_notice_api_data_noticeinterface_load_after">
-        <observer name="hawksama_model_notice_after_load" instance="Magento\Framework\EntityManager\Observer\AfterEntityLoad" />
+    <event name="hawksama_notification_api_data_notificationinterface_load_after">
+        <observer name="hawksama_model_notification_after_load" instance="Magento\Framework\EntityManager\Observer\AfterEntityLoad" />
     </event>
 </config>

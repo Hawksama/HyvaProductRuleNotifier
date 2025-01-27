@@ -9,36 +9,36 @@ declare(strict_types=1);
 
 namespace Hawksama\ProductRuleNotifier\Model\ResourceModel\Notification;
 
-use Hawksama\ProductRuleNotifier\Model\Notice as Model;
+use Hawksama\ProductRuleNotifier\Model\Notification as Model;
 use Hawksama\ProductRuleNotifier\Model\ResourceModel\AbstractCollection;
 use Hawksama\ProductRuleNotifier\Model\ResourceModel\Notification as Resource;
-use Hawksama\ProductRuleNotifier\Api\Data\NoticeInterface;
+use Hawksama\ProductRuleNotifier\Api\Data\NotificationInterface;
 
 class Collection extends AbstractCollection
 {
     /**
      * @var string
      */
-    protected $_idFieldName = 'notice_id';
+    protected $_idFieldName = 'notification_id';
 
     /**
      * @var string
      */
-    protected $_eventPrefix = 'hawksama_notice_collection';
+    protected $_eventPrefix = 'hawksama_notification_collection';
 
     /**
      * @var string
      */
-    protected $_eventObject = 'notice_collection';
+    protected $_eventObject = 'notification_collection';
 
     /**
      * Perform operations after collection load
      */
     protected function _afterLoad(): self
     {
-        $entityMetadata = $this->metadataPool->getMetadata(NoticeInterface::class);
+        $entityMetadata = $this->metadataPool->getMetadata(NotificationInterface::class);
 
-        $this->performAfterLoad('hawksama_notice_store', $entityMetadata->getLinkField());
+        $this->performAfterLoad('hawksama_notification_store', $entityMetadata->getLinkField());
 
         return parent::_afterLoad();
     }
@@ -50,7 +50,7 @@ class Collection extends AbstractCollection
     {
         $this->_init(Model::class, Resource::class);
         $this->_map['fields']['store'] = 'store_table.store_id';
-        $this->_map['fields']['notice_id'] = 'main_table.notice_id';
+        $this->_map['fields']['notification_id'] = 'main_table.notification_id';
     }
 
     /**
@@ -71,7 +71,7 @@ class Collection extends AbstractCollection
      */
     protected function _renderFiltersBefore()
     {
-        $entityMetadata = $this->metadataPool->getMetadata(NoticeInterface::class);
-        $this->joinStoreRelationTable('hawksama_notice_store', $entityMetadata->getLinkField());
+        $entityMetadata = $this->metadataPool->getMetadata(NotificationInterface::class);
+        $this->joinStoreRelationTable('hawksama_notification_store', $entityMetadata->getLinkField());
     }
 }

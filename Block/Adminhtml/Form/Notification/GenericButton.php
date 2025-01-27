@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace Hawksama\ProductRuleNotifier\Block\Adminhtml\Form\Notification;
 
-use Hawksama\ProductRuleNotifier\Api\Data\NoticeInterface;
+use Hawksama\ProductRuleNotifier\Api\Data\NotificationInterface;
 use Magento\Backend\Block\Widget\Context;
 use Magento\Framework\UrlInterface;
 
@@ -35,9 +35,9 @@ class GenericButton
     /**
      * Get Notification entity id.
      */
-    public function getNoticeId(): int
+    public function getNotificationId(): int
     {
-        return (int)$this->context->getRequest()->getParam(NoticeInterface::NOTICE_ID);
+        return (int)$this->context->getRequest()->getParam(NotificationInterface::NOTIFICATION_ID);
     }
 
     /**

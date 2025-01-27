@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace Hawksama\ProductRuleNotifier\Controller\Check;
 
-use Hawksama\ProductRuleNotifier\Api\Data\NoticeInterface;
+use Hawksama\ProductRuleNotifier\Api\Data\NotificationInterface;
 use Magento\Framework\Controller\Result\Json;
 use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\Controller\Result\JsonFactory;
@@ -28,14 +28,14 @@ class Notifications implements HttpGetActionInterface
         $result = $this->jsonFactory->create();
 
         try {
-            $notices = $this->notificationViewModel->getNotifications();
+            $notifications = $this->notificationViewModel->getNotifications();
             $notificationData = array_map(
-                function (NoticeInterface $notice) {
+                function (NotificationInterface $notification) {
                     return [
-                        'message' => $notice->getDescription()
+                        'message' => $notification->getDescription()
                     ];
                 },
-                $notices
+                $notifications
             );
         } catch (\Exception $e) {
             return $result->setData(['error' => __('Unable to fetch notifications.')]);

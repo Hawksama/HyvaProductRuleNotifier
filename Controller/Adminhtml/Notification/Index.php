@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace Hawksama\ProductRuleNotifier\Controller\Adminhtml\Notification;
 
-use Magento\Backend\App\Action;
+use Hawksama\ProductRuleNotifier\Controller\Adminhtml\Controller;
 use Magento\Backend\Model\View\Result\Page;
 use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\App\ResponseInterface;
@@ -19,7 +19,7 @@ use Magento\Framework\Controller\ResultInterface;
 /**
  * Notification backend index (list) controller.
  */
-class Index extends \Hawksama\ProductRuleNotifier\Controller\Adminhtml\Notice implements HttpGetActionInterface
+class Index extends Controller implements HttpGetActionInterface
 {
     public function execute(): ResultInterface|ResponseInterface
     {

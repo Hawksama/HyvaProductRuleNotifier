@@ -9,12 +9,12 @@ declare(strict_types=1);
 
 namespace Hawksama\ProductRuleNotifier\Model;
 
-use Hawksama\ProductRuleNotifier\Api\Data\NoticeSearchResultsInterface;
+use Hawksama\ProductRuleNotifier\Api\Data\NotificationSearchResultsInterface;
 use Magento\Framework\Api\SearchResults;
 
 /**
  * Service Data Object with Notification search results.
  */
-class NoticeSearchResults extends SearchResults implements NoticeSearchResultsInterface
+class NotificationSearchResults extends SearchResults implements NotificationSearchResultsInterface
 {
 }

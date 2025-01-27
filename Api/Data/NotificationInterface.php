@@ -9,12 +9,12 @@ declare(strict_types=1);
 
 namespace Hawksama\ProductRuleNotifier\Api\Data;
 
-interface NoticeInterface
+interface NotificationInterface
 {
     /**
      * String constants for property names
      */
-    public const NOTICE_ID = "notice_id";
+    public const NOTIFICATION_ID = "notification_id";
     public const ENABLED = "enabled";
     public const RULE_NAME = "rule_name";
     public const STORE_ID = "store_id";
@@ -27,19 +27,19 @@ interface NoticeInterface
     public const END_DATE = "end_date";
 
     /**
-     * Getter for NoticeId.
+     * Getter for NotificationId.
      *
      * @return int|null
      */
-    public function getNoticeId(): ?int;
+    public function getNotificationId(): ?int;
 
     /**
-     * Setter for NoticeId.
+     * Setter for NotificationId.
      *
-     * @param int|null $noticeId
+     * @param int|null $notificationId
      * @return void
      */
-    public function setNoticeId(?int $noticeId): void;
+    public function setNotificationId(?int $notificationId): void;
 
     /**
      * Getter for Enabled.

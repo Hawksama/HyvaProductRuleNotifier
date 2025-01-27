@@ -17,7 +17,7 @@ use Magento\Framework\Event\ObserverInterface;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Quote\Model\Quote\Item as QuoteItem;
 use Magento\Catalog\Api\ProductRepositoryInterface;
-use Hawksama\ProductRuleNotifier\Query\Notice\GetListQuery;
+use Hawksama\ProductRuleNotifier\Query\Notification\GetListQuery;
 
 class AddAttributesToQuoteItem implements ObserverInterface
 {
@@ -38,7 +38,7 @@ class AddAttributesToQuoteItem implements ObserverInterface
 
         $product = $this->productRepository->getById($productId);
 
-        $rules = $this->getActiveNoticeRules();
+        $rules = $this->getActiveNotificationRules();
 
         foreach ($rules as $rule) {
             $attributeCode = $rule->getProductAttribute();
@@ -50,7 +50,7 @@ class AddAttributesToQuoteItem implements ObserverInterface
         }
     }
 
-    private function getActiveNoticeRules(): array
+    private function getActiveNotificationRules(): array
     {
         $searchCriteria = $this->searchCriteriaBuilder->addFilter('enabled', true)->create();
         $searchResults = $this->getListQuery->execute($searchCriteria);

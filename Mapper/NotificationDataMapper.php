@@ -9,18 +9,18 @@ declare(strict_types=1);
 
 namespace Hawksama\ProductRuleNotifier\Mapper;
 
-use Hawksama\ProductRuleNotifier\Api\Data\NoticeInterfaceFactory;
-use Hawksama\ProductRuleNotifier\Model\Notice as Model;
-use Magento\Framework\DataObject;
+use Hawksama\ProductRuleNotifier\Api\Data\NotificationInterface;
+use Hawksama\ProductRuleNotifier\Api\Data\NotificationInterfaceFactory as ApiDataInterfaceFactory;
+use Hawksama\ProductRuleNotifier\Model\Notification as Model;
 use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
 
 /**
  * Converts a collection of Notification entities to an array of data transfer objects.
  */
-class NoticeDataMapper
+class NotificationDataMapper
 {
     public function __construct(
-        private readonly NoticeInterfaceFactory $entityDtoFactory
+        private readonly ApiDataInterfaceFactory $entityDtoFactory
     ) {
     }
 

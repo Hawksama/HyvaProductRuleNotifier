@@ -1,0 +1,16 @@
+Copyright © 2025-present Alexandru-Manuel Carabus
+
+This file is part of Hawksama/HyvaProductRuleNotifier.
+
+Hawksama/HyvaProductRuleNotifier is free software: you can redistribute it and/or modify
+it under the terms of the Mozilla Public License, v. 2.0 as published by
+the Mozilla Foundation.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+Mozilla Public License for more details.
+
+You should have received a copy of the Mozilla Public License
+along with this program. If not, see <https://www.mozilla.org/en-US/MPL/2.0/>.
+Please see LICENSE.txt for the full text of the Mozilla Public License 2.0

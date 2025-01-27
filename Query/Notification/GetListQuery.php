@@ -7,11 +7,11 @@
 
 declare(strict_types=1);
 
-namespace Hawksama\ProductRuleNotifier\Query\Notice;
+namespace Hawksama\ProductRuleNotifier\Query\Notification;
 
-use Hawksama\ProductRuleNotifier\Api\Data\NoticeInterface;
-use Hawksama\ProductRuleNotifier\Api\Data\NoticeSearchResultsInterface;
-use Hawksama\ProductRuleNotifier\Mapper\NoticeDataMapper;
+use Hawksama\ProductRuleNotifier\Api\Data\NotificationInterface;
+use Hawksama\ProductRuleNotifier\Api\Data\NotificationSearchResultsInterface;
+use Hawksama\ProductRuleNotifier\Mapper\NotificationDataMapper;
 use Hawksama\ProductRuleNotifier\Model\ResourceModel\Notification\Collection;
 use Hawksama\ProductRuleNotifier\Model\ResourceModel\Notification\CollectionFactory;
 use Magento\Framework\Api\SearchCriteriaBuilder;
@@ -28,7 +28,7 @@ class GetListQuery
     public function __construct(
         private readonly CollectionProcessorInterface  $collectionProcessor,
         private readonly CollectionFactory $entityCollectionFactory,
-        private readonly NoticeDataMapper $entityDataMapper,
+        private readonly NotificationDataMapper $entityDataMapper,
         private readonly SearchCriteriaBuilder $searchCriteriaBuilder,
         private readonly SearchResultsInterfaceFactory $searchResultFactory
     ) {
@@ -41,15 +41,13 @@ class GetListQuery
     {
         /** @var Collection $collection */
         $collection = $this->entityCollectionFactory->create();
-
-        // Simplified criteria handling
         $searchCriteria = $searchCriteria ?? $this->searchCriteriaBuilder->create();
         $this->collectionProcessor->process($searchCriteria, $collection);
 
-        /** @var NoticeInterface[] $entityDataObjects */
+        /** @var NotificationInterface[] $entityDataObjects */
         $entityDataObjects = $this->entityDataMapper->map($collection);
 
-        /** @var NoticeSearchResultsInterface $searchResult */
+        /** @var NotificationSearchResultsInterface $searchResult */
         $searchResult = $this->searchResultFactory->create();
         $searchResult->setSearchCriteria($searchCriteria);
         $searchResult->setItems($entityDataObjects);

@@ -9,10 +9,9 @@ declare(strict_types=1);
 
 namespace Hawksama\ProductRuleNotifier\Model;
 
-use Hawksama\ProductRuleNotifier\Api\Data\NoticeInterface;
+use Hawksama\ProductRuleNotifier\Api\Data\NotificationInterface;
 use Hawksama\ProductRuleNotifier\Api\NotificationHandlerInterface;
-use Hawksama\ProductRuleNotifier\Api\NoticeRepositoryInterface;
-use Hawksama\ProductRuleNotifier\Query\Notice\GetListQuery;
+use Hawksama\ProductRuleNotifier\Api\NotificationRepositoryInterface;
 use Magento\Quote\Model\Quote\Item as QuoteItem;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\Exception\LocalizedException;
@@ -21,8 +20,8 @@ use Magento\Quote\Api\Data\CartItemInterface;
 class NotificationHandler implements NotificationHandlerInterface
 {
     public function __construct(
-        private readonly SearchCriteriaBuilder $searchCriteriaBuilder,
-        private NoticeRepositoryInterface $noticeRepository,
+        private readonly SearchCriteriaBuilder  $searchCriteriaBuilder,
+        private readonly NotificationRepositoryInterface $notificationRepository,
     ) {
     }
 
@@ -31,13 +30,13 @@ class NotificationHandler implements NotificationHandlerInterface
      * @param CartItemInterface[] $cartItems
      * @throws LocalizedException
      */
-    public function getNoticesForCartItems(array $cartItems): array
+    public function getNotificationsForCartItems(array $cartItems): array
     {
-        $notices = [];
+        $notifications = [];
         $searchCriteria = $this->searchCriteriaBuilder->create();
-        $searchResults = $this->noticeRepository->getList($searchCriteria);
+        $searchResults = $this->notificationRepository->getList($searchCriteria);
 
-        /** @var NoticeInterface[] $rules */
+        /** @var NotificationInterface[] $rules */
         $rules = $searchResults->getItems();
 
         foreach ($rules as $rule) {
@@ -51,13 +50,13 @@ class NotificationHandler implements NotificationHandlerInterface
                     $productAttributeValue = $item->getProduct()->getData($attributeCode);
 
                     if ($this->isMatching($productAttributeValue, $attributeValue, $matchType)) {
-                        $notices[] = $rule;
+                        $notifications[] = $rule;
                     }
                 }
             }
         }
 
-        return array_unique($notices, SORT_REGULAR);
+        return array_unique($notifications, SORT_REGULAR);
     }
 
     /**

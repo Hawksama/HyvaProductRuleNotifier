@@ -10,31 +10,29 @@ declare(strict_types=1);
 namespace Hawksama\ProductRuleNotifier\Model\ResourceModel\Notification\Relation\Store;
 
 use Hawksama\ProductRuleNotifier\Model\ResourceModel\Notification as Resource;
-use Hawksama\ProductRuleNotifier\Model\Notice as Model;
+use Hawksama\ProductRuleNotifier\Model\Notification as Model;
 use Magento\Framework\EntityManager\Operation\ExtensionInterface;
 
 class ReadHandler implements ExtensionInterface
 {
     /**
-     * @param Resource $resourceNotice
+     * @param Resource $resourceNotification
      */
     public function __construct(
-        private readonly Resource $resourceNotice
+        private readonly Resource $resourceNotification
     ) {
     }
 
     /**
      * @param Model $entity
      * @param array $arguments
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function execute($entity, $arguments = []): object
     {
         /** @var Model $entity */
         if ($entity->getId()) {
-            $stores = $this->resourceNotice->lookupStoreIds((int)$entity->getId());
+            $stores = $this->resourceNotification->lookupStoreIds((int)$entity->getId());
             $entity->setData('store_id', $stores);
-            $entity->setData('stores', $stores);
         }
         return $entity;
     }

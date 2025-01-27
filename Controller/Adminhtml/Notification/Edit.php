@@ -9,15 +9,14 @@ declare(strict_types=1);
 
 namespace Hawksama\ProductRuleNotifier\Controller\Adminhtml\Notification;
 
-use Hawksama\ProductRuleNotifier\Model\NoticeFactory as ModelFactory;
-use Hawksama\ProductRuleNotifier\Model\NoticeRepository as ModelRepository;
-use Hawksama\ProductRuleNotifier\Api\Data\NoticeInterface;
-use Magento\Backend\App\Action;
+use Hawksama\ProductRuleNotifier\Controller\Adminhtml\Controller;
+use Hawksama\ProductRuleNotifier\Model\NotificationFactory as ModelFactory;
+use Hawksama\ProductRuleNotifier\Model\NotificationRepository as ModelRepository;
+use Hawksama\ProductRuleNotifier\Api\Data\NotificationInterface;
 use Magento\Backend\App\Action\Context;
 use Magento\Backend\Model\View\Result\Page;
 use Magento\Backend\Model\View\Result\Redirect;
 use Magento\Framework\App\Action\HttpGetActionInterface;
-use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\View\Result\PageFactory;
@@ -25,12 +24,12 @@ use Magento\Framework\View\Result\PageFactory;
 /**
  * Edit Notification entity backend controller.
  */
-class Edit extends \Hawksama\ProductRuleNotifier\Controller\Adminhtml\Notice implements HttpGetActionInterface
+class Edit extends Controller implements HttpGetActionInterface
 {
     public function __construct(
         Context $context,
         private readonly PageFactory $resultPageFactory,
-        private readonly ModelFactory $noticeFactory,
+        private readonly ModelFactory $notificationFactory,
         private readonly ModelRepository $repository
     ) {
         parent::__construct($context);
@@ -41,13 +40,13 @@ class Edit extends \Hawksama\ProductRuleNotifier\Controller\Adminhtml\Notice imp
      */
     public function execute(): Page|ResultInterface
     {
-        /** @var NoticeInterface $model */
-        $model = $this->noticeFactory->create();
-        $id = $this->getRequest()->getParam(NoticeInterface::NOTICE_ID);
+        /** @var NotificationInterface $model */
+        $model = $this->notificationFactory->create();
+        $id = $this->getRequest()->getParam(NotificationInterface::NOTIFICATION_ID);
 
         if ($id) {
             $model = $this->repository->getById($id);
-            if (!$model->getNoticeId()) {
+            if (!$model->getNotificationId()) {
                 $this->messageManager->addErrorMessage(__('This entity no longer exists.')->render());
                 /** @var Redirect $resultRedirect */
                 $resultRedirect = $this->resultRedirectFactory->create();
@@ -60,7 +59,7 @@ class Edit extends \Hawksama\ProductRuleNotifier\Controller\Adminhtml\Notice imp
         $resultPage = $this->initPage($resultPage);
         $resultPage->getConfig()->getTitle()->prepend(__('Notifications')->getText());
         $resultPage->getConfig()->getTitle()->prepend(
-            $model->getNoticeId() ?
+            $model->getNotificationId() ?
                 (string) $model->getRuleName() :
                 __('New Product Rule Notification')->render()
         );

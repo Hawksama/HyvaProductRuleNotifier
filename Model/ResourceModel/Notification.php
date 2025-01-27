@@ -9,8 +9,8 @@ declare(strict_types=1);
 
 namespace Hawksama\ProductRuleNotifier\Model\ResourceModel;
 
-use Hawksama\ProductRuleNotifier\Api\Data\NoticeInterface;
-use Hawksama\ProductRuleNotifier\Model\Notice as Model;
+use Hawksama\ProductRuleNotifier\Api\Data\NotificationInterface;
+use Hawksama\ProductRuleNotifier\Model\Notification as Model;
 use Magento\Framework\DB\Select;
 use Magento\Framework\EntityManager\EntityManager;
 use Magento\Framework\EntityManager\MetadataPool;
@@ -26,7 +26,7 @@ class Notification extends AbstractDb
     /**
      * @var string
      */
-    protected $_eventPrefix = 'hawksama_notice_resource_model';
+    protected $_eventPrefix = 'hawksama_notification_resource_model';
 
     public function __construct(
         Context $context,
@@ -42,7 +42,7 @@ class Notification extends AbstractDb
      */
     protected function _construct()
     {
-        $this->_init('hawksama_notice', NoticeInterface::NOTICE_ID);
+        $this->_init('hawksama_notification', NotificationInterface::NOTIFICATION_ID);
         $this->_useIsObjectNew = true;
     }
 
@@ -51,7 +51,7 @@ class Notification extends AbstractDb
      */
     public function getConnection()
     {
-        return $this->metadataPool->getMetadata(NoticeInterface::class)->getEntityConnection();
+        return $this->metadataPool->getMetadata(NotificationInterface::class)->getEntityConnection();
     }
 
     /**
@@ -65,7 +65,7 @@ class Notification extends AbstractDb
      */
     public function load(AbstractModel $object, $value, $field = null)
     {
-        $blockId = $this->getNoticeId($object, $value, $field);
+        $blockId = $this->getNotificationId($object, $value, $field);
         if ($blockId) {
             $this->entityManager->load($object, $blockId);
         }
@@ -73,14 +73,14 @@ class Notification extends AbstractDb
     }
 
     /**
-     * Get notice id.
+     * Get notification id.
      *
      * @throws LocalizedException
      * @throws \Exception
      */
-    private function getNoticeId(AbstractModel $object, mixed $value, string $field = null): string
+    private function getNotificationId(AbstractModel $object, mixed $value, string $field = null): string
     {
-        $entityMetadata = $this->metadataPool->getMetadata(NoticeInterface::class);
+        $entityMetadata = $this->metadataPool->getMetadata(NotificationInterface::class);
         if (!is_numeric($value) && $field === null) {
             $field = 'identifier';
         } elseif (!$field) {
@@ -111,17 +111,17 @@ class Notification extends AbstractDb
      */
     protected function _getLoadSelect($field, $value, $object)
     {
-        $entityMetadata = $this->metadataPool->getMetadata(NoticeInterface::class);
+        $entityMetadata = $this->metadataPool->getMetadata(NotificationInterface::class);
         $linkField = $entityMetadata->getLinkField();
 
         $select = parent::_getLoadSelect($field, $value, $object);
 
         if ($object->getStoreId()) {
-            $stores = [(int)$object->getStoreId(), Store::DEFAULT_STORE_ID];
+            $stores = [(int)$object->getStores(), Store::DEFAULT_STORE_ID];
 
             $select->join(
-                ['hns' => $this->getTable('hawksama_notice_store')],
-                $this->getMainTable() . '.' . $linkField . ' = hns.notice_id',
+                ['hns' => $this->getTable('hawksama_notification_store')],
+                $this->getMainTable() . '.' . $linkField . ' = hns.notification_id',
                 ['store_id']
             )
                 ->where('enabled = ?', 1)
@@ -144,19 +144,19 @@ class Notification extends AbstractDb
             throw new RuntimeException('Database connection is not available.');
         }
 
-        $entityMetadata = $this->metadataPool->getMetadata(NoticeInterface::class);
+        $entityMetadata = $this->metadataPool->getMetadata(NotificationInterface::class);
         $linkField = $entityMetadata->getLinkField();
 
         $select = $connection->select()
-            ->from(['hns' => $this->getTable('hawksama_notice_store')], 'store_id')
+            ->from(['hns' => $this->getTable('hawksama_notification_store')], 'store_id')
             ->join(
                 ['hn' => $this->getMainTable()],
                 'hns.' . $linkField . ' = hn.' . $linkField,
                 []
             )
-            ->where('hn.' . $entityMetadata->getIdentifierField() . ' = :notice_id');
+            ->where('hn.' . $entityMetadata->getIdentifierField() . ' = :notification_id');
 
-        return $connection->fetchCol($select, ['notice_id' => (int)$id]);
+        return $connection->fetchCol($select, ['notification_id' => $id]);
     }
 
     /**

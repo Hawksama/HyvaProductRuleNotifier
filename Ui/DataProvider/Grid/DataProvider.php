@@ -9,8 +9,8 @@ declare(strict_types=1);
 
 namespace Hawksama\ProductRuleNotifier\Ui\DataProvider\Grid;
 
-use Hawksama\ProductRuleNotifier\Api\Data\NoticeInterface;
-use Hawksama\ProductRuleNotifier\Query\Notice\GetListQuery;
+use Hawksama\ProductRuleNotifier\Api\Data\NotificationInterface;
+use Hawksama\ProductRuleNotifier\Query\Notification\GetListQuery;
 use Magento\Framework\Api\FilterBuilder;
 use Magento\Framework\Api\Search\ReportingInterface;
 use Magento\Framework\Api\Search\SearchCriteriaBuilder;
@@ -63,7 +63,7 @@ class DataProvider extends \Magento\Framework\View\Element\UiComponent\DataProvi
             $result->getItems(),
             $result->getTotalCount(),
             $searchCriteria,
-            NoticeInterface::NOTICE_ID
+            NotificationInterface::NOTIFICATION_ID
         );
     }
 
@@ -76,10 +76,10 @@ class DataProvider extends \Magento\Framework\View\Element\UiComponent\DataProvi
         $itemsById = [];
 
         foreach ($this->loadedData['items'] as $item) {
-            $itemsById[(int)$item[NoticeInterface::NOTICE_ID]] = $item;
+            $itemsById[(int)$item[NotificationInterface::NOTIFICATION_ID]] = $item;
         }
 
-        if ($id = $this->request->getParam(NoticeInterface::NOTICE_ID)) {
+        if ($id = $this->request->getParam(NotificationInterface::NOTIFICATION_ID)) {
             $this->loadedData['entity'] = $itemsById[(int)$id];
         }
 

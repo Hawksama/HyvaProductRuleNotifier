@@ -9,13 +9,13 @@ declare(strict_types=1);
 
 namespace Hawksama\ProductRuleNotifier\Model\Source;
 
-use Hawksama\ProductRuleNotifier\Model\Notice as Model;
+use Hawksama\ProductRuleNotifier\Model\Notification as Model;
 use Magento\Framework\Data\OptionSourceInterface;
 
 class IsActive implements OptionSourceInterface
 {
     public function __construct(
-        protected Model $notice
+        protected Model $notification
     ) {
     }
 
@@ -26,7 +26,7 @@ class IsActive implements OptionSourceInterface
      */
     public function toOptionArray()
     {
-        $availableOptions = $this->notice->getAvailableStatuses();
+        $availableOptions = $this->notification->getAvailableStatuses();
         $options = [];
         foreach ($availableOptions as $key => $value) {
             $options[] = [

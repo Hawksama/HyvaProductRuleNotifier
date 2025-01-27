@@ -9,8 +9,8 @@ declare(strict_types=1);
 
 namespace Hawksama\ProductRuleNotifier\Controller\Adminhtml\Notification;
 
-use Hawksama\ProductRuleNotifier\Api\Data\NoticeInterface;
-use Hawksama\ProductRuleNotifier\Model\NoticeFactory as ModelFactory;
+use Hawksama\ProductRuleNotifier\Api\Data\NotificationInterface;
+use Hawksama\ProductRuleNotifier\Model\NotificationFactory as ModelFactory;
 use Hawksama\ProductRuleNotifier\Model\ResourceModel\Notification as Resource;
 use Magento\Backend\App\Action\Context;
 use Magento\Backend\Model\View\Result\Redirect;
@@ -22,7 +22,7 @@ use Magento\Framework\Exception\NoSuchEntityException;
 use Psr\Log\LoggerInterface;
 
 // phpcs:disable Generic.Files.LineLength.TooLong
-class Delete extends \Hawksama\ProductRuleNotifier\Controller\Adminhtml\Notice implements HttpPostActionInterface, HttpGetActionInterface
+class Delete extends \Hawksama\ProductRuleNotifier\Controller\Adminhtml\Controller implements HttpPostActionInterface, HttpGetActionInterface
 {
     public function __construct(
         Context $context,
@@ -38,11 +38,11 @@ class Delete extends \Hawksama\ProductRuleNotifier\Controller\Adminhtml\Notice i
         /** @var Redirect $resultRedirect */
         $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
         $resultRedirect->setPath('*/*/');
-        $entityId = $this->getRequest()->getParam(NoticeInterface::NOTICE_ID);
+        $entityId = $this->getRequest()->getParam(NotificationInterface::NOTIFICATION_ID);
 
         try {
             $model = $this->modelFactory->create();
-            $this->resource->load($model, $entityId, NoticeInterface::NOTICE_ID);
+            $this->resource->load($model, $entityId, NotificationInterface::NOTIFICATION_ID);
 
             if (!$model->getId()) {
                 throw new NoSuchEntityException(

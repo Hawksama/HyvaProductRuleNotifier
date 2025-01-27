@@ -10,21 +10,21 @@ declare(strict_types=1);
 namespace Hawksama\ProductRuleNotifier\Api\Data;
 
 use Magento\Framework\Api\SearchResultsInterface;
-use Hawksama\ProductRuleNotifier\Api\Data\NoticeInterface;
+use Hawksama\ProductRuleNotifier\Api\Data\NotificationInterface;
 
-interface NoticeSearchResultsInterface extends SearchResultsInterface
+interface NotificationSearchResultsInterface extends SearchResultsInterface
 {
     /**
      * Get blocks list.
      *
-     * @return NoticeInterface[]
+     * @return NotificationInterface[]
      */
     public function getItems();
 
     /**
      * Set blocks list.
      *
-     * @param NoticeInterface[] $items
+     * @param NotificationInterface[] $items
      * @return $this
      */
     public function setItems(array $items);

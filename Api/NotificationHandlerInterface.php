@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace Hawksama\ProductRuleNotifier\Api;
 
-use Hawksama\ProductRuleNotifier\Api\Data\NoticeInterface;
+use Hawksama\ProductRuleNotifier\Api\Data\NotificationInterface;
 use Magento\Quote\Api\Data\CartItemInterface;
 
 interface NotificationHandlerInterface
@@ -18,9 +18,9 @@ interface NotificationHandlerInterface
     public const MATCH_TYPE_LIKE = 'like';
 
     /**
-     * Retrieve notices for the given cart items.
+     * Retrieve notifications for the given cart items.
      *
-     * @return NoticeInterface[]
+     * @return NotificationInterface[]
      */
-    public function getNoticesForCartItems(array $cartItems): array;
+    public function getNotificationsForCartItems(array $cartItems): array;
 }

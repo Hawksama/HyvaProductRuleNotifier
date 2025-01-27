@@ -37,8 +37,8 @@
         </settings>
         <dataProvider class="Hawksama\ProductRuleNotifier\Ui\DataProvider\Form\DataProvider" name="notification_form_data_source">
             <settings>
-                <requestFieldName>notice_id</requestFieldName>
-                <primaryFieldName>notice_id</primaryFieldName>
+                <requestFieldName>notification_id</requestFieldName>
+                <primaryFieldName>notification_id</primaryFieldName>
             </settings>
         </dataProvider>
     </dataSource>
@@ -59,7 +59,7 @@
                     </item>
                     <item name="default" xsi:type="string">1</item>
                     <item name="dataScope" xsi:type="string">enabled</item>
-                    <item name="source" xsi:type="string">notice</item>
+                    <item name="source" xsi:type="string">notification</item>
                 </item>
             </argument>
         </field>
@@ -69,7 +69,7 @@
                     <item name="label" xsi:type="string" translate="true">Rule Name</item>
                     <item name="dataType" xsi:type="string">text</item>
                     <item name="formElement" xsi:type="string">input</item>
-                    <item name="source" xsi:type="string">notice</item>
+                    <item name="source" xsi:type="string">notification</item>
                     <item name="validation" xsi:type="array">
                         <item name="required-entry" xsi:type="boolean">true</item>
                     </item>
@@ -79,7 +79,7 @@
         <field name="storeviews" formElement="multiselect" class="Magento\Store\Ui\Component\Form\Field\StoreView">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="source" xsi:type="string">notice</item>
+                    <item name="source" xsi:type="string">notification</item>
                     <item name="default" xsi:type="number">0</item>
                 </item>
             </argument>
@@ -115,7 +115,7 @@
                     <item name="dataType" xsi:type="string">text</item>
                     <item name="label" xsi:type="string" translate="true">Product Attribute</item>
                     <item name="formElement" xsi:type="string">select</item>
-                    <item name="source" xsi:type="string">notice</item>
+                    <item name="source" xsi:type="string">notification</item>
                     <item name="dataScope" xsi:type="string">product_attribute</item>
                 </item>
             </argument>
@@ -126,7 +126,7 @@
                     <item name="label" xsi:type="string" translate="true">Word</item>
                     <item name="dataType" xsi:type="string">text</item>
                     <item name="formElement" xsi:type="string">input</item>
-                    <item name="source" xsi:type="string">notice</item>
+                    <item name="source" xsi:type="string">notification</item>
                 </item>
             </argument>
             <settings>
@@ -153,7 +153,7 @@
                     <item name="dataType" xsi:type="string">text</item>
                     <item name="dataScope" xsi:type="string">match_type</item>
                     <item name="label" xsi:type="string" translate="true">Match Type</item>
-                    <item name="source" xsi:type="string">notice</item>
+                    <item name="source" xsi:type="string">notification</item>
                 </item>
             </argument>
         </field>
@@ -206,7 +206,7 @@
                     </item>
                     <item name="default" xsi:type="string">0</item>
                     <item name="dataScope" xsi:type="string">schedule_enabled</item>
-                    <item name="source" xsi:type="string">notice</item>
+                    <item name="source" xsi:type="string">notification</item>
                 </item>
             </argument>
         </field>
@@ -216,7 +216,7 @@
                     <item name="label" xsi:type="string" translate="true">Start Date</item>
                     <item name="dataType" xsi:type="string">date</item>
                     <item name="formElement" xsi:type="string">date</item>
-                    <item name="source" xsi:type="string">notice</item>
+                    <item name="source" xsi:type="string">notification</item>
                     <item name="dataScope" xsi:type="string">start_date</item>
                     <item name="options" xsi:type="array">
                         <item name="dateFormat" xsi:type="string">yyyy-MM-dd</item>
@@ -232,7 +232,7 @@
                     <item name="label" xsi:type="string" translate="true">End Date</item>
                     <item name="dataType" xsi:type="string">date</item>
                     <item name="formElement" xsi:type="string">date</item>
-                    <item name="source" xsi:type="string">notice</item>
+                    <item name="source" xsi:type="string">notification</item>
                     <item name="dataScope" xsi:type="string">end_date</item>
                     <item name="options" xsi:type="array">
                         <item name="dateFormat" xsi:type="string">yyyy-MM-dd</item>

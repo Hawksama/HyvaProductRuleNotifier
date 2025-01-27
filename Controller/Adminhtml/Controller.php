@@ -12,14 +12,14 @@ namespace Hawksama\ProductRuleNotifier\Controller\Adminhtml;
 use Magento\Backend\App\Action;
 use Magento\Backend\Model\View\Result\Page;
 
-abstract class Notice extends Action
+abstract class Controller extends Action
 {
     /**
      * Authorization level of a basic admin session
      *
      * @see _isAllowed()
      */
-    public const ADMIN_RESOURCE = 'Hawksama_Notice::management';
+    public const ADMIN_RESOURCE = 'Hawksama_ProductRuleNotifier::management';
 
     /**
      * Init page

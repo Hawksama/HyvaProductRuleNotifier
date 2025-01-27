@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace Hawksama\ProductRuleNotifier\Ui\Component\Listing\Column;
 
-use Hawksama\ProductRuleNotifier\Api\Data\NoticeInterface;
+use Hawksama\ProductRuleNotifier\Api\Data\NotificationInterface;
 use Magento\Framework\UrlInterface;
 use Magento\Framework\View\Element\UiComponentFactory;
 use Magento\Framework\View\Element\UiComponent\ContextInterface;
@@ -46,9 +46,11 @@ class NotificationBlockActions extends Column
     {
         if (isset($dataSource['data']['items'])) {
             foreach ($dataSource['data']['items'] as &$item) {
-                if (isset($item[NoticeInterface::NOTICE_ID])) {
+                if (isset($item[NotificationInterface::NOTIFICATION_ID])) {
                     $entityName = self::ENTITY_NAME;
-                    $urlData = [NoticeInterface::NOTICE_ID => $item[NoticeInterface::NOTICE_ID]];
+                    $urlData = [
+                        NotificationInterface::NOTIFICATION_ID => $item[NotificationInterface::NOTIFICATION_ID]
+                    ];
 
                     $editUrl = $this->urlBuilder->getUrl(self::EDIT_URL_PATH, $urlData);
                     $deleteUrl = $this->urlBuilder->getUrl(self::DELETE_URL_PATH, $urlData);

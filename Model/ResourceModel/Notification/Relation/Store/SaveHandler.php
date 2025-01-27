@@ -9,8 +9,8 @@ declare(strict_types=1);
 
 namespace Hawksama\ProductRuleNotifier\Model\ResourceModel\Notification\Relation\Store;
 
-use Hawksama\ProductRuleNotifier\Api\Data\NoticeInterface;
-use Hawksama\ProductRuleNotifier\Model\Notice as Model;
+use Hawksama\ProductRuleNotifier\Api\Data\NotificationInterface;
+use Hawksama\ProductRuleNotifier\Model\Notification as Model;
 use Hawksama\ProductRuleNotifier\Model\ResourceModel\Notification as Resource;
 use Magento\Framework\EntityManager\Operation\ExtensionInterface;
 use Magento\Framework\EntityManager\MetadataPool;
@@ -34,7 +34,7 @@ class SaveHandler implements ExtensionInterface
      */
     public function execute($entity, $arguments = []): object
     {
-        $entityMetadata = $this->metadataPool->getMetadata(NoticeInterface::class);
+        $entityMetadata = $this->metadataPool->getMetadata(NotificationInterface::class);
         $linkField = $entityMetadata->getLinkField();
 
         $connection = $entityMetadata->getEntityConnection();
@@ -43,7 +43,7 @@ class SaveHandler implements ExtensionInterface
         $oldStores = $this->resource->lookupStoreIds((int)$entity->getId());
         $newStores = (array)$entity->getStores();
 
-        $table = $this->resource->getTable('hawksama_notice_store');
+        $table = $this->resource->getTable('hawksama_notification_store');
 
         $delete = array_diff($oldStores, $newStores);
         if ($delete) {

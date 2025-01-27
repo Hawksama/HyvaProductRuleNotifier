@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace Hawksama\ProductRuleNotifier\Block\Adminhtml\Form\Notification;
 
-use Hawksama\ProductRuleNotifier\Api\Data\NoticeInterface;
+use Hawksama\ProductRuleNotifier\Api\Data\NotificationInterface;
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 
 /**
@@ -22,7 +22,7 @@ class Delete extends GenericButton implements ButtonProviderInterface
      */
     public function getButtonData(): array
     {
-        if (!$this->getNoticeId()) {
+        if (!$this->getNotificationId()) {
             return [];
         }
 
@@ -34,7 +34,7 @@ class Delete extends GenericButton implements ButtonProviderInterface
                 __('Are you sure you want to delete this notification?'),
                 $this->getUrl(
                     '*/*/delete',
-                    [NoticeInterface::NOTICE_ID => $this->getNoticeId()]
+                    [NotificationInterface::NOTIFICATION_ID => $this->getNotificationId()]
                 )
             ),
             [],

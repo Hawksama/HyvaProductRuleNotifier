@@ -11,16 +11,16 @@ namespace Hawksama\ProductRuleNotifier\Ui\DataProvider\Form;
 
 use Hawksama\ProductRuleNotifier\Model\ResourceModel\Notification\Collection;
 use Hawksama\ProductRuleNotifier\Model\ResourceModel\Notification\CollectionFactory;
-use Hawksama\ProductRuleNotifier\Model\Notice as EntityModel;
+use Hawksama\ProductRuleNotifier\Model\Notification as EntityModel;
 use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Ui\DataProvider\Modifier\PoolInterface;
 use Magento\Ui\DataProvider\ModifierPoolDataProvider;
 
 /**
- * Data provider for the notice form.
+ * Data provider for the notification form.
  *
- * This class is responsible for providing data for the notice form,
- * including the notice collection and any additional data required
+ * This class is responsible for providing data for the notification form,
+ * including the notification collection and any additional data required
  * for the form to function correctly.
  */
 class DataProvider extends ModifierPoolDataProvider

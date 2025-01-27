@@ -29,15 +29,15 @@
     <dataSource name="notification_listing_data_source" component="Magento_Ui/js/grid/provider">
         <settings>
             <storageConfig>
-                <param name="indexField" xsi:type="string">notice_id</param>
+                <param name="indexField" xsi:type="string">notification_id</param>
             </storageConfig>
             <updateUrl path="mui/index/render"/>
         </settings>
-        <aclResource>Hawksama_Notice::management</aclResource>
+        <aclResource>Hawksama_ProductRuleNotifier::management</aclResource>
         <dataProvider class="Hawksama\ProductRuleNotifier\Ui\DataProvider\Grid\DataProvider" name="notification_listing_data_source">
             <settings>
-                <requestFieldName>notice_id</requestFieldName>
-                <primaryFieldName>notice_id</primaryFieldName>
+                <requestFieldName>notification_id</requestFieldName>
+                <primaryFieldName>notification_id</primaryFieldName>
             </settings>
         </dataProvider>
     </dataSource>
@@ -49,7 +49,7 @@
         <paging name="listing_paging"/>
     </listingToolbar>
     <columns name="notification_listing_columns">
-        <column name="notice_id">
+        <column name="notification_id">
             <settings>
                 <filter>textRange</filter>
                 <label translate="true">ID</label>
@@ -100,7 +100,7 @@
         </column>
         <actionsColumn name="actions" class="Hawksama\ProductRuleNotifier\Ui\Component\Listing\Column\NotificationBlockActions">
             <settings>
-                <indexField>notice_id</indexField>
+                <indexField>notification_id</indexField>
             </settings>
         </actionsColumn>
     </columns>
