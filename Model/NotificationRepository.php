@@ -12,6 +12,7 @@ namespace Hawksama\HyvaProductRuleNotifier\Model;
 use Hawksama\HyvaProductRuleNotifier\Api\Data\NotificationSearchResultsInterface;
 use Hawksama\HyvaProductRuleNotifier\Api\NotificationRepositoryInterface;
 use Hawksama\HyvaProductRuleNotifier\Api\Data\NotificationInterface;
+//phpcs:ignore
 use Hawksama\HyvaProductRuleNotifier\Api\Data\NotificationSearchResultsInterfaceFactory as SearchResultsInterfaceFactory;
 use Hawksama\HyvaProductRuleNotifier\Model\Notification as Model;
 use Hawksama\HyvaProductRuleNotifier\Model\NotificationFactory as ModelFactory;

@@ -25,6 +25,7 @@ interface NotificationInterface
     public const SCHEDULE_ENABLED = "schedule_enabled";
     public const START_DATE = "start_date";
     public const END_DATE = "end_date";
+    public const NOTIFICATION_TYPE = "notification_type";
 
     /**
      * Getter for NotificationId.
@@ -147,6 +148,21 @@ interface NotificationInterface
     public function setDescription(?string $description): void;
 
     /**
+     * Getter for NotificationType.
+     *
+     * @return int|null
+     */
+    public function getNotificationType(): ?int;
+
+    /**
+     * Setter for NotificationType.
+     *
+     * @param int|null $notificationType
+     * @return void
+     */
+    public function setNotificationType(?int $notificationType): void;
+
+    /**
      * Getter for ScheduleEnabled.
      *
      * @return bool|null
@@ -164,30 +180,30 @@ interface NotificationInterface
     /**
      * Getter for StartDate.
      *
-     * @return int|null
+     * @return string|null
      */
-    public function getStartDate(): ?int;
+    public function getStartDate(): ?string;
 
     /**
      * Setter for StartDate.
      *
-     * @param int|null $startDate
+     * @param string|null $startDate
      * @return void
      */
-    public function setStartDate(?int $startDate): void;
+    public function setStartDate(?string $startDate): void;
 
     /**
      * Getter for EndDate.
      *
-     * @return int|null
+     * @return string|null
      */
-    public function getEndDate(): ?int;
+    public function getEndDate(): ?string;
 
     /**
      * Setter for EndDate.
      *
-     * @param int|null $endDate
+     * @param string|null $endDate
      * @return void
      */
-    public function setEndDate(?int $endDate): void;
+    public function setEndDate(?string $endDate): void;
 }

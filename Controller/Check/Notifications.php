@@ -32,7 +32,8 @@ class Notifications implements HttpGetActionInterface
             $notificationData = array_map(
                 function (NotificationInterface $notification) {
                     return [
-                        'message' => $notification->getDescription()
+                        'message' => $notification->getDescription(),
+                        'type' => $notification->getNotificationType()
                     ];
                 },
                 $notifications

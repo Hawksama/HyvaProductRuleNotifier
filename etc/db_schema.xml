@@ -8,20 +8,17 @@
 <schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
     <table name="hawksama_notification" resource="default" engine="innodb" comment="Notification">
-        <column xsi:type="smallint" name="notification_id" unsigned="true" nullable="false" identity="true"
-                comment="Notification Id Column"/>
+        <column xsi:type="smallint" name="notification_id" unsigned="true" nullable="false" identity="true" comment="Notification Id Column"/>
         <column xsi:type="varchar" name="rule_name" nullable="false" length="255" comment="Rule Name Column"/>
         <column xsi:type="boolean" name="enabled" nullable="false" comment="Enabled Column"/>
-        <column xsi:type="varchar" name="product_attribute" nullable="false" length="255"
-                comment="Product Attribute Column"/>
+        <column xsi:type="varchar" name="product_attribute" nullable="false" length="255" comment="Product Attribute Column"/>
         <column xsi:type="varchar" name="word" nullable="false" length="255" comment="Word Column"/>
         <column xsi:type="varchar" name="match_type" nullable="false" length="255" comment="Match Type Column"/>
         <column xsi:type="mediumtext" name="description" nullable="true" comment="Description Column"/>
+        <column xsi:type="smallint" name="notification_type" unsigned="true" nullable="true" comment="Notification Type Column"/>
         <column xsi:type="boolean" name="schedule_enabled" nullable="false" comment="Enabled Column"/>
-        <column xsi:type="varchar" name="start_date" nullable="true"
-                comment="Start Date Column"/>
-        <column xsi:type="varchar" name="end_date" nullable="true"
-                comment="End Date Column"/>
+        <column xsi:type="varchar" name="start_date" nullable="true" comment="Start Date Column"/>
+        <column xsi:type="varchar" name="end_date" nullable="true" comment="End Date Column"/>
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="notification_id"/>
         </constraint>

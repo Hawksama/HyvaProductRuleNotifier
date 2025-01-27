@@ -22,7 +22,13 @@ use Hyva\Theme\Model\ViewModelRegistry;
 $heroicons = $viewModels->require(HeroiconsOutline::class);
 $allowedHtmlTags = ['a', 'span', 'b', 'br', 'em', 'i', 'li', 'ol', 'p', 'strong', 'sub', 'sup', 'ul'];
 
-// phpcs:disable Generic.Files.LineLength
+// Predefine the icons for each type
+$icons = [
+    0 => $heroicons->exclamationCircleHtml('', 28, 28, ['aria-hidden' => 'true']), // Error
+    1 => $heroicons->informationCircleHtml('', 28, 28, ['aria-hidden' => 'true']), // Warning
+    2 => $heroicons->informationCircleHtml('', 28, 28, ['aria-hidden' => 'true']), // Information
+    3 => $heroicons->checkCircleHtml('', 28, 28, ['aria-hidden' => 'true']), // Success
+];
 ?>
 
 <div x-data="{
@@ -38,16 +44,37 @@ $allowedHtmlTags = ['a', 'span', 'b', 'br', 'em', 'i', 'li', 'ol', 'p', 'strong'
         .then(data => {
             this.notifications = data.notifications || [];
         });
+    },
+    getNotificationStyles(type) {
+        const styles = {
+            0: {
+                class: 'bg-red-50 border-red-500 text-red-800'
+            },
+            1: {
+                class: 'bg-yellow-50 border-yellow-500 text-yellow-800'
+            },
+            2: {
+                class: 'bg-blue-50 border-blue-500 text-blue-800'
+            },
+            3: {
+                class: 'bg-green-50 border-green-500 text-green-800'
+            },
+        };
+        return styles[type] || styles[0]; // Default to Error if type is unknown
     }
 }"
      x-init="fetchNotifications()"
      @cart-item-removed.window="fetchNotifications()"
      @cart-item-added.window="fetchNotifications()">
-    <template x-for="notification in notifications" :key="notification">
-        <div class="alert flex items-center p-4 my-4 text-yellow-800 border-t-4 border-yellow-300 bg-yellow-50 dark:text-yellow-300 dark:bg-gray-800 dark:border-yellow-800"
+    <template x-for="notification in notifications" :key="notification.id">
+        <div class="alert flex items-center p-4 my-4 border-t-4"
+             :class="`${getNotificationStyles(notification.type).class}`"
              role="alert">
             <div>
-                <?= $heroicons->informationCircleHtml('', 28, 28, ['aria-hidden' => 'true']) ?>
+                <template x-if="notification.type === 0"><?= /* @noEscape */  $icons[0] ?></template>
+                <template x-if="notification.type === 1"><?= /* @noEscape */  $icons[1] ?></template>
+                <template x-if="notification.type === 2"><?= /* @noEscape */  $icons[2] ?></template>
+                <template x-if="notification.type === 3"><?= /* @noEscape */  $icons[3] ?></template>
             </div>
             <div class="ms-3">
                 <span x-html="notification.message"></span>

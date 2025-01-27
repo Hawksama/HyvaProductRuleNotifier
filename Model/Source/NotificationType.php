@@ -11,10 +11,12 @@ namespace Hawksama\HyvaProductRuleNotifier\Model\Source;
 
 use Magento\Framework\Data\OptionSourceInterface;
 
-class IsActive implements OptionSourceInterface
+class NotificationType implements OptionSourceInterface
 {
-    public const STATUS_ENABLED = 1;
-    public const STATUS_DISABLED = 0;
+    public const TYPE_ERROR = 0;
+    public const TYPE_WARNING = 1;
+    public const TYPE_INFORMATION = 2;
+    public const TYPE_SUCCESS = 3;
 
     /**
      * Get options
@@ -37,6 +39,11 @@ class IsActive implements OptionSourceInterface
      */
     private function getAvailableStatuses(): array
     {
-        return [self::STATUS_ENABLED => __('Enabled'), self::STATUS_DISABLED => __('Disabled')];
+        return [
+            self::TYPE_ERROR => __('Error'),
+            self::TYPE_WARNING => __('Warning'),
+            self::TYPE_INFORMATION => __('Information'),
+            self::TYPE_SUCCESS => __('Success')
+        ];
     }
 }

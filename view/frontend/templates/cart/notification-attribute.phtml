@@ -25,18 +25,38 @@ $viewModel = $viewModels->require(NotificationViewModel::class);
 $heroicons = $viewModels->require(HeroiconsOutline::class);
 $allowedHtmlTags = ['a','span','b', 'br', 'em', 'i', 'li', 'ol', 'p', 'strong', 'sub', 'sup', 'ul'];
 $notifications = $viewModel->getNotifications();
-
-// phpcs:disable Generic.Files.LineLength
 ?>
 <?php if (!empty($notifications)): ?>
-    <div class="notifications mt-8">
+    <div class="notifications mt-8 space-y-4">
         <?php foreach ($notifications as $notification): ?>
+            <?php
+            $type = $notification->getNotificationType();
+            $styles = [
+                0 => [
+                    'class' => 'bg-red-50 border-red-500 text-red-800',
+                    'icon' => $heroicons->exclamationCircleHtml('', 28, 28, ['aria-hidden' => 'true']),
+                ],
+                1 => [
+                    'class' => 'bg-yellow-50 border-yellow-500 text-yellow-800',
+                    'icon' => $heroicons->informationCircleHtml('', 28, 28, ['aria-hidden' => 'true']),
+                ],
+                2 => [
+                    'class' => 'bg-blue-50 border-blue-500 text-blue-800',
+                    'icon' => $heroicons->informationCircleHtml('', 28, 28, ['aria-hidden' => 'true']),
+                ],
+                3 => [
+                    'class' => 'bg-green-50 border-green-500 text-green-800',
+                    'icon' => $heroicons->checkCircleHtml('', 28, 28, ['aria-hidden' => 'true']),
+                ],
+            ];
+            $style = $styles[$type] ?? $styles[0]; // Default to Error style if type is unknown
+            ?>
             <div class="notification">
-                <div id="alert-border-4"
-                     class="flex items-center p-4 mb-4 text-yellow-800 border-t-4 border-yellow-300 bg-yellow-50 dark:text-yellow-300 dark:bg-gray-800 dark:border-yellow-800"
+                <div id="alert-<?= $escaper->escapeHtmlAttr($type) ?>"
+                     class="flex items-center p-4 border-t-4 <?= $escaper->escapeHtmlAttr($style['class']) ?>"
                      role="alert">
                     <div>
-                        <?= $heroicons->informationCircleHtml('', 28, 28, ['aria-hidden' => 'true']) ?>
+                        <?= /* @noEscape */  $style['icon'] ?>
                     </div>
                     <div class="ms-3">
                         <?= $escaper->escapeHtml($notification->getDescription(), $allowedHtmlTags); ?>

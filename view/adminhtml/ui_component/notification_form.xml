@@ -188,6 +188,24 @@
                 </wysiwyg>
             </formElements>
         </field>
+        <field name="notification_type">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Hawksama\HyvaProductRuleNotifier\Model\Source\NotificationType</item>
+                <item name="config" xsi:type="array">
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/form/element/select</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="dataScope" xsi:type="string">notification_type</item>
+                    <item name="label" xsi:type="string" translate="true">Notification Type</item>
+                    <item name="source" xsi:type="string">notification</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
     </fieldset>
     <fieldset name="schedule">
         <settings>

@@ -18,8 +18,6 @@ class Notification extends AbstractModel implements NotificationInterface, Ident
 {
     public const CACHE_TAG = 'hawksama_notification';
     protected $_eventPrefix = 'hawksama_notification_model';
-    public const STATUS_ENABLED = 1;
-    public const STATUS_DISABLED = 0;
 
     /**
      * Initialize magento model.
@@ -173,6 +171,23 @@ class Notification extends AbstractModel implements NotificationInterface, Ident
     }
 
     /**
+     * @inheritDoc
+     */
+    public function getNotificationType(): ?int
+    {
+        return $this->getData(self::NOTIFICATION_TYPE) === null ? null
+            : (int)$this->getData(self::NOTIFICATION_TYPE);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setNotificationType(?int $notificationType): void
+    {
+        $this->setData(self::NOTIFICATION_TYPE, $notificationType);
+    }
+
+    /**
      * @inheirtdoc
      */
     public function getScheduleEnabled(): ?bool
@@ -192,16 +207,16 @@ class Notification extends AbstractModel implements NotificationInterface, Ident
     /**
      * @inheirtdoc
      */
-    public function getStartDate(): ?int
+    public function getStartDate(): ?string
     {
         return $this->getData(self::START_DATE) === null ? null
-            : (int)$this->getData(self::START_DATE);
+            : (string)$this->getData(self::START_DATE);
     }
 
     /**
      * @inheirtdoc
      */
-    public function setStartDate(?int $startDate): void
+    public function setStartDate(?string $startDate): void
     {
         $this->setData(self::START_DATE, $startDate);
     }
@@ -209,16 +224,16 @@ class Notification extends AbstractModel implements NotificationInterface, Ident
     /**
      * @inheirtdoc
      */
-    public function getEndDate(): ?int
+    public function getEndDate(): ?string
     {
         return $this->getData(self::END_DATE) === null ? null
-            : (int)$this->getData(self::END_DATE);
+            : (string)$this->getData(self::END_DATE);
     }
 
     /**
      * @inheirtdoc
      */
-    public function setEndDate(?int $endDate): void
+    public function setEndDate(?string $endDate): void
     {
         $this->setData(self::END_DATE, $endDate);
     }
@@ -229,13 +244,5 @@ class Notification extends AbstractModel implements NotificationInterface, Ident
     public function getStores(): array
     {
         return $this->getData('store_id');
-    }
-
-    /**
-     * Prepare block's statuses.
-     */
-    public function getAvailableStatuses(): array
-    {
-        return [self::STATUS_ENABLED => __('Enabled'), self::STATUS_DISABLED => __('Disabled')];
     }
 }
