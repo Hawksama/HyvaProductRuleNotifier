@@ -7,10 +7,10 @@
 
 declare(strict_types=1);
 
-namespace Hawksama\ProductRuleNotifier\Ui\DataProvider\Grid;
+namespace Hawksama\HyvaProductRuleNotifier\Ui\DataProvider\Grid;
 
-use Hawksama\ProductRuleNotifier\Api\Data\NotificationInterface;
-use Hawksama\ProductRuleNotifier\Query\Notification\GetListQuery;
+use Hawksama\HyvaProductRuleNotifier\Api\Data\NotificationInterface;
+use Hawksama\HyvaProductRuleNotifier\Query\Notification\GetListQuery;
 use Magento\Framework\Api\FilterBuilder;
 use Magento\Framework\Api\Search\ReportingInterface;
 use Magento\Framework\Api\Search\SearchCriteriaBuilder;

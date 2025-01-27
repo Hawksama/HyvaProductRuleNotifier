@@ -7,11 +7,11 @@
 
 declare(strict_types=1);
 
-namespace Hawksama\ProductRuleNotifier\ViewModel;
+namespace Hawksama\HyvaProductRuleNotifier\ViewModel;
 
-use Hawksama\ProductRuleNotifier\Api\Data\NotificationInterface;
-use Hawksama\ProductRuleNotifier\Model\NotificationHandler;
-use Hawksama\ProductRuleNotifier\Service\CartItemRetriever;
+use Hawksama\HyvaProductRuleNotifier\Api\Data\NotificationInterface;
+use Hawksama\HyvaProductRuleNotifier\Model\NotificationHandler;
+use Hawksama\HyvaProductRuleNotifier\Service\CartItemRetriever;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\View\Element\Block\ArgumentInterface;
 

@@ -7,18 +7,18 @@
 
 declare(strict_types=1);
 
-namespace Hawksama\ProductRuleNotifier\Model;
+namespace Hawksama\HyvaProductRuleNotifier\Model;
 
-use Hawksama\ProductRuleNotifier\Api\Data\NotificationSearchResultsInterface;
-use Hawksama\ProductRuleNotifier\Api\NotificationRepositoryInterface;
-use Hawksama\ProductRuleNotifier\Api\Data\NotificationInterface;
-use Hawksama\ProductRuleNotifier\Api\Data\NotificationSearchResultsInterfaceFactory as SearchResultsInterfaceFactory;
-use Hawksama\ProductRuleNotifier\Model\Notification as Model;
-use Hawksama\ProductRuleNotifier\Model\NotificationFactory as ModelFactory;
-use Hawksama\ProductRuleNotifier\Model\ResourceModel\Notification as Resource;
-use Hawksama\ProductRuleNotifier\Model\ResourceModel\Notification\Collection;
-use Hawksama\ProductRuleNotifier\Model\ResourceModel\Notification\CollectionFactory;
-use Hawksama\ProductRuleNotifier\Mapper\NotificationDataMapper;
+use Hawksama\HyvaProductRuleNotifier\Api\Data\NotificationSearchResultsInterface;
+use Hawksama\HyvaProductRuleNotifier\Api\NotificationRepositoryInterface;
+use Hawksama\HyvaProductRuleNotifier\Api\Data\NotificationInterface;
+use Hawksama\HyvaProductRuleNotifier\Api\Data\NotificationSearchResultsInterfaceFactory as SearchResultsInterfaceFactory;
+use Hawksama\HyvaProductRuleNotifier\Model\Notification as Model;
+use Hawksama\HyvaProductRuleNotifier\Model\NotificationFactory as ModelFactory;
+use Hawksama\HyvaProductRuleNotifier\Model\ResourceModel\Notification as Resource;
+use Hawksama\HyvaProductRuleNotifier\Model\ResourceModel\Notification\Collection;
+use Hawksama\HyvaProductRuleNotifier\Model\ResourceModel\Notification\CollectionFactory;
+use Hawksama\HyvaProductRuleNotifier\Mapper\NotificationDataMapper;
 use Magento\Framework\Api\SearchCriteria\CollectionProcessor;
 use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Exception\CouldNotDeleteException;

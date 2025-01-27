@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace Hawksama\ProductRuleNotifier\Controller\Adminhtml;
+namespace Hawksama\HyvaProductRuleNotifier\Controller\Adminhtml;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\Model\View\Result\Page;
@@ -19,7 +19,7 @@ abstract class Controller extends Action
      *
      * @see _isAllowed()
      */
-    public const ADMIN_RESOURCE = 'Hawksama_ProductRuleNotifier::management';
+    public const ADMIN_RESOURCE = 'Hawksama_HyvaProductRuleNotifier::management';
 
     /**
      * Init page

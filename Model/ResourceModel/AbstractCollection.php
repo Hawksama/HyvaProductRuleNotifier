@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace Hawksama\ProductRuleNotifier\Model\ResourceModel;
+namespace Hawksama\HyvaProductRuleNotifier\Model\ResourceModel;
 
 use Magento\Framework\Data\Collection\Db\FetchStrategyInterface;
 use Magento\Framework\Data\Collection\EntityFactoryInterface;

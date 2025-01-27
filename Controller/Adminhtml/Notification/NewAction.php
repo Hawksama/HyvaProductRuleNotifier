@@ -7,9 +7,9 @@
 
 declare(strict_types=1);
 
-namespace Hawksama\ProductRuleNotifier\Controller\Adminhtml\Notification;
+namespace Hawksama\HyvaProductRuleNotifier\Controller\Adminhtml\Notification;
 
-use Hawksama\ProductRuleNotifier\Controller\Adminhtml\Controller;
+use Hawksama\HyvaProductRuleNotifier\Controller\Adminhtml\Controller;
 use Magento\Backend\Model\View\Result\Page;
 use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\Controller\ResultFactory;

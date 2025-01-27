@@ -7,10 +7,10 @@
 
 declare(strict_types=1);
 
-namespace Hawksama\ProductRuleNotifier\Api;
+namespace Hawksama\HyvaProductRuleNotifier\Api;
 
-use Hawksama\ProductRuleNotifier\Api\Data\NotificationInterface;
-use Hawksama\ProductRuleNotifier\Api\Data\NotificationSearchResultsInterface;
+use Hawksama\HyvaProductRuleNotifier\Api\Data\NotificationInterface;
+use Hawksama\HyvaProductRuleNotifier\Api\Data\NotificationSearchResultsInterface;
 use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;

@@ -7,10 +7,10 @@
 
 declare(strict_types=1);
 
-namespace Hawksama\ProductRuleNotifier\Model\ResourceModel;
+namespace Hawksama\HyvaProductRuleNotifier\Model\ResourceModel;
 
-use Hawksama\ProductRuleNotifier\Api\Data\NotificationInterface;
-use Hawksama\ProductRuleNotifier\Model\Notification as Model;
+use Hawksama\HyvaProductRuleNotifier\Api\Data\NotificationInterface;
+use Hawksama\HyvaProductRuleNotifier\Model\Notification as Model;
 use Magento\Framework\DB\Select;
 use Magento\Framework\EntityManager\EntityManager;
 use Magento\Framework\EntityManager\MetadataPool;

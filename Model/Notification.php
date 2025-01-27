@@ -7,10 +7,10 @@
 
 declare(strict_types=1);
 
-namespace Hawksama\ProductRuleNotifier\Model;
+namespace Hawksama\HyvaProductRuleNotifier\Model;
 
-use Hawksama\ProductRuleNotifier\Api\Data\NotificationInterface;
-use Hawksama\ProductRuleNotifier\Model\ResourceModel\Notification as Resource;
+use Hawksama\HyvaProductRuleNotifier\Api\Data\NotificationInterface;
+use Hawksama\HyvaProductRuleNotifier\Model\ResourceModel\Notification as Resource;
 use Magento\Framework\DataObject\IdentityInterface;
 use Magento\Framework\Model\AbstractModel;
 

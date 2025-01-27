@@ -9,14 +9,14 @@
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="extra_actions">
-            <block class="Magento\Framework\View\Element\Template" name="notification_attribute" template="Hawksama_ProductRuleNotifier::notification-attribute.phtml">
+            <block class="Magento\Framework\View\Element\Template" name="notification_attribute" template="Hawksama_HyvaProductRuleNotifier::notification-attribute.phtml">
                 <arguments>
-                    <argument name="view_model" xsi:type="object">Hawksama\ProductRuleNotifier\ViewModel\NotificationViewModel</argument>
+                    <argument name="view_model" xsi:type="object">Hawksama\HyvaProductRuleNotifier\ViewModel\NotificationViewModel</argument>
                 </arguments>
             </block>
         </referenceContainer>
         <referenceContainer name="before.body.end">
-            <block name="notifications.event.cart-actions" template="Hawksama_ProductRuleNotifier::events/cart-actions.phtml" />
+            <block name="notifications.event.cart-actions" template="Hawksama_HyvaProductRuleNotifier::events/cart-actions.phtml" />
         </referenceContainer>
     </body>
 </page>

@@ -7,13 +7,13 @@
 
 declare(strict_types=1);
 
-namespace Hawksama\ProductRuleNotifier\Controller\Adminhtml\Notification;
+namespace Hawksama\HyvaProductRuleNotifier\Controller\Adminhtml\Notification;
 
-use Hawksama\ProductRuleNotifier\Api\Data\NotificationInterface;
-use Hawksama\ProductRuleNotifier\Controller\Adminhtml\Controller;
-use Hawksama\ProductRuleNotifier\Model\Notification as Model;
-use Hawksama\ProductRuleNotifier\Model\NotificationFactory as ModelFactory;
-use Hawksama\ProductRuleNotifier\Model\NotificationRepository as ModelRepository;
+use Hawksama\HyvaProductRuleNotifier\Api\Data\NotificationInterface;
+use Hawksama\HyvaProductRuleNotifier\Controller\Adminhtml\Controller;
+use Hawksama\HyvaProductRuleNotifier\Model\Notification as Model;
+use Hawksama\HyvaProductRuleNotifier\Model\NotificationFactory as ModelFactory;
+use Hawksama\HyvaProductRuleNotifier\Model\NotificationRepository as ModelRepository;
 use Magento\Backend\App\Action\Context;
 use Magento\Backend\Model\View\Result\Redirect;
 use Magento\Framework\App\Action\HttpPostActionInterface;

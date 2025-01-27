@@ -7,9 +7,9 @@
 
 declare(strict_types=1);
 
-namespace Hawksama\ProductRuleNotifier\Api;
+namespace Hawksama\HyvaProductRuleNotifier\Api;
 
-use Hawksama\ProductRuleNotifier\Api\Data\NotificationInterface;
+use Hawksama\HyvaProductRuleNotifier\Api\Data\NotificationInterface;
 use Magento\Quote\Api\Data\CartItemInterface;
 
 interface NotificationHandlerInterface

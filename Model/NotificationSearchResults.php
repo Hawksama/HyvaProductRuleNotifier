@@ -7,9 +7,9 @@
 
 declare(strict_types=1);
 
-namespace Hawksama\ProductRuleNotifier\Model;
+namespace Hawksama\HyvaProductRuleNotifier\Model;
 
-use Hawksama\ProductRuleNotifier\Api\Data\NotificationSearchResultsInterface;
+use Hawksama\HyvaProductRuleNotifier\Api\Data\NotificationSearchResultsInterface;
 use Magento\Framework\Api\SearchResults;
 
 /**

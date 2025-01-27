@@ -7,11 +7,11 @@
 
 declare(strict_types=1);
 
-namespace Hawksama\ProductRuleNotifier\Mapper;
+namespace Hawksama\HyvaProductRuleNotifier\Mapper;
 
-use Hawksama\ProductRuleNotifier\Api\Data\NotificationInterface;
-use Hawksama\ProductRuleNotifier\Api\Data\NotificationInterfaceFactory as ApiDataInterfaceFactory;
-use Hawksama\ProductRuleNotifier\Model\Notification as Model;
+use Hawksama\HyvaProductRuleNotifier\Api\Data\NotificationInterface;
+use Hawksama\HyvaProductRuleNotifier\Api\Data\NotificationInterfaceFactory as ApiDataInterfaceFactory;
+use Hawksama\HyvaProductRuleNotifier\Model\Notification as Model;
 use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
 
 /**

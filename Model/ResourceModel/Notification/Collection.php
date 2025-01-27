@@ -7,12 +7,12 @@
 
 declare(strict_types=1);
 
-namespace Hawksama\ProductRuleNotifier\Model\ResourceModel\Notification;
+namespace Hawksama\HyvaProductRuleNotifier\Model\ResourceModel\Notification;
 
-use Hawksama\ProductRuleNotifier\Model\Notification as Model;
-use Hawksama\ProductRuleNotifier\Model\ResourceModel\AbstractCollection;
-use Hawksama\ProductRuleNotifier\Model\ResourceModel\Notification as Resource;
-use Hawksama\ProductRuleNotifier\Api\Data\NotificationInterface;
+use Hawksama\HyvaProductRuleNotifier\Model\Notification as Model;
+use Hawksama\HyvaProductRuleNotifier\Model\ResourceModel\AbstractCollection;
+use Hawksama\HyvaProductRuleNotifier\Model\ResourceModel\Notification as Resource;
+use Hawksama\HyvaProductRuleNotifier\Api\Data\NotificationInterface;
 
 class Collection extends AbstractCollection
 {

@@ -33,8 +33,8 @@
             </storageConfig>
             <updateUrl path="mui/index/render"/>
         </settings>
-        <aclResource>Hawksama_ProductRuleNotifier::management</aclResource>
-        <dataProvider class="Hawksama\ProductRuleNotifier\Ui\DataProvider\Grid\DataProvider" name="notification_listing_data_source">
+        <aclResource>Hawksama_HyvaProductRuleNotifier::management</aclResource>
+        <dataProvider class="Hawksama\HyvaProductRuleNotifier\Ui\DataProvider\Grid\DataProvider" name="notification_listing_data_source">
             <settings>
                 <requestFieldName>notification_id</requestFieldName>
                 <primaryFieldName>notification_id</primaryFieldName>
@@ -64,7 +64,7 @@
         </column>
         <column name="enabled" component="Magento_Ui/js/grid/columns/select">
             <settings>
-                <options class="Hawksama\ProductRuleNotifier\Model\Source\IsActive"/>
+                <options class="Hawksama\HyvaProductRuleNotifier\Model\Source\IsActive"/>
                 <filter>select</filter>
                 <editor>
                     <editorType>select</editorType>
@@ -98,7 +98,7 @@
                 <label translate="true">Match Type</label>
             </settings>
         </column>
-        <actionsColumn name="actions" class="Hawksama\ProductRuleNotifier\Ui\Component\Listing\Column\NotificationBlockActions">
+        <actionsColumn name="actions" class="Hawksama\HyvaProductRuleNotifier\Ui\Component\Listing\Column\NotificationBlockActions">
             <settings>
                 <indexField>notification_id</indexField>
             </settings>

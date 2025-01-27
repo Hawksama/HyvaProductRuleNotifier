@@ -7,9 +7,9 @@
 
 declare(strict_types=1);
 
-namespace Hawksama\ProductRuleNotifier\Ui\Component\Listing\Column;
+namespace Hawksama\HyvaProductRuleNotifier\Ui\Component\Listing\Column;
 
-use Hawksama\ProductRuleNotifier\Api\Data\NotificationInterface;
+use Hawksama\HyvaProductRuleNotifier\Api\Data\NotificationInterface;
 use Magento\Framework\UrlInterface;
 use Magento\Framework\View\Element\UiComponentFactory;
 use Magento\Framework\View\Element\UiComponent\ContextInterface;

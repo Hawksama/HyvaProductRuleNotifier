@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace Hawksama\ProductRuleNotifier\Api\Data;
+namespace Hawksama\HyvaProductRuleNotifier\Api\Data;
 
 interface NotificationInterface
 {

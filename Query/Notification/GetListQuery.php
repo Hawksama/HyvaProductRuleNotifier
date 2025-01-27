@@ -7,13 +7,13 @@
 
 declare(strict_types=1);
 
-namespace Hawksama\ProductRuleNotifier\Query\Notification;
+namespace Hawksama\HyvaProductRuleNotifier\Query\Notification;
 
-use Hawksama\ProductRuleNotifier\Api\Data\NotificationInterface;
-use Hawksama\ProductRuleNotifier\Api\Data\NotificationSearchResultsInterface;
-use Hawksama\ProductRuleNotifier\Mapper\NotificationDataMapper;
-use Hawksama\ProductRuleNotifier\Model\ResourceModel\Notification\Collection;
-use Hawksama\ProductRuleNotifier\Model\ResourceModel\Notification\CollectionFactory;
+use Hawksama\HyvaProductRuleNotifier\Api\Data\NotificationInterface;
+use Hawksama\HyvaProductRuleNotifier\Api\Data\NotificationSearchResultsInterface;
+use Hawksama\HyvaProductRuleNotifier\Mapper\NotificationDataMapper;
+use Hawksama\HyvaProductRuleNotifier\Model\ResourceModel\Notification\Collection;
+use Hawksama\HyvaProductRuleNotifier\Model\ResourceModel\Notification\CollectionFactory;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;

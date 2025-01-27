@@ -7,9 +7,9 @@
 
 declare(strict_types=1);
 
-namespace Hawksama\ProductRuleNotifier\Model\Source;
+namespace Hawksama\HyvaProductRuleNotifier\Model\Source;
 
-use Hawksama\ProductRuleNotifier\Model\Notification as Model;
+use Hawksama\HyvaProductRuleNotifier\Model\Notification as Model;
 use Magento\Framework\Data\OptionSourceInterface;
 
 class IsActive implements OptionSourceInterface

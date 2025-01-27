@@ -8,4 +8,4 @@ declare(strict_types=1);
 
 use Magento\Framework\Component\ComponentRegistrar;
 
-ComponentRegistrar::register(ComponentRegistrar::MODULE, 'Hawksama_ProductRuleNotifier', __DIR__);
+ComponentRegistrar::register(ComponentRegistrar::MODULE, 'Hawksama_HyvaProductRuleNotifier', __DIR__);
