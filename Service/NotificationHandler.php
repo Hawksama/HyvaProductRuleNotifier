@@ -35,9 +35,9 @@ class NotificationHandler implements NotificationHandlerInterface
      */
     public function getNotificationsForCartItems(array $cartItems): array
     {
-        $notifications   = [];
-        $searchCriteria  = $this->searchCriteriaBuilder->create();
-        $searchResults   = $this->notificationRepository->getList($searchCriteria);
+        $notifications = [];
+        $searchCriteria = $this->searchCriteriaBuilder->create();
+        $searchResults = $this->notificationRepository->getList($searchCriteria);
         /** @var NotificationInterface[] $rules */
         $rules = $searchResults->getItems();
 
@@ -112,7 +112,7 @@ class NotificationHandler implements NotificationHandlerInterface
 
         return match ($matchType) {
             self::MATCH_TYPE_EXACT => $productAttributeValue === $ruleValue,
-            self::MATCH_TYPE_LIKE  => stripos($productAttributeValue, $ruleValue) !== false,
+            self::MATCH_TYPE_LIKE => stripos($productAttributeValue, $ruleValue) !== false,
             default => false,
         };
     }
