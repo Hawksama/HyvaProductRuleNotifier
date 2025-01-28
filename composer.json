@@ -1,20 +1,22 @@
 {
-  "name": "hawksama/module-notification",
-  "version": "1.0.0",
-  "description": "N/A",
-  "type": "magento2-module",
-  "require": {
-    "magento/framework": "*"
-  },
-  "license": [
-    "Proprietary"
-  ],
-  "autoload": {
-    "files": [
-      "registration.php"
+    "name": "hawksama/hyva-product-rule-notifier",
+    "version": "1.0.0",
+    "description": "N/A",
+    "type": "magento2-module",
+    "require": {
+        "magento/framework": "*",
+        "hyva-themes/magento2-default-theme": "^1.0",
+        "hawksama/magento2-admin-menu": "^1.0"
+    },
+    "license": [
+        "Proprietary"
     ],
-    "psr-4": {
-      "Hawksama\\Notification\\": ""
+    "autoload": {
+        "files": [
+        "registration.php"
+        ],
+        "psr-4": {
+            "Hawksama\\HyvaProductRuleNotifier\\": ""
+        }
     }
-  }
 }
