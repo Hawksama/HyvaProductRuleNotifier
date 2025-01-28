@@ -5,7 +5,7 @@
             "rule_name": true,
             "enabled": true,
             "product_attribute": true,
-            "word": true,
+            "value": true,
             "match_type": true,
             "description": true,
             "schedule_enabled": true,

@@ -125,17 +125,17 @@ class Notification extends AbstractModel implements NotificationInterface, Ident
     /**
      * @inheirtdoc
      */
-    public function getWord(): string
+    public function getValue(): string
     {
-        return $this->getData(self::WORD);
+        return $this->getData(self::VALUE);
     }
 
     /**
      * @inheirtdoc
      */
-    public function setWord(string $word): void
+    public function setValue(string $value): void
     {
-        $this->setData(self::WORD, $word);
+        $this->setData(self::VALUE, $value);
     }
 
     /**

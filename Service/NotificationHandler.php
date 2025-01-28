@@ -48,7 +48,7 @@ class NotificationHandler implements NotificationHandlerInterface
             }
 
             $attributeCode  = $rule->getProductAttribute();
-            $attributeValue = $rule->getWord();
+            $attributeValue = $rule->getValue();
             $matchType = $rule->getMatchType();
 
             /** @var QuoteItem $item */
@@ -104,11 +104,35 @@ class NotificationHandler implements NotificationHandlerInterface
     /**
      * Checks if the product attribute value matches the rule value based on match type.
      */
-    private function isMatching(?string $productAttributeValue, string $ruleValue, string $matchType): bool
+    private function isMatching(mixed $productAttributeValue, string $ruleValue, string $matchType): bool
     {
-        if (empty($productAttributeValue)) {
+        if ($productAttributeValue === null) {
             return false;
         }
+
+        // Handle boolean attributes
+        if (is_bool($productAttributeValue)) {
+            $ruleValueBool = filter_var($ruleValue, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE);
+            return $ruleValueBool !== null && $productAttributeValue === $ruleValueBool;
+        }
+
+        // Handle numeric comparisons
+        if (is_numeric($productAttributeValue) && is_numeric($ruleValue)) {
+            $productAttributeValue = (float)$productAttributeValue;
+            $ruleValue = (float)$ruleValue;
+
+            return match ($matchType) {
+                self::MATCH_TYPE_LESS_THAN => $productAttributeValue < $ruleValue,
+                self::MATCH_TYPE_GREATER_THAN => $productAttributeValue > $ruleValue,
+                self::MATCH_TYPE_LESS_THAN_OR_EQUAL => $productAttributeValue <= $ruleValue,
+                self::MATCH_TYPE_GREATER_THAN_OR_EQUAL => $productAttributeValue >= $ruleValue,
+                self::MATCH_TYPE_EQUAL => $productAttributeValue === $ruleValue,
+                default => false,
+            };
+        }
+
+        // Convert non-boolean values to string for comparison
+        $productAttributeValue = (string)$productAttributeValue;
 
         return match ($matchType) {
             self::MATCH_TYPE_EXACT => $productAttributeValue === $ruleValue,

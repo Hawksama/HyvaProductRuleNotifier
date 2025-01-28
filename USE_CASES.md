@@ -1,7 +1,21 @@
-# Hyva Product Attribute Notifications - 25+ Use Cases
+# Hyva Product Attribute Notifications - Industry Use Cases
 
-Enhance your store's customer experience with these practical applications of the Hyva Product Attribute Notifications module.  
-*All examples use real product attributes and customizable notification messages.*
+Enhance your store's customer experience with practical applications of the Hyva Product Attribute Notifications module, organized by industry. Each industry has its own dedicated file with detailed examples.
+
+## Industries
+
+1. [Fashion and Apparel](./docs/fashion-and-apparel.md)
+2. [Electronics](./docs/electronics.md)
+3. [Home and Furniture](./docs/home-and-furniture.md)
+4. [Beauty and Personal Care](./docs/beauty-and-personal-care.md)
+5. [Sports and Outdoors](./docs/sports-and-outdoors.md)
+6. [Automotive](./docs/automotive.md)
+7. [Food and Beverages](./docs/food-and-beverages.md)
+8. [Books and Media](./docs/books-and-media.md)
+9. [Health and Wellness](./docs/health-and-wellness.md)
+10. [Toys and Games](./docs/toys-and-games.md)
+
+Each file includes specific product attributes, notification types, and real-world use cases tailored to the respective industry. Click on an industry to explore detailed examples.
 
 ---
 
@@ -140,3 +154,4 @@ Enhance your store's customer experience with these practical applications of th
 - Priority-based notification stacking
 
 *Customize messages, notification types (ERROR/WARNING/INFO/SUCCESS), and attribute matching logic through the admin panel.*
+``

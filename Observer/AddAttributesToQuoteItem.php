@@ -66,13 +66,17 @@ class AddAttributesToQuoteItem implements ObserverInterface
         /** @var \Magento\Framework\DataObject $product */
         $value = $product->getData($attributeCode);
 
-        if (empty($value)) {
+        if (empty($value) && $value !== '0') { // Allow '0' as a valid value
             return null;
         }
 
         $attribute = $this->productResource->getAttribute($attributeCode);
 
         if ($attribute && $attribute->usesSource()) {
+            // Check if the attribute is a boolean type
+            if ($attribute->getFrontendInput() === 'boolean') {
+                return (bool)$value;
+            }
             return $attribute->getSource()->getOptionText($value);
         }
 

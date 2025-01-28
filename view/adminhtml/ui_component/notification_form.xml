@@ -120,10 +120,10 @@
                 </item>
             </argument>
         </field>
-        <field name="word">
+        <field name="value">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="label" xsi:type="string" translate="true">Word</item>
+                    <item name="label" xsi:type="string" translate="true">Value</item>
                     <item name="dataType" xsi:type="string">text</item>
                     <item name="formElement" xsi:type="string">input</item>
                     <item name="source" xsi:type="string">notification</item>
@@ -137,16 +137,7 @@
         </field>
         <field name="match_type">
             <argument name="data" xsi:type="array">
-                <item name="options" xsi:type="array">
-                    <item name="option_exact" xsi:type="array">
-                        <item name="value" xsi:type="string">exact</item>
-                        <item name="label" xsi:type="string" translate="true">Exact Match</item>
-                    </item>
-                    <item name="option_like" xsi:type="array">
-                        <item name="value" xsi:type="string">like</item>
-                        <item name="label" xsi:type="string" translate="true">Match Like</item>
-                    </item>
-                </item>
+                <item name="options" xsi:type="object">Hawksama\HyvaProductRuleNotifier\Model\Source\MatchType</item>
                 <item name="config" xsi:type="array">
                     <item name="formElement" xsi:type="string">select</item>
                     <item name="component" xsi:type="string">Magento_Ui/js/form/element/select</item>
@@ -156,6 +147,18 @@
                     <item name="source" xsi:type="string">notification</item>
                 </item>
             </argument>
+            <settings>
+                <tooltip>
+                    <description translate="true">
+                        Use "Exact Match" or "Match Like" for string/word values.
+                        Use comparison operators (&lt;, &lt;=, &gt;, &gt;=, ==) for numeric values.
+                    </description>
+                </tooltip>
+                <notice translate="true">
+                    String matches: Exact Match, Match Like.
+                    Numeric matches: &lt;, &lt;=, &gt;, &gt;=, ==.
+                </notice>
+            </settings>
         </field>
         <field name="description" template="ui/form/field" formElement="wysiwyg">
             <argument name="data" xsi:type="array">

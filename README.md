@@ -1,6 +1,6 @@
 # Hyva Product Attribute Notifications for Magento 2
 
-![Magento 2](https://img.shields.io/badge/Magento-2.4%20%7C%202.5-brightgreen)
+![Magento 2](https://img.shields.io/badge/Magento-2.4-brightgreen)
 ![Hyva Compatible](https://img.shields.io/badge/Hyva-Themes-9cf)
 ![License](https://img.shields.io/badge/License-MIT-blue)
 
@@ -29,6 +29,7 @@ This module empowers merchants to create **customizable notification rules** tha
 | **Time-Based Rules** | Schedule notifications for specific periods |
 | **Multi-Store Ready** | Configure rules per store view |
 | **Frontend Display** | Notifications in minicart and cart page |
+|**Dynamic Updates** |	Notifications in the minicart dynamically update based on cart changes, ensuring users always see relevant information without needing to refresh the page.|
 | **Code Quality** | Passes PHPStan, PHPMD, PHP_CodeSniffer, and more |
 
 ---
@@ -38,12 +39,27 @@ This module empowers merchants to create **customizable notification rules** tha
 1. **Navigate to Admin Panel**:  
    `Hawksama → Product Notifications → Manage Rules`
 2. **Create New Rule**:
-    - Define attribute conditions (e.g., `eco_friendly = "yes"`)
-    - Select notification type and content
-    - Set schedule (optional)
-    - Assign to store views
+    - Define attribute conditions based on your product attributes.  
+      This module supports two match types:
+        - **Exact Match**: Matches the attribute value exactly.
+            - Example: `certification = "organic"`  
+              This triggers a notification for products certified as "organic".
+        - **Substring Match (LIKE)**: Matches if the attribute value contains the specified substring.
+            - Example: `description LIKE "recycled"`  
+              This triggers a notification for products with "recycled" anywhere in their description.
+
+    - **For Boolean Attributes**:
+        - Use `true` or `false` for attributes stored as boolean values.
+        - Supported values:
+            - **True Values**: `"1"`, `"true"`, `"on"`, `"yes"`
+            - **False Values**: `"0"`, `"false"`, `"off"`, `"no"`
+        - Example:
+            - `is_backorder = "true"` triggers a notification when the product is on backorder.
+    - Select notification type and content.
+    - Set schedule (optional).
+    - Assign to store views.
 3. **Frontend Display**:  
-   Notifications automatically appear in the Hyva minicart and cart page.
+   Notifications automatically appear in the Hyva minicart and cart page.te
 
 ---
 
@@ -69,15 +85,23 @@ This module empowers merchants to create **customizable notification rules** tha
 
 **[Explore 25+ Advanced Use Cases](USE_CASES.md)**
 
+
 ---
 
 ## 📸 Screenshots
 
-| Admin Rule Management | Minicart Notifications | Cart Page Notifications |
-|-----------------------|------------------------|-------------------------|
-| ![Admin](screenshots/admin-rules.png) | ![Minicart](screenshots/minicart-success.png) | ![Cart](screenshots/cart-warning.png) |
+### Admin Rule Management
+| GRID View                              | Form View                              |
+|----------------------------------------|----------------------------------------|
+| ![Admin GRID](media/admin-ui-grid.png) | ![Admin Form](media/admin-ui-form.png) |
+
+### Frontend Display
+| Minicart Notifications             | Cart Page Notifications    |
+|------------------------------------|----------------------------|
+| ![Minicart](media/fe-minicart.png) | ![Cart](media/fe-cart.png) |
 
 ---
+
 
 ## 🧰 Technical Details
 
@@ -88,6 +112,9 @@ This module empowers merchants to create **customizable notification rules** tha
   ✅ PHPMD  
   ✅ PHP_CodeSniffer (Magento Coding Standard)  
   ✅ PHP Magic Number Detector
+  ![Code Analysis](media/code-analysis.png)
+
+I used https://github.com/Hawksama/docker-magento/blob/master/compose/bin/analyse used to validate code quality and detect potential issues.
 
 ---
 
@@ -100,7 +127,7 @@ When cart items match attribute rules (exact match or partial text).
 Yes – multi-store configuration is supported.
 
 ❓ **What happens if multiple rules apply?**  
-All matching notifications are displayed, prioritized by type (ERROR > WARNING > INFO > SUCCESS).
+All matching notifications are displayed (ERROR > WARNING > INFO > SUCCESS).
 
 ❓ **Is Hyva required?**  
 Yes – built specifically for Hyva's AlpineJS framework.
@@ -109,8 +136,8 @@ Yes – built specifically for Hyva's AlpineJS framework.
 
 ## 📮 Support & Contribution
 
-- **Issues**: [GitHub Issue Tracker](https://github.com/your-repo/issues)
-- **Contact**: support@yourdomain.com
+- **Issues**: [GitHub Issue Tracker](https://github.com/Hawksama/HyvaProductRuleNotifier/issues)
+- **Contact**: manue971@icloud.com
 - **Contribution**: PRs welcome! Follow [Magento Coding Standards](https://developer.adobe.com/commerce/php/coding-standards/).
 
 ---

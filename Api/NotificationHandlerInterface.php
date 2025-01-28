@@ -16,6 +16,11 @@ interface NotificationHandlerInterface
 {
     public const MATCH_TYPE_EXACT = 'exact';
     public const MATCH_TYPE_LIKE = 'like';
+    public const MATCH_TYPE_LESS_THAN = '<';
+    public const MATCH_TYPE_GREATER_THAN = '>';
+    public const MATCH_TYPE_LESS_THAN_OR_EQUAL = '<=';
+    public const MATCH_TYPE_GREATER_THAN_OR_EQUAL = '>=';
+    public const MATCH_TYPE_EQUAL = '==';
 
     /**
      * Retrieve notifications for the given cart items.

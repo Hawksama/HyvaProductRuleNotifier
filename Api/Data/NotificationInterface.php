@@ -19,7 +19,7 @@ interface NotificationInterface
     public const RULE_NAME = "rule_name";
     public const STORE_ID = "store_id";
     public const PRODUCT_ATTRIBUTE = "product_attribute";
-    public const WORD = "word";
+    public const VALUE = "value";
     public const MATCH_TYPE = "match_type";
     public const DESCRIPTION = "description";
     public const SCHEDULE_ENABLED = "schedule_enabled";
@@ -107,15 +107,15 @@ interface NotificationInterface
      *
      * @return string
      */
-    public function getWord(): string;
+    public function getValue(): string;
 
     /**
      * Setter for Word.
      *
-     * @param string $word
+     * @param string $value
      * @return void
      */
-    public function setWord(string $word): void;
+    public function setValue(string $value): void;
 
     /**
      * Getter for MatchType.
