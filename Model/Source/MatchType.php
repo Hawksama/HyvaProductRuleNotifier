@@ -15,8 +15,6 @@ class MatchType implements OptionSourceInterface
 {
     /**
      * Retrieve match type options
-     *
-     * @return array
      */
     public function toOptionArray(): array
     {

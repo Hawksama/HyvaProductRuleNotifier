@@ -14,7 +14,7 @@ This module empowers merchants to create **customizable notification rules** tha
 
 - **Multi-store support**
 - **Scheduled activation** (start/end dates)
-- **Attribute value matching** (exact match or contains)
+- **Attribute value matching** (exact match, substring match, or numeric comparisons)
 - **AlpineJS-driven logic** for seamless Hyva integration
 - **Admin UI Grid & Form** for easy rule management
 
@@ -25,7 +25,7 @@ This module empowers merchants to create **customizable notification rules** tha
 | Feature | Description |
 |---------|-------------|
 | **4 Notification Types** | ERROR, WARNING, INFORMATION, SUCCESS with customizable styling |
-| **Advanced Attribute Targeting** | Match attributes by exact value or partial text |
+| **Advanced Attribute Targeting** | Match attributes by exact value, substring, or numeric comparisons|
 | **Time-Based Rules** | Schedule notifications for specific periods |
 | **Multi-Store Ready** | Configure rules per store view |
 | **Frontend Display** | Notifications in minicart and cart page |
@@ -47,7 +47,10 @@ This module empowers merchants to create **customizable notification rules** tha
         - **Substring Match (LIKE)**: Matches if the attribute value contains the specified substring.
             - Example: `description LIKE "recycled"`  
               This triggers a notification for products with "recycled" anywhere in their description.
-
+        - **Numeric Comparisons**: Matches based on numeric operators (<, <=, >, >=, ==),
+            - Example: `stock_status <= 10"`  
+              Triggers a notification when the stock is less than or equal to 10.
+          
     - **For Boolean Attributes**:
         - Use `true` or `false` for attributes stored as boolean values.
         - Supported values:
