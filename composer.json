@@ -9,7 +9,8 @@
         "hawksama/magento2-admin-menu": "^1.0"
     },
     "license": [
-        "Proprietary"
+        "OSL-3.0",
+        "AFL-3.0"
     ],
     "autoload": {
         "files": [
