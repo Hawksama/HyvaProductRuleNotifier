@@ -2,7 +2,7 @@
 
 ![Magento 2](https://img.shields.io/badge/Magento-2.4-brightgreen)
 ![Hyva Compatible](https://img.shields.io/badge/Hyva-Themes-9cf)
-![License](https://img.shields.io/badge/License-MIT-blue)
+![License](https://img.shields.io/badge/License-Mozilla%20Public%20License%202.0-blue)
 
 A dynamic Magento 2 module designed for **Hyva Themes** that displays targeted notifications in the minicart and cart pages based on product attributes. Perfect for creating urgency, highlighting promotions, and enhancing customer experience.
 
