@@ -103,14 +103,14 @@ interface NotificationInterface
     public function setProductAttribute(?string $productAttribute): void;
 
     /**
-     * Getter for Word.
+     * Getter for Value.
      *
      * @return string
      */
     public function getValue(): string;
 
     /**
-     * Setter for Word.
+     * Setter for Value.
      *
      * @param string $value
      * @return void

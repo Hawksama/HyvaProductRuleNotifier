@@ -12,7 +12,7 @@
         <column xsi:type="varchar" name="rule_name" nullable="false" length="255" comment="Rule Name Column"/>
         <column xsi:type="boolean" name="enabled" nullable="false" comment="Enabled Column"/>
         <column xsi:type="varchar" name="product_attribute" nullable="false" length="255" comment="Product Attribute Column"/>
-        <column xsi:type="varchar" name="value" nullable="false" length="255" comment="Word Column"/>
+        <column xsi:type="varchar" name="value" nullable="false" length="255" comment="Value Column"/>
         <column xsi:type="varchar" name="match_type" nullable="false" length="255" comment="Match Type Column"/>
         <column xsi:type="mediumtext" name="description" nullable="true" comment="Description Column"/>
         <column xsi:type="smallint" name="notification_type" unsigned="true" nullable="true" comment="Notification Type Column"/>
