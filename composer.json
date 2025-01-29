@@ -1,7 +1,7 @@
 {
     "name": "hawksama/hyva-product-rule-notifier",
     "version": "1.0.1",
-    "description": "N/A",
+    "description": "This module enables store owners to create conditional notifications in minicart and cart page based on product attributes.",
     "type": "magento2-module",
     "require": {
         "magento/framework": "*",
